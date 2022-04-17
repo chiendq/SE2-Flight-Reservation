@@ -1,30 +1,56 @@
 package vn.hanu.fit.se2flightreservation.servicesImpl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.hanu.fit.se2flightreservation.entity.FlightClass;
+import vn.hanu.fit.se2flightreservation.exception.EntityExistedByIdException;
 import vn.hanu.fit.se2flightreservation.exception.ResourceNotFoundException;
 import vn.hanu.fit.se2flightreservation.repository.FlightClassRepository;
+import vn.hanu.fit.se2flightreservation.services.FlightClassService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class FlightClassServiceImpl {
+public class FlightClassServiceImpl implements FlightClassService {
 
-    @Autowired
-    FlightClassRepository flightClassRepository;
+    private FlightClassRepository flightClassRepository;
 
-    public List<FlightClass> getAll() {
-        return flightClassRepository.findAll();
+    public FlightClassServiceImpl(FlightClassRepository flightClassRepository){
+        this.flightClassRepository = flightClassRepository;
     }
 
-    public FlightClass getById(int id) {
-        return flightClassRepository.findById(id).get();
-    }
-
+    @Override
     public FlightClass save(FlightClass flightClass) {
+        int id = flightClass.getId();
+        if(flightClassRepository.existsById(id)){
+            throw new EntityExistedByIdException("FlightClass","Id", id);
+        }
         return flightClassRepository.save(flightClass);
     }
 
+    @Override
+    public List<FlightClass> getAllFlightClasss() {
+        return flightClassRepository.findAll();
+    }
+
+    @Override
+    public FlightClass getFlightClassById(int id) {
+        return flightClassRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("FlightClass", "Id", id));
+    }
+
+    @Override
+    public FlightClass updateFlightClass(FlightClass flightClass, int id) {
+        FlightClass existingFlightClass = flightClassRepository.findById(id).orElseThrow(
+                ()-> new ResourceNotFoundException("FlightClass","Id",id));
+        existingFlightClass.setName(flightClass.getName());
+        existingFlightClass.setDescription(flightClass.getDescription());
+        return flightClassRepository.save(existingFlightClass);
+    }
+
+    @Override
+    public void deleteFlightClassById(int id) {
+        FlightClass existingFlightClass = flightClassRepository.findById(id).orElseThrow(
+                ()-> new ResourceNotFoundException("FlightClass","Id",id));
+        flightClassRepository.delete(existingFlightClass);
+    }
 }
