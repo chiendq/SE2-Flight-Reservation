@@ -21,9 +21,10 @@ public class AirlineServiceImpl implements AirlineService {
     @Override
     public Airline save(Airline airline) {
         int id = airline.getId();
-        if(isPresent(id)!= null){
+        if(airlineRepository.existsById(id)){
             throw new EntityExistedByIdException("Airline","Id", id);
         }
+
         return airlineRepository.save(airline);
     }
 
@@ -56,7 +57,9 @@ public class AirlineServiceImpl implements AirlineService {
      */
     @Override
     public Airline updateAirline(Airline airline, int id) {
-        Airline existingAirline = isPresent(id);
+        Airline existingAirline = airlineRepository.findById(id).orElseThrow(
+                ()-> new ResourceNotFoundException("Airline","Id",id));
+
         existingAirline.setImgAPI(airline.getImgAPI());
         existingAirline.setName(airline.getName());
         return airlineRepository.save(existingAirline);
@@ -73,21 +76,10 @@ public class AirlineServiceImpl implements AirlineService {
      */
     @Override
     public void deleteAirlineById(int id) {
-        Airline existingAirline = isPresent(id);
+        Airline existingAirline = airlineRepository.findById(id).orElseThrow(
+                ()-> new ResourceNotFoundException("Airline","Id",id));
         airlineRepository.delete(existingAirline);
     }
 
-    /**
-     * Check if this airline is present by given id.
-     *      - Yes : return airline.
-     *      - No : throw ResourceNotFoundException
-     * @param id
-     * @return Airline
-     */
-    @Override
-    public Airline isPresent(int id) {
-        Airline existingAirline = airlineRepository.findById(id).orElseThrow(
-                ()-> new ResourceNotFoundException("Airline","Id",id));
-        return existingAirline;
-    }
+
 }
