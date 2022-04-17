@@ -33,6 +33,7 @@ public class TicketServiceImpl {
     }
 
     public List<Ticket> getByFlightClassId(int flightClassId){
+
         return ticketRepository.getByFlightClassId(flightClassId);
     }
 }
