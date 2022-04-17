@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.services;
+package vn.hanu.fit.se2flightreservation.servicesImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
