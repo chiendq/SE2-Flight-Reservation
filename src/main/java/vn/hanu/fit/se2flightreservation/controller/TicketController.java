@@ -1,41 +1,47 @@
 package vn.hanu.fit.se2flightreservation.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.hanu.fit.se2flightreservation.dtos.TicketSearchDto;
 import vn.hanu.fit.se2flightreservation.entity.Ticket;
-import vn.hanu.fit.se2flightreservation.servicesImpl.TicketServiceImpl;
+import vn.hanu.fit.se2flightreservation.services.TicketService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/ticket")
 public class TicketController {
-    @Autowired
-    private TicketServiceImpl ticketService;
+    private TicketService ticketService;
 
-    @GetMapping("/all")
-    public List<Ticket> getAll(){
-        return ticketService.getAll();
-    }
-
-    @GetMapping(value = {"/{id}"})
-    public Ticket getById(@PathVariable(value = "id") int id){
-        return ticketService.getById(id);
+    public TicketController(TicketService ticketService) {
+        super();
+        this.ticketService = ticketService;
     }
 
     @PostMapping("")
-    public Ticket save(@RequestBody Ticket ticket){
-        return ticketService.save(ticket);
+    public ResponseEntity<Ticket> saveTicket(@RequestBody Ticket ticket) {
+        return new ResponseEntity<Ticket>(ticketService.save(ticket), HttpStatus.CREATED);
     }
 
-    @GetMapping("/search")
-    public List<Ticket> search(@RequestBody TicketSearchDto ticketSearchDto){
-        return ticketService.search(ticketSearchDto);
+    @GetMapping("")
+    public List<Ticket> getAllTickets() {
+        return ticketService.getAllTickets();
     }
 
-    @GetMapping("/searchbyflightclass/{id}")
-    public List<Ticket> search(@PathVariable(value = "id") int id){
-        return ticketService.getByFlightClassId(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<Ticket> getTicketById(@PathVariable("id") int ticketId) {
+        return new ResponseEntity<Ticket>(ticketService.getTicketById(ticketId), HttpStatus.OK);
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Ticket> updateTicket(@PathVariable("id") int id, @RequestBody Ticket ticket) {
+        return new ResponseEntity<Ticket>(ticketService.updateTicket(ticket, id), HttpStatus.OK);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteTicket(@PathVariable("id") int id) {
+        ticketService.deleteTicketById(id);
+        return new ResponseEntity<String>("Ticket deleted successfully!.",HttpStatus.OK);
+    }
+
 }
