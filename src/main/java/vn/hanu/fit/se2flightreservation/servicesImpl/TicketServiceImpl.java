@@ -1,38 +1,61 @@
 package vn.hanu.fit.se2flightreservation.servicesImpl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import vn.hanu.fit.se2flightreservation.dtos.TicketSearchDto;
 import vn.hanu.fit.se2flightreservation.entity.Ticket;
+import vn.hanu.fit.se2flightreservation.entity.Ticket;
+import vn.hanu.fit.se2flightreservation.exception.EntityExistedByIdException;
+import vn.hanu.fit.se2flightreservation.exception.ResourceNotFoundException;
 import vn.hanu.fit.se2flightreservation.repository.TicketRepository;
+import vn.hanu.fit.se2flightreservation.services.TicketService;
 
 import java.util.List;
 
 @Service
-public class TicketServiceImpl {
-    @Autowired
-    TicketRepository ticketRepository;
+public class TicketServiceImpl implements TicketService {
+    private TicketRepository ticketRepository;
 
-    public List<Ticket> getAll() {
-        return ticketRepository.findAll();
+    public TicketServiceImpl(TicketRepository ticketRepository){
+        this.ticketRepository = ticketRepository;
     }
 
-    public Ticket getById(int id) {
-        return ticketRepository.findById(id).get();
-    }
-
+    @Override
     public Ticket save(Ticket ticket) {
+        int id = ticket.getId();
+        if(ticketRepository.existsById(id)){
+            throw new EntityExistedByIdException("Ticket","Id", id);
+        }
         return ticketRepository.save(ticket);
     }
 
-    public List<Ticket> search(TicketSearchDto ticketSearchDto) {
-        int arrivalAirportId = ticketSearchDto.getArrivalAirportId();
-        int departureAirportId = ticketSearchDto.getDepartureAirportId();
-        int flightClassId = ticketSearchDto.getFlightClassId();
-        return ticketRepository.findAllByArrivalAirport_IdAndDepartureAirport_IdAndFlightClass_Id(arrivalAirportId, departureAirportId, flightClassId);
+    @Override
+    public List<Ticket> getAllTickets() {
+        return ticketRepository.findAll();
     }
 
-    public List<Ticket> getByFlightClassId(int flightClassId){
-        return ticketRepository.getByFlightClassId(flightClassId);
+    @Override
+    public Ticket getTicketById(int id) {
+        return ticketRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Ticket", "Id", id));
+    }
+
+    @Override
+    public Ticket updateTicket(Ticket ticket, int id) {
+        Ticket existingTicket = ticketRepository.findById(id).orElseThrow(
+                ()-> new ResourceNotFoundException("Ticket","Id",id));
+        existingTicket.setAirline(ticket.getAirline());
+        existingTicket.setCost(ticket.getCost());
+        existingTicket.setDepartureAirport(ticket.getDepartureAirport());
+        existingTicket.setArrivalAirport(ticket.getArrivalAirport());
+        existingTicket.setArrivalTime(ticket.getArrivalTime());
+        existingTicket.setDepartureTime(ticket.getDepartureTime());
+        existingTicket.setFlightClass(ticket.getFlightClass());
+        return ticketRepository.save(existingTicket);
+    }
+
+    @Override
+    public void deleteTicketById(int id) {
+        Ticket existingTicket = ticketRepository.findById(id).orElseThrow(
+                ()-> new ResourceNotFoundException("Ticket","Id",id));
+        ticketRepository.delete(existingTicket);
     }
 }
