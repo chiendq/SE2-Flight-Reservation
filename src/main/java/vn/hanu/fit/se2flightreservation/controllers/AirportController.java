@@ -1,9 +1,9 @@
-package vn.hanu.fit.se2flightreservation.controller;
+package vn.hanu.fit.se2flightreservation.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.hanu.fit.se2flightreservation.entity.Airport;
+import vn.hanu.fit.se2flightreservation.entities.Airport;
 import vn.hanu.fit.se2flightreservation.services.AirportService;
 
 import java.util.List;

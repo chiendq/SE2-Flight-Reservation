@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.entity;
+package vn.hanu.fit.se2flightreservation.entities;
 
 import lombok.Data;
 

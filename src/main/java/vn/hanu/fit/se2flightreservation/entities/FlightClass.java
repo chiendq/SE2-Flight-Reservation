@@ -1,18 +1,16 @@
-package vn.hanu.fit.se2flightreservation.entity;
+package vn.hanu.fit.se2flightreservation.entities;
 
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
-@Table(name = "airlines")
+@Table(name = "flight_classes")
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Airline implements Serializable {
-
+@AllArgsConstructor
+public class FlightClass implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -21,5 +19,5 @@ public class Airline implements Serializable {
     private String name;
 
     @Column(nullable = false)
-    private String imgAPI;
+    private String description;
 }

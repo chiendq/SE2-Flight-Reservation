@@ -1,6 +1,6 @@
 package vn.hanu.fit.se2flightreservation.services;
 
-import vn.hanu.fit.se2flightreservation.entity.Airline;
+import vn.hanu.fit.se2flightreservation.entities.Airline;
 
 import java.util.List;
 

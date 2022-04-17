@@ -1,9 +1,9 @@
-package vn.hanu.fit.se2flightreservation.repository;
+package vn.hanu.fit.se2flightreservation.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import vn.hanu.fit.se2flightreservation.entity.Ticket;
+import vn.hanu.fit.se2flightreservation.entities.Ticket;
 
 import java.sql.Timestamp;
 import java.util.List;
