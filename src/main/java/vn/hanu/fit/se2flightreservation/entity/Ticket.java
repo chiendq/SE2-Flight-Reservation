@@ -33,9 +33,12 @@ public class Ticket implements Serializable {
     @ManyToOne
     private FlightClass flightClass;
 
+    @Column(nullable = false)
     private Timestamp departureTime;
 
+    @Column(nullable = false)
     private Timestamp arrivalTime;
 
+    @Column(nullable = false)
     private Integer cost;
 }
