@@ -27,9 +27,7 @@ public class User implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    @Column(nullable = false)
-
-    private String fullName;
+    private String fullname;
 
     @Column(nullable = false)
     private String username;
@@ -37,10 +35,8 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
     private String phone;
 
-    @Column(nullable = false)
     private boolean gender;
 
     @Column(nullable = false)
