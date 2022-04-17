@@ -21,8 +21,8 @@ public class AirportServiceImpl implements AirportService {
     @Override
     public Airport save(Airport airport) {
         int id = airport.getId();
-        if(isPresent(id)!= null){
-            throw new EntityExistedByIdException("Airline","Id", id);
+        if(airportRepository.existsById(id)){
+            throw new EntityExistedByIdException("Airport","Id", id);
         }
         return airportRepository.save(airport);
     }
@@ -40,7 +40,8 @@ public class AirportServiceImpl implements AirportService {
 
     @Override
     public Airport updateAirport(Airport airport, int id) {
-        Airport existingAirport = isPresent(id);
+        Airport existingAirport = airportRepository.findById(id).orElseThrow(
+                ()-> new ResourceNotFoundException("Airport","Id",id));
         existingAirport.setCity(airport.getCity());
         existingAirport.setCode(airport.getCode());
         existingAirport.setName(airport.getName());
@@ -49,14 +50,9 @@ public class AirportServiceImpl implements AirportService {
 
     @Override
     public void deleteAirportById(int id) {
-        Airport existingAirport = isPresent(id);
+        Airport existingAirport = airportRepository.findById(id).orElseThrow(
+                ()-> new ResourceNotFoundException("Airport","Id",id));
         airportRepository.delete(existingAirport);
     }
 
-    @Override
-    public Airport isPresent(int id) {
-        Airport existingAirport = airportRepository.findById(id).orElseThrow(
-                ()-> new ResourceNotFoundException("Airline","Id",id));
-        return existingAirport;
-    }
 }

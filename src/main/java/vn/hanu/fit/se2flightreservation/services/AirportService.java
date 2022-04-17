@@ -16,5 +16,4 @@ public interface AirportService {
 
     void deleteAirportById(int id);
 
-    Airport isPresent(int id);
 }
