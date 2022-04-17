@@ -1,5 +1,6 @@
 package vn.hanu.fit.se2flightreservation.servicesImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -13,10 +14,10 @@ import javax.transaction.Transactional;
 @Service
 public class UserDetailsServiceImpl implements org.springframework.security.core.userdetails.UserDetailsService {
 
+    @Autowired
     private UserRepository userRepository;
 
-    public UserDetailsServiceImpl(UserRepository userRepository){
-        this.userRepository = userRepository;
+    public UserDetailsServiceImpl() {
     }
 
     @Override

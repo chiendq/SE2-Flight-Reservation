@@ -32,8 +32,16 @@ INSERT INTO airlines (imgapi, name) VALUES ('https://storage.googleapis.com/trip
 INSERT INTO airlines (imgapi, name) VALUES ('https://storage.googleapis.com/tripi-flights/agenticons/Pacific%20Airlines.png', 'Pacific Airlines');
 
 # Init roles
-INSERT INTO roles (description, name) VALUES (null, 'USER');
-INSERT INTO roles (description, name) VALUES (null, 'ADMIN');
+INSERT INTO roles (description, name) VALUES ('user', 'ROLE_USER');
+INSERT INTO roles (description, name) VALUES ('mod', 'ROLE_MORDERATOR');
+INSERT INTO roles (description, name) VALUES ('admin', 'ROLE_ADMIN');
+
+#init users
+INSERT INTO users (email, full_name, gender, password, phone, username) VALUES ('chieesnddafo@gmail.com', 'Dao Chien', false, '$2a$10$iCDLUsBEpOkLhq2iSrgdceAcNru1C/LMJ5eBVYEUATP.OAZTgucje', '123123123123', 'chieesnddafo');
+
+# Init user_roles
+INSERT INTO user_roles (user_id, role_id) VALUES (1, 1);
+
 
 # Init tickets
 INSERT INTO tickets (arrival_time, cost, departure_time, airline_id, arrival_airport_id, departure_airport_id, flight_class_id) VALUES ('2022-04-23 06:00:00', 500, '2022-04-30 08:00:00', 1, 1, 2, 1);
