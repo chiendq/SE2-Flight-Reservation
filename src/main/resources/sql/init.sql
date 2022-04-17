@@ -37,7 +37,7 @@ INSERT INTO roles (description, name) VALUES ('mod', 'ROLE_MORDERATOR');
 INSERT INTO roles (description, name) VALUES ('admin', 'ROLE_ADMIN');
 
 #init users
-INSERT INTO users (email, full_name, gender, password, phone, username) VALUES ('chieesnddafo@gmail.com', 'Dao Chien', false, '$2a$10$iCDLUsBEpOkLhq2iSrgdceAcNru1C/LMJ5eBVYEUATP.OAZTgucje', '123123123123', 'chieesnddafo');
+INSERT INTO users (email, fullname, gender, password, phone, username) VALUES ('chieesnddafo@gmail.com', 'Dao Chien', false, '$2a$10$iCDLUsBEpOkLhq2iSrgdceAcNru1C/LMJ5eBVYEUATP.OAZTgucje', '123123123123', 'chieesnddafo');
 
 # Init user_roles
 INSERT INTO user_roles (user_id, role_id) VALUES (1, 1);

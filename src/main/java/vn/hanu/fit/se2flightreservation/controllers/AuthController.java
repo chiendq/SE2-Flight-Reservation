@@ -37,8 +37,10 @@ public class AuthController {
     @Autowired
     AuthenticationManager authenticationManager;
 
+    @Autowired
     UserService userService;
 
+    @Autowired
     RoleService roleService;
 
     @Autowired
