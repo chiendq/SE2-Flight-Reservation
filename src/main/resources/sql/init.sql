@@ -34,3 +34,9 @@ INSERT INTO airlines (imgapi, name) VALUES ('https://storage.googleapis.com/trip
 # Init roles
 INSERT INTO roles (description, name) VALUES (null, 'USER');
 INSERT INTO roles (description, name) VALUES (null, 'ADMIN');
+
+# Init tickets
+INSERT INTO tickets (arrival_time, cost, departure_time, airline_id, arrival_airport_id, departure_airport_id, flight_class_id) VALUES ('2022-04-23 06:00:00', 500, '2022-04-30 08:00:00', 1, 1, 2, 1);
+INSERT INTO tickets (arrival_time, cost, departure_time, airline_id, arrival_airport_id, departure_airport_id, flight_class_id) VALUES ('2022-04-23 06:00:00', 600, '2022-04-30 08:00:00', 1, 1, 2, 2);
+INSERT INTO tickets (arrival_time, cost, departure_time, airline_id, arrival_airport_id, departure_airport_id, flight_class_id) VALUES ('2022-04-23 06:00:00', 700, '2022-04-30 08:00:00', 1, 1, 2, 3);
+INSERT INTO tickets (arrival_time, cost, departure_time, airline_id, arrival_airport_id, departure_airport_id, flight_class_id) VALUES ('2022-04-23 06:00:00', 800, '2022-04-30 08:00:00', 1, 1, 2, 4);
