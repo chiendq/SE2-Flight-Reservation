@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.servicesImpl;
+package vn.hanu.fit.se2flightreservation.services.servicesImpl;
 
 import org.springframework.stereotype.Service;
 import vn.hanu.fit.se2flightreservation.entities.Airport;

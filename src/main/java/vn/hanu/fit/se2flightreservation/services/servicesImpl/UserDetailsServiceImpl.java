@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.servicesImpl;
+package vn.hanu.fit.se2flightreservation.services.servicesImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
