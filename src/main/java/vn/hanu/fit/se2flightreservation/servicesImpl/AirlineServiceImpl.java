@@ -17,9 +17,6 @@ public class AirlineServiceImpl implements AirlineService {
         this.airlineRepository = airlineRepository;
     }
 
-    public Airline getById(int id) {
-        return airlineRepository.findById(id).get();
-    }
 
     @Override
     public Airline save(Airline airline) {
