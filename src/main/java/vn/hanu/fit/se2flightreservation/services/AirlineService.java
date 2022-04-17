@@ -15,5 +15,4 @@ public interface AirlineService {
 
     void deleteAirlineById(int id);
 
-    Airline isPresent(int id);
 }
