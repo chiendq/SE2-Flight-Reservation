@@ -6,23 +6,22 @@ import org.springframework.stereotype.Repository;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface TicketRepository
         extends JpaRepository<Ticket, Integer> {
     List<Ticket> findAllByArrivalAirport_IdAndDepartureAirport_IdAndFlightClass_Id(int arrivalAirportId,
-                                                                                      int departureAirportId,
-                                                                                      int flightClassId);
+                                                                                   int departureAirportId,
+                                                                                   int flightClassI);
+//
+//
+//    @Query(value="SELECT * FROM tickets where" +
+//            " flight_class_id= :flightClassId" +
+//            "AND arrival_airport_id = :arrivalAirportId " +
+//            "AND departure_airport_id = :departureAirportId" +
+//            "", nativeQuery=true)
+//    List<Ticket> search(int flightClassId, int arrivalAirportId, int departureAirportId );
 
-    List<Ticket> findAllByDepartureAirport_IdAndArrivalAirport_IdAndFlightClass_IdAndDepartureTime(
-            int departureAirportId,
-            int arrivalAirportId,
-            int flightClassId,
-            Timestamp departureTime
-            );
-
-//    String search = ;
-    @Query(value="SELECT * FROM tickets t where t.flight_class_id= :flightClassId", nativeQuery=true)
-    List<Ticket> getByFlightClassId(int flightClassId);
 }

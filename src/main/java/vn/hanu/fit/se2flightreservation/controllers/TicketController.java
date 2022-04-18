@@ -1,17 +1,35 @@
 package vn.hanu.fit.se2flightreservation.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.hanu.fit.se2flightreservation.config.AuthEntryPointJwt;
+import vn.hanu.fit.se2flightreservation.converter.TicketConverter;
+import vn.hanu.fit.se2flightreservation.dtos.AirportDto;
+import vn.hanu.fit.se2flightreservation.dtos.TicketResponseDto;
+import vn.hanu.fit.se2flightreservation.dtos.TicketSearchDto;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.services.TicketService;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/ticket")
 public class TicketController {
+    private static final Logger logger = LoggerFactory.getLogger(TicketController.class);
+
+
     private TicketService ticketService;
+
+    @Autowired
+    TicketConverter ticketConverter;
 
     public TicketController(TicketService ticketService) {
         super();
@@ -41,7 +59,27 @@ public class TicketController {
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteTicket(@PathVariable("id") int id) {
         ticketService.deleteTicketById(id);
-        return new ResponseEntity<String>("Ticket deleted successfully!.",HttpStatus.OK);
+        return new ResponseEntity<String>("Ticket deleted successfully!.", HttpStatus.OK);
     }
 
+//    @GetMapping("/search")
+//    public List<Ticket> searchTicket(@RequestBody TicketSearchDto ticketSearchDto) {
+//
+//        return ticketService.findAllByArrivalAirport_IdAndDepartureAirport_IdAndFlightClass_Id(ticketSearchDto);
+//    }
+
+//    @GetMapping("/testSearch")
+//    public ResponseEntity<TicketResponseDto> searchTestTicket(){
+//        Ticket ticket = ticketService.getTicketById(1);
+//        TicketResponseDto ticketResponseDto = ticketConverter.toTicketResponse(ticket);
+//        return new ResponseEntity<TicketResponseDto>(ticketResponseDto, HttpStatus.OK);
+//    }
+
+    @GetMapping("/search")
+    public List<TicketResponseDto> searchTestTicket(@RequestBody TicketSearchDto ticketSearchDto) throws ParseException {
+        logger.info(ticketSearchDto.toString());
+        List<Ticket> resultTickets = ticketService.search(ticketSearchDto);
+
+        return ticketConverter.ticketResponseDtoList(resultTickets);
+    }
 }
