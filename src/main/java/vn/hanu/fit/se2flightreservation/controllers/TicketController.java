@@ -30,29 +30,32 @@ public class TicketController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Ticket> saveTicket(@RequestBody Ticket ticket) {
-        return new ResponseEntity<>(ticketService.save(ticket), HttpStatus.CREATED);
+    public ResponseEntity<TicketResponseDto> saveTicket(@RequestBody Ticket ticket) {
+        Ticket savedTicket = ticketService.save(ticket);
+        return new ResponseEntity<>(ticketConverter.toTicketResponse(savedTicket), HttpStatus.CREATED);
     }
 
     @GetMapping("")
-    public List<Ticket> getAllTickets() {
-        return ticketService.getAllTickets();
+    public List<TicketResponseDto> getAllTickets() {
+
+        return ticketConverter.ticketResponseDtoList(ticketService.getAllTickets());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Ticket> getTicketById(@PathVariable("id") int ticketId) {
-        return new ResponseEntity<Ticket>(ticketService.getTicketById(ticketId), HttpStatus.OK);
+    public ResponseEntity<TicketResponseDto> getTicketById(@PathVariable("id") int ticketId) {
+        Ticket ticket = ticketService.getTicketById(ticketId);
+        return new ResponseEntity<>(ticketConverter.toTicketResponse(ticket), HttpStatus.OK);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Ticket> updateTicket(@PathVariable("id") int id, @RequestBody Ticket ticket) {
-        return new ResponseEntity<Ticket>(ticketService.updateTicket(ticket, id), HttpStatus.OK);
+    public ResponseEntity<TicketResponseDto> updateTicket(@PathVariable("id") int id, @RequestBody Ticket ticket) {
+        return new ResponseEntity<>(ticketConverter.toTicketResponse(ticketService.updateTicket(ticket, id)), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteTicket(@PathVariable("id") int id) {
         ticketService.deleteTicketById(id);
-        return new ResponseEntity<String>("Ticket deleted successfully!.", HttpStatus.OK);
+        return new ResponseEntity<>("Ticket deleted successfully!.", HttpStatus.OK);
     }
 
     @GetMapping("/search")
