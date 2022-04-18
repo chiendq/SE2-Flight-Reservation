@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.dtos;
+package vn.hanu.fit.se2flightreservation.dtos.ticket;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

@@ -1,9 +1,11 @@
-package vn.hanu.fit.se2flightreservation.dtos;
+package vn.hanu.fit.se2flightreservation.dtos.ticket;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vn.hanu.fit.se2flightreservation.dtos.AirportDto;
+import vn.hanu.fit.se2flightreservation.entities.Airplane;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,9 +14,7 @@ import lombok.Setter;
 public class TicketResponseDto {
     private int id;
 
-    private String airplaneName;
-
-    private String airplaneImgAPI;
+    private Airplane airplaneDto;
 
     private AirportDto departureAirportDto;
 
@@ -25,5 +25,7 @@ public class TicketResponseDto {
     private String arrivalDate;
 
     private int cost;
+
+    private int seat;
 
 }

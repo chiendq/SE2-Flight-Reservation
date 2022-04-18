@@ -2,7 +2,8 @@ package vn.hanu.fit.se2flightreservation.converter;
 
 import org.springframework.stereotype.Component;
 import vn.hanu.fit.se2flightreservation.dtos.AirportDto;
-import vn.hanu.fit.se2flightreservation.dtos.TicketResponseDto;
+import vn.hanu.fit.se2flightreservation.dtos.ticket.TicketResponseDto;
+import vn.hanu.fit.se2flightreservation.entities.Airplane;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 
 import java.sql.Timestamp;
@@ -14,34 +15,33 @@ import java.util.List;
 public class TicketConverter {
     public TicketResponseDto toTicketResponse(Ticket ticket){
         TicketResponseDto ticketResponseDto = new TicketResponseDto();
-        ticketResponseDto.setCost(ticket.getCost());
-        ticketResponseDto.setAirplaneName("Airbus");
-        ticketResponseDto.setAirplaneImgAPI("");
-
+        ticketResponseDto.setSeat(ticket.getSeat());
         ticketResponseDto.setId(ticket.getId());
+        ticketResponseDto.setCost(ticket.getCost());
+
+        Airplane airplaneDto = ticket.getAirplane();
+        ticketResponseDto.setAirplaneDto(airplaneDto);
 
         AirportDto departureAirportDto = new AirportDto();
         departureAirportDto.setCity(ticket.getDepartureAirport().getCity());
         departureAirportDto.setCode(ticket.getDepartureAirport().getCode());
         departureAirportDto.setName(ticket.getDepartureAirport().getName());
+        ticketResponseDto.setDepartureAirportDto(departureAirportDto);
 
         AirportDto arrivalAirportDto = new AirportDto();
         arrivalAirportDto.setCity(ticket.getArrivalAirport().getCity());
         arrivalAirportDto.setCode(ticket.getArrivalAirport().getCode());
         arrivalAirportDto.setName(ticket.getArrivalAirport().getName());
-
-        ticketResponseDto.setDepartureAirportDto(departureAirportDto);
         ticketResponseDto.setArrivalAirportDto(arrivalAirportDto);
 
         Timestamp departureTime = ticket.getDepartureTime();
         String departureDate = new SimpleDateFormat("yyyy-MM-dd").format(departureTime);
-
         ticketResponseDto.setDepartureDate(departureDate);
 
         Timestamp arrivalTime = ticket.getArrivalTime();
         String arrivalDate = new SimpleDateFormat("yyyy-MM-dd").format(arrivalTime);
-
         ticketResponseDto.setArrivalDate(arrivalDate);
+
         return ticketResponseDto;
     }
 

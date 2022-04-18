@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.hanu.fit.se2flightreservation.converter.TicketConverter;
-import vn.hanu.fit.se2flightreservation.dtos.TicketResponseDto;
-import vn.hanu.fit.se2flightreservation.dtos.TicketSearchDto;
+import vn.hanu.fit.se2flightreservation.dtos.ticket.TicketResponseDto;
+import vn.hanu.fit.se2flightreservation.dtos.ticket.TicketSearchDto;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.services.TicketService;
 

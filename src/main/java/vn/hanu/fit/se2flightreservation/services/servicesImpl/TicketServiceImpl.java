@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import vn.hanu.fit.se2flightreservation.dtos.TicketSearchDto;
+import vn.hanu.fit.se2flightreservation.dtos.ticket.TicketSearchDto;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.exception.EntityExistedByIdException;
 import vn.hanu.fit.se2flightreservation.exception.ResourceNotFoundException;
