@@ -1,9 +1,7 @@
 package vn.hanu.fit.se2flightreservation.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import vn.hanu.fit.se2flightreservation.models.EStatus;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,8 +9,7 @@ import java.sql.Timestamp;
 
 @Table(name = "tickets")
 @Entity
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ticket implements Serializable {
@@ -41,4 +38,8 @@ public class Ticket implements Serializable {
 
     @Column(nullable = false)
     private Integer cost;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private EStatus status;
 }
