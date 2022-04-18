@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.exception;
+package vn.hanu.fit.se2flightreservation.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

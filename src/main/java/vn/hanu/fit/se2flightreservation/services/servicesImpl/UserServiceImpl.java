@@ -3,7 +3,7 @@ package vn.hanu.fit.se2flightreservation.services.servicesImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.hanu.fit.se2flightreservation.entities.User;
-import vn.hanu.fit.se2flightreservation.exception.EntityExistedByIdException;
+import vn.hanu.fit.se2flightreservation.exceptions.EntityExistedByIdException;
 import vn.hanu.fit.se2flightreservation.repositories.UserRepository;
 import vn.hanu.fit.se2flightreservation.services.UserService;
 

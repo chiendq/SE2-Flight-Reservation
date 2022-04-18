@@ -1,7 +1,10 @@
-package vn.hanu.fit.se2flightreservation.converter;
+package vn.hanu.fit.se2flightreservation.converters;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * This converter just for sample, not be used
+ */
 @Component
 public class BaseConverter {
 

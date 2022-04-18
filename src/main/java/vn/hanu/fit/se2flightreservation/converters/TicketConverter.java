@@ -1,9 +1,8 @@
-package vn.hanu.fit.se2flightreservation.converter;
+package vn.hanu.fit.se2flightreservation.converters;
 
 import org.springframework.stereotype.Component;
 import vn.hanu.fit.se2flightreservation.dtos.AirportDto;
 import vn.hanu.fit.se2flightreservation.dtos.ticket.TicketResponseDto;
-import vn.hanu.fit.se2flightreservation.entities.Airplane;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 
 import java.sql.Timestamp;

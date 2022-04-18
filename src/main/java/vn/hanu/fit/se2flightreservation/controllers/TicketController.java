@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.hanu.fit.se2flightreservation.converter.TicketConverter;
+import vn.hanu.fit.se2flightreservation.converters.TicketConverter;
 import vn.hanu.fit.se2flightreservation.dtos.ticket.TicketResponseDto;
 import vn.hanu.fit.se2flightreservation.dtos.ticket.TicketSearchDto;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
@@ -60,7 +60,6 @@ public class TicketController {
 
     @GetMapping("/search")
     public List<TicketResponseDto> search(@RequestBody TicketSearchDto ticketSearchDto) throws ParseException {
-        logger.info(ticketSearchDto.toString());
         List<Ticket> resultTickets = ticketService.search(ticketSearchDto);
 
         return ticketConverter.ticketResponseDtoList(resultTickets);
