@@ -42,4 +42,8 @@ public class Ticket implements Serializable {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private EStatus status;
+
+    @ManyToOne
+    @JoinColumn(name = "booking_id")
+    private Booking booking;
 }
