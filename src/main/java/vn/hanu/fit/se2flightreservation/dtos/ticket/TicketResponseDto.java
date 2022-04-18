@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vn.hanu.fit.se2flightreservation.dtos.AirportDto;
-import vn.hanu.fit.se2flightreservation.entities.Airplane;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,11 +13,11 @@ import vn.hanu.fit.se2flightreservation.entities.Airplane;
 public class TicketResponseDto {
     private int id;
 
-    private Airplane airplaneDto;
+    private String airplane;
 
-    private AirportDto departureAirportDto;
+    private AirportDto departureAirport;
 
-    private AirportDto arrivalAirportDto;
+    private AirportDto arrivalAirport;
 
     private String departureDate;
 

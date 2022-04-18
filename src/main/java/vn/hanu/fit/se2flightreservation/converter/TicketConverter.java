@@ -19,20 +19,19 @@ public class TicketConverter {
         ticketResponseDto.setId(ticket.getId());
         ticketResponseDto.setCost(ticket.getCost());
 
-        Airplane airplaneDto = ticket.getAirplane();
-        ticketResponseDto.setAirplaneDto(airplaneDto);
+        ticketResponseDto.setAirplane(ticket.getAirplane().getCode());
 
         AirportDto departureAirportDto = new AirportDto();
         departureAirportDto.setCity(ticket.getDepartureAirport().getCity());
         departureAirportDto.setCode(ticket.getDepartureAirport().getCode());
         departureAirportDto.setName(ticket.getDepartureAirport().getName());
-        ticketResponseDto.setDepartureAirportDto(departureAirportDto);
+        ticketResponseDto.setDepartureAirport(departureAirportDto);
 
         AirportDto arrivalAirportDto = new AirportDto();
         arrivalAirportDto.setCity(ticket.getArrivalAirport().getCity());
         arrivalAirportDto.setCode(ticket.getArrivalAirport().getCode());
         arrivalAirportDto.setName(ticket.getArrivalAirport().getName());
-        ticketResponseDto.setArrivalAirportDto(arrivalAirportDto);
+        ticketResponseDto.setArrivalAirport(arrivalAirportDto);
 
         Timestamp departureTime = ticket.getDepartureTime();
         String departureDate = new SimpleDateFormat("yyyy-MM-dd").format(departureTime);
