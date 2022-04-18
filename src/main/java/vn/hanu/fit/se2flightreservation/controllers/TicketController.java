@@ -25,14 +25,13 @@ import java.util.List;
 public class TicketController {
     private static final Logger logger = LoggerFactory.getLogger(TicketController.class);
 
+    private final TicketService ticketService;
 
-    private TicketService ticketService;
+    private final TicketConverter ticketConverter;
 
-    @Autowired
-    TicketConverter ticketConverter;
-
-    public TicketController(TicketService ticketService) {
+    public TicketController(TicketService ticketService, TicketConverter ticketConverter) {
         super();
+        this.ticketConverter = ticketConverter;
         this.ticketService = ticketService;
     }
 
@@ -62,21 +61,8 @@ public class TicketController {
         return new ResponseEntity<String>("Ticket deleted successfully!.", HttpStatus.OK);
     }
 
-//    @GetMapping("/search")
-//    public List<Ticket> searchTicket(@RequestBody TicketSearchDto ticketSearchDto) {
-//
-//        return ticketService.findAllByArrivalAirport_IdAndDepartureAirport_IdAndFlightClass_Id(ticketSearchDto);
-//    }
-
-//    @GetMapping("/testSearch")
-//    public ResponseEntity<TicketResponseDto> searchTestTicket(){
-//        Ticket ticket = ticketService.getTicketById(1);
-//        TicketResponseDto ticketResponseDto = ticketConverter.toTicketResponse(ticket);
-//        return new ResponseEntity<TicketResponseDto>(ticketResponseDto, HttpStatus.OK);
-//    }
-
     @GetMapping("/search")
-    public List<TicketResponseDto> searchTestTicket(@RequestBody TicketSearchDto ticketSearchDto) throws ParseException {
+    public List<TicketResponseDto> search(@RequestBody TicketSearchDto ticketSearchDto) throws ParseException {
         logger.info(ticketSearchDto.toString());
         List<Ticket> resultTickets = ticketService.search(ticketSearchDto);
 
