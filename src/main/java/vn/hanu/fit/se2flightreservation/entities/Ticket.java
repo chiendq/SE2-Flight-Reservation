@@ -6,6 +6,7 @@ import vn.hanu.fit.se2flightreservation.models.EStatus;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Table(name = "tickets")
 @Entity
@@ -29,6 +30,10 @@ public class Ticket implements Serializable {
 
     @ManyToOne
     private FlightClass flightClass;
+
+    @ManyToOne
+    @JoinColumn(name = "airplane_id")
+    private Airplane airplane;
 
     @Column(nullable = false)
     private Timestamp departureTime;
