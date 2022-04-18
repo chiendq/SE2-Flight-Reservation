@@ -11,6 +11,11 @@ public class BaseConverter {
         return entity;
     }
 
+    public Object toEntity(Object dto, Object oldEntity){
+        // oldEntity.setter(dto.getter)
+        return oldEntity;
+    }
+
     public Object toDTO(Object entity){
         Object dto = new Object();
         // dto.setter(entity.getter)
