@@ -2,22 +2,16 @@ package vn.hanu.fit.se2flightreservation.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.hanu.fit.se2flightreservation.config.AuthEntryPointJwt;
 import vn.hanu.fit.se2flightreservation.converter.TicketConverter;
-import vn.hanu.fit.se2flightreservation.dtos.AirportDto;
 import vn.hanu.fit.se2flightreservation.dtos.TicketResponseDto;
 import vn.hanu.fit.se2flightreservation.dtos.TicketSearchDto;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.services.TicketService;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -37,7 +31,7 @@ public class TicketController {
 
     @PostMapping("")
     public ResponseEntity<Ticket> saveTicket(@RequestBody Ticket ticket) {
-        return new ResponseEntity<Ticket>(ticketService.save(ticket), HttpStatus.CREATED);
+        return new ResponseEntity<>(ticketService.save(ticket), HttpStatus.CREATED);
     }
 
     @GetMapping("")

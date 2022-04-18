@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/api/v1/airport")
 public class AirportController {
     
-    private AirportService airportService;
+    private final AirportService airportService;
 
     public AirportController(AirportService airportService) {
         super();
@@ -21,7 +21,7 @@ public class AirportController {
 
     @PostMapping("")
     public ResponseEntity<Airport> saveAirport(@RequestBody Airport airport) {
-        return new ResponseEntity<Airport>(airportService.save(airport), HttpStatus.CREATED);
+        return new ResponseEntity<>(airportService.save(airport), HttpStatus.CREATED);
     }
 
     @GetMapping("")
@@ -31,12 +31,12 @@ public class AirportController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Airport> getAirportById(@PathVariable("id") int airportId) {
-        return new ResponseEntity<Airport>(airportService.getAirportById(airportId), HttpStatus.OK);
+        return new ResponseEntity<>(airportService.getAirportById(airportId), HttpStatus.OK);
     }
 
     @PutMapping("{id}")
     public ResponseEntity<Airport> updateAirport(@PathVariable("id") int id, @RequestBody Airport airport) {
-        return new ResponseEntity<Airport>(airportService.updateAirport(airport, id), HttpStatus.OK);
+        return new ResponseEntity<>(airportService.updateAirport(airport, id), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")

@@ -39,7 +39,7 @@ public class TicketConverter {
         ticketResponseDto.setDepartureDate(departureDate);
 
         Timestamp arrivalTime = ticket.getArrivalTime();
-        String arrivalDate = new SimpleDateFormat("yyyy-MM-dd").format(departureTime);
+        String arrivalDate = new SimpleDateFormat("yyyy-MM-dd").format(arrivalTime);
 
         ticketResponseDto.setArrivalDate(arrivalDate);
         return ticketResponseDto;
@@ -47,9 +47,7 @@ public class TicketConverter {
 
     public List<TicketResponseDto> ticketResponseDtoList(List<Ticket> ticketList){
         List<TicketResponseDto> convertedTicketResponseDtoList = new ArrayList<>();
-        ticketList.forEach(ticket -> {
-            convertedTicketResponseDtoList.add(toTicketResponse(ticket));
-        });
+        ticketList.forEach(ticket -> convertedTicketResponseDtoList.add(toTicketResponse(ticket)));
         return convertedTicketResponseDtoList;
     }
 }

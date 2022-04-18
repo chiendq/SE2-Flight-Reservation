@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/api/v1/flightClass")
 public class FlightClassController {
 
-    private FlightClassService flightClassService;
+    private final FlightClassService flightClassService;
 
     public FlightClassController(FlightClassService flightClassService) {
         super();

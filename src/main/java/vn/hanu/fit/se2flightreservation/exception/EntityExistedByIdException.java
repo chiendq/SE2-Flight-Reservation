@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * @<code>422</code>
+ * <code>422</code>
  * <p>the server understands the content type of the request entity </p>
  * <p>but was unable to process the contained instructions.</p>
  */
@@ -15,10 +15,6 @@ public class EntityExistedByIdException extends RuntimeException{
     private String resourceName;
     private String fieldName;
     private Object filedValue;
-
-    public EntityExistedByIdException(String message) {
-        super(message);
-    }
 
     public EntityExistedByIdException(String resourceName, String fieldName, Object filedValue) {
         super(String.format("%s is existed with %s : '%s'", resourceName, fieldName, filedValue));

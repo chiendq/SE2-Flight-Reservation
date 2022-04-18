@@ -46,15 +46,6 @@ public class AirlineServiceImpl implements AirlineService {
                 new ResourceNotFoundException("Airline", "Id", id));
     }
 
-    /**
-     * Update airline information
-     *      if airline with given id is existed :
-     *          - Yes : throw ResourceNotFoundException
-     *          - No : save
-     * @param airline
-     * @param id
-     * @return
-     */
     @Override
     public Airline updateAirline(Airline airline, int id) {
         Airline existingAirline = airlineRepository.findById(id).orElseThrow(
@@ -65,21 +56,11 @@ public class AirlineServiceImpl implements AirlineService {
         return airlineRepository.save(existingAirline);
     }
 
-    /**
-     * Delete airline with given id.
-     *     If airline with given id is existed :
-     *          + Yes : delete.
-     *          + No : throw exception
-     * @param id
-     * @exception ResourceNotFoundException
-     * @return
-     */
     @Override
     public void deleteAirlineById(int id) {
         Airline existingAirline = airlineRepository.findById(id).orElseThrow(
                 ()-> new ResourceNotFoundException("Airline","Id",id));
         airlineRepository.delete(existingAirline);
     }
-
 
 }
