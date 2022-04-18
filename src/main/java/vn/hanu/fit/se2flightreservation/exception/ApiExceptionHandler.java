@@ -14,7 +14,7 @@ public class ApiExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorMessage handleAllException(Exception ex, WebRequest request) {
-        // exeption handle here
+        // exception handle here
         return new ErrorMessage(500, ex.getLocalizedMessage());
     }
 
