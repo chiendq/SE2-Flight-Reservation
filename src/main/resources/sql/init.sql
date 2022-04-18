@@ -44,7 +44,9 @@ INSERT INTO user_roles (user_id, role_id) VALUES (1, 1);
 
 
 # Init tickets
-INSERT INTO tickets (arrival_time, cost, departure_time, airline_id, arrival_airport_id, departure_airport_id, flight_class_id) VALUES ('2022-04-23 06:00:00', 500, '2022-04-30 08:00:00', 1, 1, 2, 1);
-INSERT INTO tickets (arrival_time, cost, departure_time, airline_id, arrival_airport_id, departure_airport_id, flight_class_id) VALUES ('2022-04-23 06:00:00', 600, '2022-04-30 08:00:00', 1, 1, 2, 2);
-INSERT INTO tickets (arrival_time, cost, departure_time, airline_id, arrival_airport_id, departure_airport_id, flight_class_id) VALUES ('2022-04-23 06:00:00', 700, '2022-04-30 08:00:00', 1, 1, 2, 3);
-INSERT INTO tickets (arrival_time, cost, departure_time, airline_id, arrival_airport_id, departure_airport_id, flight_class_id) VALUES ('2022-04-23 06:00:00', 800, '2022-04-30 08:00:00', 1, 1, 2, 4);
+INSERT INTO tickets (arrival_time, cost, departure_time, airline_id, arrival_airport_id, departure_airport_id, flight_class_id, status) VALUES ('2022-04-23 06:00:00', 500, '2022-04-30 08:00:00', 1, 1, 2, 1, 'STATUS_AVAILABLE');
+INSERT INTO tickets (arrival_time, cost, departure_time, airline_id, arrival_airport_id, departure_airport_id, flight_class_id, status) VALUES ('2022-04-23 06:00:00', 600, '2022-04-30 08:00:00', 1, 1, 2, 2, 'STATUS_AVAILABLE');
+INSERT INTO tickets (arrival_time, cost, departure_time, airline_id, arrival_airport_id, departure_airport_id, flight_class_id, status) VALUES ('2022-04-23 06:00:00', 700, '2022-04-30 08:00:00', 1, 1, 2, 3, 'STATUS_AVAILABLE');
+INSERT INTO tickets (arrival_time, cost, departure_time, airline_id, arrival_airport_id, departure_airport_id, flight_class_id, status) VALUES ('2022-04-23 06:00:00', 800, '2022-04-30 08:00:00', 1, 1, 2, 4, 'STATUS_AVAILABLE');
+INSERT INTO tickets (arrival_time, cost, departure_time, airline_id, arrival_airport_id, departure_airport_id, flight_class_id, status) VALUES ('2022-04-23 06:00:00', 555, '2022-04-30 08:00:00', 2, 1, 2, 1, 'STATUS_AVAILABLE');
+INSERT INTO tickets (arrival_time, cost, departure_time, airline_id, arrival_airport_id, departure_airport_id, flight_class_id, status) VALUES ('2022-04-24 06:00:00', 555, '2022-04-29 08:00:00', 3, 1, 2, 1, 'STATUS_AVAILABLE');
