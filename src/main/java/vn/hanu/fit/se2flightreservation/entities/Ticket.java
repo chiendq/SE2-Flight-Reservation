@@ -20,6 +20,7 @@ public class Ticket implements Serializable {
     private Integer id;
 
     @ManyToOne
+    @JoinColumn(name = "airline_id")
     private Airline airline;
 
     @ManyToOne

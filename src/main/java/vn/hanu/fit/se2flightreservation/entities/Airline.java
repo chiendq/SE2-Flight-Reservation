@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Table(name = "airlines")
 @Entity
@@ -21,4 +22,7 @@ public class Airline implements Serializable {
 
     @Column(nullable = false)
     private String imgAPI;
+
+    @OneToMany(mappedBy = "airline")
+    private Set<Ticket> tickets;
 }
