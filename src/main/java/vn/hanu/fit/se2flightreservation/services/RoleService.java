@@ -5,4 +5,6 @@ import vn.hanu.fit.se2flightreservation.models.ERole;
 
 public interface RoleService {
     Role findByName(ERole roleAdmin);
+
+    Role getById(int id);
 }
