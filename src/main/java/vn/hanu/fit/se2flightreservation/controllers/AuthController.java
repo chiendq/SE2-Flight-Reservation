@@ -8,10 +8,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import vn.hanu.fit.se2flightreservation.config.JwtUtils;
 import vn.hanu.fit.se2flightreservation.config.UserDetailsImpl;
+import vn.hanu.fit.se2flightreservation.converters.TicketConverter;
+import vn.hanu.fit.se2flightreservation.converters.UserConverter;
 import vn.hanu.fit.se2flightreservation.entities.Role;
 import vn.hanu.fit.se2flightreservation.entities.User;
 import vn.hanu.fit.se2flightreservation.models.ERole;
@@ -22,9 +25,7 @@ import vn.hanu.fit.se2flightreservation.payload.response.UserInfoResponse;
 import vn.hanu.fit.se2flightreservation.services.RoleService;
 import vn.hanu.fit.se2flightreservation.services.UserService;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
@@ -41,12 +42,21 @@ public class AuthController {
 
     private final JwtUtils jwtUtils;
 
-    public AuthController(AuthenticationManager authenticationManager, UserService userService, RoleService roleService, PasswordEncoder encoder, JwtUtils jwtUtils) {
+    private final UserConverter userConverter;
+
+
+    public AuthController(AuthenticationManager authenticationManager,
+                          UserService userService,
+                          RoleService roleService,
+                          PasswordEncoder encoder,
+                          JwtUtils jwtUtils,
+                          UserConverter userConverter) {
         this.authenticationManager = authenticationManager;
         this.userService = userService;
         this.roleService = roleService;
         this.encoder = encoder;
         this.jwtUtils = jwtUtils;
+        this.userConverter = userConverter;
     }
 
     @PostMapping("/signin")
@@ -76,6 +86,7 @@ public class AuthController {
                 .body(new UserInfoResponse(userDetails.getId(),
                         userDetails.getUsername(),
                         userDetails.getEmail(),
+                        userDetails.getFullName(),
                         userDetails.getGender(),
                         roles));
     }
@@ -91,9 +102,11 @@ public class AuthController {
         }
 
         // Create new user's account
-        User user = new User(signUpRequest.getUsername(),
-                signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = bCryptPasswordEncoder.encode( signUpRequest.getPassword());
+        signUpRequest.setPassword(encodedPassword);
+
+        User user = userConverter.fromSignupRequest(signUpRequest);
 
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
@@ -121,9 +134,34 @@ public class AuthController {
             });
         }
         user.setRoles(roles);
-        userService.save(user);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+
+        User registeredUser = userService.save(user);
+
+        Authentication authentication = authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(registeredUser.getUsername(), registeredUser.getUsername()));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+        ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
+
+//        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+//                        .header("Access-Control-Allow-Origin", "*")
+//                        .header("Access-Control-Allow-Headers", "*")
+//                        .header("Access-Control-Allow-Credentials", "true")
+//                        .header("Access-Control-Allow-Methods", "*")
+//                        .header("Access-Control-Max-Age", "1209600")
+                .body(new UserInfoResponse(userDetails.getId(),
+                        userDetails.getUsername(),
+                        userDetails.getEmail(),
+                        userDetails.getFullName(),
+                        userDetails.getGender(),
+                        Arrays.asList("ROLE_USER")));
     }
 
     @PostMapping("/signout")
