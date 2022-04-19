@@ -102,7 +102,7 @@ public class AuthController {
         }
 
         // Create new user's account
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        PasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = bCryptPasswordEncoder.encode( signUpRequest.getPassword());
         signUpRequest.setPassword(encodedPassword);
 
@@ -135,32 +135,24 @@ public class AuthController {
         }
         user.setRoles(roles);
 
-
         User registeredUser = userService.save(user);
 
-        Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(registeredUser.getUsername(), registeredUser.getUsername()));
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-        ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
+        String jwtCookie = jwtUtils.generateTokenFromUsername(user.getUsername());
 
 //        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+                .header(HttpHeaders.SET_COOKIE, jwtCookie)
 //                        .header("Access-Control-Allow-Origin", "*")
 //                        .header("Access-Control-Allow-Headers", "*")
 //                        .header("Access-Control-Allow-Credentials", "true")
 //                        .header("Access-Control-Allow-Methods", "*")
 //                        .header("Access-Control-Max-Age", "1209600")
-                .body(new UserInfoResponse(userDetails.getId(),
-                        userDetails.getUsername(),
-                        userDetails.getEmail(),
-                        userDetails.getFullName(),
-                        userDetails.getGender(),
+                .body(new UserInfoResponse(user.getId(),
+                        user.getUsername(),
+                        user.getEmail(),
+                        user.getFullname(),
+                        user.getGender(),
                         Arrays.asList("ROLE_USER")));
     }
 
