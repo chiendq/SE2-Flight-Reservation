@@ -68,9 +68,9 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<Ticket> search(TicketSearchDto ticketSearchDto) {
-        List<Ticket> resultTickets = ticketRepository.findAllByArrivalAirport_IdAndDepartureAirport_IdAndFlightClass_Id(
-                ticketSearchDto.getArrivalAirportId(),
-                ticketSearchDto.getDepartureAirportId(),
+        List<Ticket> resultTickets = ticketRepository.findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_Id(
+                ticketSearchDto.getDeparture().split("-")[0],
+                ticketSearchDto.getDestination().split("-")[0],
                 ticketSearchDto.getFlightClassId()
         );
 

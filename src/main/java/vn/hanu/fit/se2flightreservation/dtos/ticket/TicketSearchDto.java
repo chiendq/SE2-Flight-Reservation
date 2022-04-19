@@ -12,9 +12,9 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 public class TicketSearchDto {
-    private int departureAirportId;
+    private String departure;
 
-    private int arrivalAirportId;
+    private String destination;
 
     private int flightClassId;
 

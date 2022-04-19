@@ -9,9 +9,13 @@ import java.util.List;
 @Repository
 public interface TicketRepository
         extends JpaRepository<Ticket, Integer> {
-    List<Ticket> findAllByArrivalAirport_IdAndDepartureAirport_IdAndFlightClass_Id(int arrivalAirportId,
-                                                                                   int departureAirportId,
-                                                                                   int flightClassI);
+//    List<Ticket> findAllByArrivalAirport_IdAndDepartureAirport_IdAndFlightClass_Id(int arrivalAirportId,
+//                                                                                   int departureAirportId,
+//                                                                                   int flightClassI);
+
+    List<Ticket> findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_Id(String departureCode,
+                                                                                       String arrivalCode,
+                                                                                       int flightClassId);
 //
 //
 //    @Query(value="SELECT * FROM tickets where" +
