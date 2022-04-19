@@ -1,5 +1,6 @@
 package vn.hanu.fit.se2flightreservation.controllers;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import vn.hanu.fit.se2flightreservation.services.TicketService;
 import java.text.ParseException;
 import java.util.List;
 
+@CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequestMapping("/api/v1/ticket")
 public class TicketController {
@@ -36,6 +38,7 @@ public class TicketController {
     }
 
     @GetMapping("")
+    @JsonFormat
     public List<TicketResponseDto> getAllTickets() {
 
         return ticketConverter.ticketResponseDtoList(ticketService.getAllTickets());
