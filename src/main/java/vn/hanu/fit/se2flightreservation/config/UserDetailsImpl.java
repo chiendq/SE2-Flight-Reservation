@@ -5,7 +5,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import vn.hanu.fit.se2flightreservation.entities.User;
+import vn.hanu.fit.se2flightreservation.models.EGender;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -20,17 +23,21 @@ public class UserDetailsImpl implements UserDetails {
 
     private String email;
 
+    @Enumerated(EnumType.STRING)
+    private EGender gender;
+
     @JsonIgnore
     private String password;
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(int id, String username, String email, String password,
+    public UserDetailsImpl(int id, String username, String email, String password, EGender gender,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.gender = gender;
         this.authorities = authorities;
     }
 
@@ -44,6 +51,7 @@ public class UserDetailsImpl implements UserDetails {
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
+                user.getGender(),
                 authorities);
     }
 
@@ -58,6 +66,10 @@ public class UserDetailsImpl implements UserDetails {
 
     public String getEmail() {
         return email;
+    }
+
+    public EGender getGender() {
+        return gender;
     }
 
     @Override
