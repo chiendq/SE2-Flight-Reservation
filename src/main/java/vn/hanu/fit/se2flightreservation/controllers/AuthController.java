@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/auth")
 public class AuthController {
     private final AuthenticationManager authenticationManager;
 
