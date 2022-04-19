@@ -7,5 +7,5 @@ public interface UserService {
 
     boolean existsByEmail(String email);
 
-    void save(User user);
+    User save(User user);
 }
