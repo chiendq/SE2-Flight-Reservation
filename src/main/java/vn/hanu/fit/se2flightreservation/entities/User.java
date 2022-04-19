@@ -1,5 +1,6 @@
 package vn.hanu.fit.se2flightreservation.entities;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,8 +14,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class User implements Serializable {
 
@@ -44,10 +44,14 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String email;
 
-    public User(String username, String email, String password) {
+    public User(Set<Role> roles, String fullname, String username, String password, String phone, EGender gender, String email) {
+        this.roles = roles;
+        this.fullname = fullname;
         this.username = username;
-        this.email = email;
         this.password = password;
+        this.phone = phone;
+        this.gender = gender;
+        this.email = email;
     }
 }
 
