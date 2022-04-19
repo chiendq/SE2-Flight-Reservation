@@ -23,6 +23,8 @@ public class UserDetailsImpl implements UserDetails {
 
     private String email;
 
+    private String fullName;
+
     @Enumerated(EnumType.STRING)
     private EGender gender;
 
@@ -31,11 +33,12 @@ public class UserDetailsImpl implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(int id, String username, String email, String password, EGender gender,
+    public UserDetailsImpl(int id, String username, String email, String fullName, String password, EGender gender,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.email = email;
+        this.fullName = fullName;
         this.password = password;
         this.gender = gender;
         this.authorities = authorities;
@@ -50,6 +53,7 @@ public class UserDetailsImpl implements UserDetails {
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),
+                user.getFullname(),
                 user.getPassword(),
                 user.getGender(),
                 authorities);
@@ -66,6 +70,18 @@ public class UserDetailsImpl implements UserDetails {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public EGender getGender() {
