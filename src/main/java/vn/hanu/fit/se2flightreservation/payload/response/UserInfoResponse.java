@@ -1,57 +1,26 @@
 package vn.hanu.fit.se2flightreservation.payload.response;
 
+import lombok.Data;
 import vn.hanu.fit.se2flightreservation.models.EGender;
 
 import java.util.List;
 
+@Data
 public class UserInfoResponse {
-    private int id;
+    private int userId;
     private String username;
     private String email;
-    private EGender gender;
+    private String fullName;
+    private EGender userGender;
     private List<String> roles;
 
-    public UserInfoResponse(int id, String username, String email, EGender gender, List<String> roles) {
-        this.id = id;
+    public UserInfoResponse(int userId, String username, String email, String fullName, EGender gender, List<String> roles) {
+        this.userId = userId;
         this.username = username;
+        this.fullName = fullName;
         this.email = email;
-        this.gender = gender;
+        this.userGender = gender;
         this.roles = roles;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public EGender getGender() {
-        return gender;
-    }
-
-    public void setGender(EGender gender) {
-        this.gender = gender;
-    }
-
-    public List<String> getRoles() {
-        return roles;
-    }
 }
