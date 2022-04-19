@@ -3,6 +3,7 @@ package vn.hanu.fit.se2flightreservation.entities;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vn.hanu.fit.se2flightreservation.models.EGender;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -37,7 +38,8 @@ public class User implements Serializable {
 
     private String phone;
 
-    private boolean gender;
+    @Enumerated(EnumType.STRING)
+    private EGender gender;
 
     @Column(nullable = false)
     private String email;
