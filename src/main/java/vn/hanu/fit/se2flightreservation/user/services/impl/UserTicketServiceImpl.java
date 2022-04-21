@@ -21,6 +21,11 @@ public class UserTicketServiceImpl implements UserTicketService {
     }
 
     @Override
+    public List<Ticket> getAll() {
+        return ticketRepository.findAll();
+    }
+
+    @Override
     public List<Ticket> search(TicketSearchDto ticketSearchDto) {
         List<Ticket> resultTickets = ticketRepository.findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_Id(
                 ticketSearchDto.getDeparture().split("-")[0],

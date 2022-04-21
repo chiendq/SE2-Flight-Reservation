@@ -8,5 +8,7 @@ import java.util.List;
 
 public interface UserTicketService {
 
+    List<Ticket> getAll();
+
     List<Ticket> search(TicketSearchDto ticketSearchDto) throws ParseException;
 }

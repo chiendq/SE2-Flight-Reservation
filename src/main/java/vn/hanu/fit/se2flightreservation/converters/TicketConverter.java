@@ -43,7 +43,7 @@ public class TicketConverter {
         return ticketResponseDto;
     }
 
-    public List<TicketResponseDto> ticketResponseDtoList(List<Ticket> ticketList){
+    public List<TicketResponseDto> toTicketResponseDtoList(List<Ticket> ticketList){
         List<TicketResponseDto> convertedTicketResponseDtoList = new ArrayList<>();
         ticketList.forEach(ticket -> convertedTicketResponseDtoList.add(toTicketResponse(ticket)));
         return convertedTicketResponseDtoList;

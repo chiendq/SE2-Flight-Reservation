@@ -15,7 +15,7 @@ import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
-@RequestMapping("/api/v1/ticket")
+@RequestMapping("/api/v1/tickets")
 public class UserTicketController {
     private static final Logger logger = LoggerFactory.getLogger(UserTicketController.class);
 
@@ -31,7 +31,11 @@ public class UserTicketController {
     @GetMapping("/search")
     public List<TicketResponseDto> search(@RequestBody TicketSearchDto ticketSearchDto) throws ParseException {
         List<Ticket> resultTickets = ticketService.search(ticketSearchDto);
-        return ticketConverter.ticketResponseDtoList(resultTickets);
+        return ticketConverter.toTicketResponseDtoList(resultTickets);
     }
 
+    @GetMapping("")
+    public List<TicketResponseDto> getAll(){
+        return ticketConverter.toTicketResponseDtoList(ticketService.getAll());
+    }
 }
