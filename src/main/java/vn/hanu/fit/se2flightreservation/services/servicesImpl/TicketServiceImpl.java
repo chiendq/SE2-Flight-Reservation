@@ -3,16 +3,12 @@ package vn.hanu.fit.se2flightreservation.services.servicesImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import vn.hanu.fit.se2flightreservation.user.dtos.ticket.TicketSearchDto;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.exceptions.EntityExistedByIdException;
 import vn.hanu.fit.se2flightreservation.exceptions.ResourceNotFoundException;
 import vn.hanu.fit.se2flightreservation.repositories.TicketRepository;
 import vn.hanu.fit.se2flightreservation.services.TicketService;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -20,9 +16,9 @@ public class TicketServiceImpl implements TicketService {
     private static final Logger logger = LoggerFactory.getLogger(TicketServiceImpl.class);
 
 
-    private  TicketRepository ticketRepository;
+    private final TicketRepository ticketRepository;
 
-    public void setTicketRepository(TicketRepository ticketRepository) {
+    public TicketServiceImpl(TicketRepository ticketRepository) {
         this.ticketRepository = ticketRepository;
     }
 
