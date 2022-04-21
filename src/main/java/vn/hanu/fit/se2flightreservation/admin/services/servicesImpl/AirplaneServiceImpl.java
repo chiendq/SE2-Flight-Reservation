@@ -20,10 +20,6 @@ public class AirplaneServiceImpl implements AirplaneService {
 
     @Override
     public Airplane save(Airplane airplane) {
-        int id = airplane.getId();
-        if(airplaneRepository.existsById(id)){
-            throw new EntityExistedByIdException("Airplane","Id", id);
-        }
         return airplaneRepository.save(airplane);
     }
 

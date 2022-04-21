@@ -19,10 +19,6 @@ public class AirportServiceImpl implements AirportService {
 
     @Override
     public Airport save(Airport airport) {
-        int id = airport.getId();
-        if(airportRepository.existsById(id)){
-            throw new EntityExistedByIdException("Airport","Id", id);
-        }
         return airportRepository.save(airport);
     }
 

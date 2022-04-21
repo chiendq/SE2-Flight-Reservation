@@ -20,10 +20,6 @@ public class FlightClassServiceImpl implements FlightClassService {
 
     @Override
     public FlightClass save(FlightClass flightClass) {
-        int id = flightClass.getId();
-        if(flightClassRepository.existsById(id)){
-            throw new EntityExistedByIdException("FlightClass","Id", id);
-        }
         return flightClassRepository.save(flightClass);
     }
 
