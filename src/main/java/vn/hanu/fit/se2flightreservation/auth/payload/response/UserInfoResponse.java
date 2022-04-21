@@ -1,7 +1,7 @@
 package vn.hanu.fit.se2flightreservation.auth.payload.response;
 
 import lombok.Data;
-import vn.hanu.fit.se2flightreservation.models.EGender;
+import vn.hanu.fit.se2flightreservation.enums.EGender;
 
 import java.util.List;
 
