@@ -13,7 +13,7 @@ import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
-@RequestMapping("/api/v1/admin/ticket")
+@RequestMapping("/api/v1/admin/tickets")
 public class TicketController {
     private static final Logger logger = LoggerFactory.getLogger(TicketController.class);
 

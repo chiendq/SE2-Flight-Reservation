@@ -9,7 +9,7 @@ import vn.hanu.fit.se2flightreservation.admin.services.AirportService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/admin/airport")
+@RequestMapping("/api/v1/admin/airports")
 public class AirportController {
     
     private final AirportService airportService;
