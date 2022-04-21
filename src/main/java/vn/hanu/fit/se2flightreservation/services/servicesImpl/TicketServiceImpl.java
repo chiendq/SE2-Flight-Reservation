@@ -21,9 +21,11 @@ public class TicketServiceImpl implements TicketService {
     private static final Logger logger = LoggerFactory.getLogger(TicketServiceImpl.class);
 
 
-    @Autowired
-    private TicketRepository ticketRepository;
+    private  TicketRepository ticketRepository;
 
+    public void setTicketRepository(TicketRepository ticketRepository) {
+        this.ticketRepository = ticketRepository;
+    }
 
     @Override
     public Ticket save(Ticket ticket) {
