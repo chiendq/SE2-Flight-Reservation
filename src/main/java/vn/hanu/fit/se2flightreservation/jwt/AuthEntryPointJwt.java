@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.config;
+package vn.hanu.fit.se2flightreservation.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;

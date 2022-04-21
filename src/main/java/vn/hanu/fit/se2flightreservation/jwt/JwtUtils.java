@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.config;
+package vn.hanu.fit.se2flightreservation.jwt;
 
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
+import vn.hanu.fit.se2flightreservation.config.UserDetailsImpl;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
