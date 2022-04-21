@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.config;
+package vn.hanu.fit.se2flightreservation.securityConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

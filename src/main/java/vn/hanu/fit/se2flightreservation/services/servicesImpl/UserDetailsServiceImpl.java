@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import vn.hanu.fit.se2flightreservation.config.UserDetailsImpl;
+import vn.hanu.fit.se2flightreservation.securityConfig.UserDetailsImpl;
 
 import vn.hanu.fit.se2flightreservation.entities.User;
 import vn.hanu.fit.se2flightreservation.repositories.UserRepository;

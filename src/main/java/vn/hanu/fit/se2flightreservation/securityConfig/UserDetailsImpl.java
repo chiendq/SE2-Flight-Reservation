@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.config;
+package vn.hanu.fit.se2flightreservation.securityConfig;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
