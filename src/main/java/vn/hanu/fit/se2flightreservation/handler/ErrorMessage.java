@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.exceptions;
+package vn.hanu.fit.se2flightreservation.handler;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
