@@ -1,15 +1,12 @@
 package vn.hanu.fit.se2flightreservation.entities;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import vn.hanu.fit.se2flightreservation.models.EGender;
+import vn.hanu.fit.se2flightreservation.enums.EGender;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity

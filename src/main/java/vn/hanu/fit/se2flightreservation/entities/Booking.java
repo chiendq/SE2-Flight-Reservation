@@ -1,8 +1,8 @@
 package vn.hanu.fit.se2flightreservation.entities;
 
 import lombok.Data;
-import vn.hanu.fit.se2flightreservation.models.EPaymentMethod;
-import vn.hanu.fit.se2flightreservation.models.EStatus;
+import vn.hanu.fit.se2flightreservation.enums.EPaymentMethod;
+import vn.hanu.fit.se2flightreservation.enums.EStatus;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

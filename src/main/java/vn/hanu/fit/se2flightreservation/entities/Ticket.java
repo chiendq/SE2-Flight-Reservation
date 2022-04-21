@@ -1,12 +1,11 @@
 package vn.hanu.fit.se2flightreservation.entities;
 
 import lombok.*;
-import vn.hanu.fit.se2flightreservation.models.EStatus;
+import vn.hanu.fit.se2flightreservation.enums.EStatus;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Set;
 
 @Table(name = "tickets")
 @Entity

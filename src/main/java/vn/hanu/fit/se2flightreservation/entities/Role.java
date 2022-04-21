@@ -3,7 +3,7 @@ package vn.hanu.fit.se2flightreservation.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import vn.hanu.fit.se2flightreservation.models.ERole;
+import vn.hanu.fit.se2flightreservation.enums.ERole;
 
 import javax.persistence.*;
 import java.io.Serializable;
