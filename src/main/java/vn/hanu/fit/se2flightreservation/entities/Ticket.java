@@ -19,7 +19,6 @@ public class Ticket implements Serializable {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "airline_id")
     private Airline airline;
 
     @ManyToOne
@@ -32,7 +31,6 @@ public class Ticket implements Serializable {
     private FlightClass flightClass;
 
     @ManyToOne
-    @JoinColumn(name = "airplane_id")
     private Airplane airplane;
 
     @Column(nullable = false)

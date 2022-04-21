@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 @Entity
 @Data
@@ -16,8 +15,5 @@ public class Airplane implements Serializable {
 
     @Column(nullable = false)
     private String code;
-
-    @OneToMany(mappedBy = "airplane")
-    private Set<Ticket> tickets;
 
 }
