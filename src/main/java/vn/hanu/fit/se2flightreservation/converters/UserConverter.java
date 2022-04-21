@@ -1,10 +1,9 @@
 package vn.hanu.fit.se2flightreservation.converters;
 
 import org.springframework.stereotype.Component;
-import vn.hanu.fit.se2flightreservation.entities.Role;
 import vn.hanu.fit.se2flightreservation.entities.User;
-import vn.hanu.fit.se2flightreservation.models.EGender;
-import vn.hanu.fit.se2flightreservation.payload.request.SignupRequest;
+import vn.hanu.fit.se2flightreservation.enums.EGender;
+import vn.hanu.fit.se2flightreservation.auth.payload.request.SignupRequest;
 import vn.hanu.fit.se2flightreservation.services.RoleService;
 
 import java.util.Set;

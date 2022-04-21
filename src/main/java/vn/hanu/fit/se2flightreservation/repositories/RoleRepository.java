@@ -3,7 +3,7 @@ package vn.hanu.fit.se2flightreservation.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import vn.hanu.fit.se2flightreservation.entities.Role;
-import vn.hanu.fit.se2flightreservation.models.ERole;
+import vn.hanu.fit.se2flightreservation.enums.ERole;
 
 import java.util.Optional;
 
