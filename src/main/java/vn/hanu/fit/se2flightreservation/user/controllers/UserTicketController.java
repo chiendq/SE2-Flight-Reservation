@@ -1,10 +1,9 @@
 package vn.hanu.fit.se2flightreservation.user.controllers;
 
-import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-import vn.hanu.fit.se2flightreservation.converters.TicketConverter;
+import vn.hanu.fit.se2flightreservation.user.converters.TicketConverter;
 import vn.hanu.fit.se2flightreservation.user.dtos.ticket.TicketResponseDto;
 import vn.hanu.fit.se2flightreservation.user.dtos.ticket.TicketSearchDto;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;

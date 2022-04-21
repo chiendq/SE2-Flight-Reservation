@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.converters;
+package vn.hanu.fit.se2flightreservation.user.converters;
 
 import org.springframework.stereotype.Component;
 import vn.hanu.fit.se2flightreservation.dtos.AirportDto;
@@ -16,7 +16,8 @@ public class TicketConverter {
         TicketResponseDto ticketResponseDto = new TicketResponseDto();
         ticketResponseDto.setSeat(ticket.getSeat());
         ticketResponseDto.setId(ticket.getId());
-        ticketResponseDto.setCost(ticket.getCost());
+        ticketResponseDto.setPrice(ticket.getCost());
+        ticketResponseDto.setTicketClass(ticket.getFlightClass().getName());
 
         ticketResponseDto.setAirplane(ticket.getAirplane().getCode());
 
@@ -34,11 +35,11 @@ public class TicketConverter {
 
         Timestamp departureTime = ticket.getDepartureTime();
         String departureDate = new SimpleDateFormat("yyyy-MM-dd").format(departureTime);
-        ticketResponseDto.setDepartureDate(departureDate);
+        ticketResponseDto.setDepartureTime(departureDate);
 
         Timestamp arrivalTime = ticket.getArrivalTime();
         String arrivalDate = new SimpleDateFormat("yyyy-MM-dd").format(arrivalTime);
-        ticketResponseDto.setArrivalDate(arrivalDate);
+        ticketResponseDto.setArrivalTime(arrivalDate);
 
         return ticketResponseDto;
     }

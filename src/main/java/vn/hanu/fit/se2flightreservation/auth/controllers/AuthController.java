@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import vn.hanu.fit.se2flightreservation.jwt.JwtUtils;
 import vn.hanu.fit.se2flightreservation.securityConfig.UserDetailsImpl;
-import vn.hanu.fit.se2flightreservation.converters.UserConverter;
+import vn.hanu.fit.se2flightreservation.user.converters.UserConverter;
 import vn.hanu.fit.se2flightreservation.entities.Role;
 import vn.hanu.fit.se2flightreservation.entities.User;
 import vn.hanu.fit.se2flightreservation.enums.ERole;

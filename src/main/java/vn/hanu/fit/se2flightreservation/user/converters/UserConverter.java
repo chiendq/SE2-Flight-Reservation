@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.converters;
+package vn.hanu.fit.se2flightreservation.user.converters;
 
 import org.springframework.stereotype.Component;
 import vn.hanu.fit.se2flightreservation.entities.User;

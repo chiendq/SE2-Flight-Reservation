@@ -19,12 +19,13 @@ public class TicketResponseDto {
 
     private AirportDto arrivalAirport;
 
-    private String departureDate;
+    private String departureTime;
 
-    private String arrivalDate;
+    private String arrivalTime;
 
-    private int cost;
+    private int price;
 
     private int seat;
 
+    private String ticketClass;
 }
