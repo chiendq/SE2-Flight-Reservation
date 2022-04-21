@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.admin.controllers;
+package vn.hanu.fit.se2flightreservation.auth.payload.controllers;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.http.HttpHeaders;
@@ -17,10 +17,10 @@ import vn.hanu.fit.se2flightreservation.converters.UserConverter;
 import vn.hanu.fit.se2flightreservation.entities.Role;
 import vn.hanu.fit.se2flightreservation.entities.User;
 import vn.hanu.fit.se2flightreservation.models.ERole;
-import vn.hanu.fit.se2flightreservation.payload.request.LoginRequest;
-import vn.hanu.fit.se2flightreservation.payload.request.SignupRequest;
-import vn.hanu.fit.se2flightreservation.payload.response.MessageResponse;
-import vn.hanu.fit.se2flightreservation.payload.response.UserInfoResponse;
+import vn.hanu.fit.se2flightreservation.auth.payload.request.LoginRequest;
+import vn.hanu.fit.se2flightreservation.auth.payload.request.SignupRequest;
+import vn.hanu.fit.se2flightreservation.auth.payload.response.MessageResponse;
+import vn.hanu.fit.se2flightreservation.auth.payload.response.UserInfoResponse;
 import vn.hanu.fit.se2flightreservation.services.RoleService;
 import vn.hanu.fit.se2flightreservation.services.UserService;
 
