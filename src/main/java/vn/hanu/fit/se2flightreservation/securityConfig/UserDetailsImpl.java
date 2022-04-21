@@ -5,7 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import vn.hanu.fit.se2flightreservation.entities.User;
-import vn.hanu.fit.se2flightreservation.models.EGender;
+import vn.hanu.fit.se2flightreservation.enums.EGender;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
