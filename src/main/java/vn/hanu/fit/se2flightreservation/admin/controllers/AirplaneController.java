@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.controllers;
+package vn.hanu.fit.se2flightreservation.admin.controllers;
 
 
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.controllers;
+package vn.hanu.fit.se2flightreservation.admin.controllers;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.slf4j.Logger;
@@ -17,7 +17,7 @@ import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
-@RequestMapping("/api/v1/ticket")
+@RequestMapping("/api/v1/admin/ticket")
 public class TicketController {
     private static final Logger logger = LoggerFactory.getLogger(TicketController.class);
 

@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.controllers;
+package vn.hanu.fit.se2flightreservation.admin.controllers;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.http.HttpHeaders;
@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import vn.hanu.fit.se2flightreservation.jwt.JwtUtils;
-import vn.hanu.fit.se2flightreservation.config.UserDetailsImpl;
+import vn.hanu.fit.se2flightreservation.securityConfig.UserDetailsImpl;
 import vn.hanu.fit.se2flightreservation.converters.UserConverter;
 import vn.hanu.fit.se2flightreservation.entities.Role;
 import vn.hanu.fit.se2flightreservation.entities.User;
