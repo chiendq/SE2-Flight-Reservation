@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.hanu.fit.se2flightreservation.entities.FlightClass;
-import vn.hanu.fit.se2flightreservation.services.FlightClassService;
+import vn.hanu.fit.se2flightreservation.admin.services.FlightClassService;
 
 import java.util.List;
 

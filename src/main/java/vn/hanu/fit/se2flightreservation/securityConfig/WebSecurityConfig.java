@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import vn.hanu.fit.se2flightreservation.jwt.AuthEntryPointJwt;
 import vn.hanu.fit.se2flightreservation.jwt.AuthTokenFilter;
-import vn.hanu.fit.se2flightreservation.services.servicesImpl.UserDetailsServiceImpl;
+import vn.hanu.fit.se2flightreservation.admin.services.servicesImpl.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity

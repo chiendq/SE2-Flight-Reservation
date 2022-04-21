@@ -1,11 +1,11 @@
-package vn.hanu.fit.se2flightreservation.services.servicesImpl;
+package vn.hanu.fit.se2flightreservation.admin.services.servicesImpl;
 
 import org.springframework.stereotype.Service;
 import vn.hanu.fit.se2flightreservation.entities.FlightClass;
 import vn.hanu.fit.se2flightreservation.exceptions.EntityExistedByIdException;
 import vn.hanu.fit.se2flightreservation.exceptions.ResourceNotFoundException;
 import vn.hanu.fit.se2flightreservation.repositories.FlightClassRepository;
-import vn.hanu.fit.se2flightreservation.services.FlightClassService;
+import vn.hanu.fit.se2flightreservation.admin.services.FlightClassService;
 
 import java.util.List;
 

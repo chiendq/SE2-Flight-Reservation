@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.services;
+package vn.hanu.fit.se2flightreservation.admin.services;
 
 import vn.hanu.fit.se2flightreservation.entities.Airline;
 

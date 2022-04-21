@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.services.servicesImpl;
+package vn.hanu.fit.se2flightreservation.admin.services.servicesImpl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +7,7 @@ import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.exceptions.EntityExistedByIdException;
 import vn.hanu.fit.se2flightreservation.exceptions.ResourceNotFoundException;
 import vn.hanu.fit.se2flightreservation.repositories.TicketRepository;
-import vn.hanu.fit.se2flightreservation.services.TicketService;
+import vn.hanu.fit.se2flightreservation.admin.services.TicketService;
 
 import java.util.List;
 

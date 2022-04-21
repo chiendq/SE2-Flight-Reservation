@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import vn.hanu.fit.se2flightreservation.entities.User;
 import vn.hanu.fit.se2flightreservation.enums.EGender;
 import vn.hanu.fit.se2flightreservation.auth.payload.request.SignupRequest;
-import vn.hanu.fit.se2flightreservation.services.RoleService;
+import vn.hanu.fit.se2flightreservation.admin.services.RoleService;
 
 import java.util.Set;
 

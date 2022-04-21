@@ -21,8 +21,8 @@ import vn.hanu.fit.se2flightreservation.auth.payload.request.LoginRequest;
 import vn.hanu.fit.se2flightreservation.auth.payload.request.SignupRequest;
 import vn.hanu.fit.se2flightreservation.auth.payload.response.MessageResponse;
 import vn.hanu.fit.se2flightreservation.auth.payload.response.UserInfoResponse;
-import vn.hanu.fit.se2flightreservation.services.RoleService;
-import vn.hanu.fit.se2flightreservation.services.UserService;
+import vn.hanu.fit.se2flightreservation.admin.services.RoleService;
+import vn.hanu.fit.se2flightreservation.admin.services.UserService;
 
 import java.util.*;
 import java.util.stream.Collectors;

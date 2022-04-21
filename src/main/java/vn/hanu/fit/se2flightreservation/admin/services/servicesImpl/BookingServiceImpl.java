@@ -1,9 +1,9 @@
-package vn.hanu.fit.se2flightreservation.services.servicesImpl;
+package vn.hanu.fit.se2flightreservation.admin.services.servicesImpl;
 
 import org.springframework.stereotype.Service;
 import vn.hanu.fit.se2flightreservation.entities.Booking;
 import vn.hanu.fit.se2flightreservation.repositories.BookingRepository;
-import vn.hanu.fit.se2flightreservation.services.BookingService;
+import vn.hanu.fit.se2flightreservation.admin.services.BookingService;
 
 import java.util.List;
 
