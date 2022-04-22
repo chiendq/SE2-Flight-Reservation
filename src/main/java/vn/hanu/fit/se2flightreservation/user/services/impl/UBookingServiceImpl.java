@@ -7,6 +7,7 @@ import vn.hanu.fit.se2flightreservation.repositories.BookingRepository;
 import vn.hanu.fit.se2flightreservation.repositories.TicketRepository;
 import vn.hanu.fit.se2flightreservation.user.converters.BookingConverter;
 import vn.hanu.fit.se2flightreservation.user.dtos.checkout.CheckoutRequest;
+import vn.hanu.fit.se2flightreservation.user.dtos.checkout.CheckoutResponse;
 import vn.hanu.fit.se2flightreservation.user.services.UBookingService;
 import vn.hanu.fit.se2flightreservation.user.services.UTicketService;
 
@@ -35,5 +36,11 @@ public class UBookingServiceImpl implements UBookingService {
             ticketService.saveBooking(savedBooking, ticket.getId());
         });
         return booking;
+    }
+
+    @Override
+    public CheckoutResponse getBookingByCode(String code) {
+        System.out.println("OKEEEEEEEEEEEEEEE");
+        return bookingConverter.toCheckoutResponse(bookingRepository.getBookingByCode(code));
     }
 }

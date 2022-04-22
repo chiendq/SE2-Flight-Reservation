@@ -24,4 +24,6 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
                                                                                                   String arrivalCode,
                                                                                                   int flightClassId,
                                                                                                   Booking booking);
+
+
 }

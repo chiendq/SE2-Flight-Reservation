@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.hanu.fit.se2flightreservation.entities.Booking;
 import vn.hanu.fit.se2flightreservation.user.dtos.checkout.CheckoutRequest;
+import vn.hanu.fit.se2flightreservation.user.dtos.checkout.CheckoutResponse;
 import vn.hanu.fit.se2flightreservation.user.services.UBookingService;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
@@ -24,5 +25,10 @@ public class CheckoutController {
     @PostMapping("")
     public ResponseEntity<Booking> checkout(@RequestBody CheckoutRequest checkoutRequest){
         return new ResponseEntity<Booking>(bookingService.save(checkoutRequest), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{code}")
+    public ResponseEntity<CheckoutResponse> getBooking(@PathVariable("code") String code){
+        return new ResponseEntity<CheckoutResponse>(bookingService.getBookingByCode(code), HttpStatus.CREATED);
     }
 }

@@ -8,13 +8,14 @@ import vn.hanu.fit.se2flightreservation.user.dtos.user.UserDto;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
 @Data
 @Builder
 @AllArgsConstructor
-public class CheckoutRequest {
+public class CheckoutRequest implements Serializable {
     private UserDto user;
 
     @Enumerated(EnumType.STRING)

@@ -12,7 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 @Data
-@EqualsAndHashCode(exclude = "User")
+//@EqualsAndHashCode(exclude = "User")
 @AllArgsConstructor
 public class User implements Serializable {
 
@@ -68,6 +68,19 @@ public class User implements Serializable {
                 ", gender=" + gender +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(roles, user.roles) && Objects.equals(fullname, user.fullname) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(phone, user.phone) && gender == user.gender && Objects.equals(email, user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, roles, fullname, username, password, phone, gender, email);
     }
 }
 

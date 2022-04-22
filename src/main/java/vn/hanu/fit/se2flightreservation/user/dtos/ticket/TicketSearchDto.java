@@ -6,12 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import vn.hanu.fit.se2flightreservation.enums.ERoundTrip;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class TicketSearchDto {
+public class TicketSearchDto implements Serializable {
     private String departure;
 
     private String destination;

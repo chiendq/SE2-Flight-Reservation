@@ -1,22 +1,28 @@
 package vn.hanu.fit.se2flightreservation.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
 import vn.hanu.fit.se2flightreservation.enums.EPaymentMethod;
 import vn.hanu.fit.se2flightreservation.enums.EStatus;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
-@Data
 @Table(name = "bookings")
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = "Booking")
+//@EqualsAndHashCode(exclude = "Booking")
 @Entity
-public class Booking {
+@Getter
+@Setter
+@ToString
+public class Booking implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -25,6 +31,7 @@ public class Booking {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonIgnore
     private User user;
 
     private Timestamp createdAt;
@@ -37,8 +44,13 @@ public class Booking {
     @Column(length = 20)
     private EPaymentMethod paymentMethod;
 
-    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "booking",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    @JsonBackReference(value = "tickets")
     private Set<Ticket> tickets;
+
+    private int passengers;
 
     @Override
     public String toString() {
@@ -50,6 +62,7 @@ public class Booking {
                 ", status=" + status +
                 ", paymentMethod=" + paymentMethod +
                 ", tickets=" + tickets +
+                ", passengers=" + passengers +
                 '}';
     }
 }

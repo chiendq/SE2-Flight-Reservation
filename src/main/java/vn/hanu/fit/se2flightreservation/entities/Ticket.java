@@ -1,5 +1,8 @@
 package vn.hanu.fit.se2flightreservation.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import vn.hanu.fit.se2flightreservation.enums.EStatus;
 
@@ -10,7 +13,7 @@ import java.util.Objects;
 
 @Table(name = "tickets")
 @Entity
-@EqualsAndHashCode(exclude = "Ticket")
+//@EqualsAndHashCode(exclude = "Ticket")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -51,8 +54,9 @@ public class Ticket implements Serializable {
 
     private int seat;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "booking_id")
+    @JsonManagedReference(value = "booking_id")
     private Booking booking;
 
     @Override
@@ -71,5 +75,18 @@ public class Ticket implements Serializable {
                 ", seat=" + seat +
                 ", booking=" + booking +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ticket ticket = (Ticket) o;
+        return seat == ticket.seat && Objects.equals(id, ticket.id) && Objects.equals(airline, ticket.airline) && Objects.equals(departureAirport, ticket.departureAirport) && Objects.equals(arrivalAirport, ticket.arrivalAirport) && Objects.equals(flightClass, ticket.flightClass) && Objects.equals(airplane, ticket.airplane) && Objects.equals(departureTime, ticket.departureTime) && Objects.equals(arrivalTime, ticket.arrivalTime) && Objects.equals(cost, ticket.cost) && status == ticket.status && Objects.equals(booking, ticket.booking);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, airline, departureAirport, arrivalAirport, flightClass, airplane, departureTime, arrivalTime, cost, status, seat, booking);
     }
 }
