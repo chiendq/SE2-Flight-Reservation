@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.dtos;
+package vn.hanu.fit.se2flightreservation.admin.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
