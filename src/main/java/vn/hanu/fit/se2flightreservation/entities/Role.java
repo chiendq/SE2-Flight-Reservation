@@ -1,6 +1,7 @@
 package vn.hanu.fit.se2flightreservation.entities;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import vn.hanu.fit.se2flightreservation.enums.ERole;
@@ -11,7 +12,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "roles")
 @Data
-@NoArgsConstructor
+@AllArgsConstructor
 public class Role implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,5 +27,9 @@ public class Role implements Serializable {
 
     public Role(ERole name) {
         this.name = name;
+    }
+
+    public Role() {
+
     }
 }

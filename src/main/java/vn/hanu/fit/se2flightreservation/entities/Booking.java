@@ -1,6 +1,7 @@
 package vn.hanu.fit.se2flightreservation.entities;
 
-import lombok.Data;
+import lombok.*;
+import org.hibernate.annotations.Cascade;
 import vn.hanu.fit.se2flightreservation.enums.EPaymentMethod;
 import vn.hanu.fit.se2flightreservation.enums.EStatus;
 
@@ -10,11 +11,17 @@ import java.util.Set;
 
 @Data
 @Table(name = "bookings")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(exclude = "Booking")
 @Entity
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    private String code;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -30,8 +37,19 @@ public class Booking {
     @Column(length = 20)
     private EPaymentMethod paymentMethod;
 
-    @OneToMany(mappedBy = "booking")
+    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL)
     private Set<Ticket> tickets;
 
-
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", user=" + user +
+                ", createdAt=" + createdAt +
+                ", status=" + status +
+                ", paymentMethod=" + paymentMethod +
+                ", tickets=" + tickets +
+                '}';
+    }
 }

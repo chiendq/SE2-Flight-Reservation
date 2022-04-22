@@ -1,18 +1,19 @@
 package vn.hanu.fit.se2flightreservation.entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import vn.hanu.fit.se2flightreservation.enums.EGender;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
 @Data
-@NoArgsConstructor
+@EqualsAndHashCode(exclude = "User")
+@AllArgsConstructor
 public class User implements Serializable {
 
     @Id
@@ -49,6 +50,24 @@ public class User implements Serializable {
         this.phone = phone;
         this.gender = gender;
         this.email = email;
+    }
+
+    public User() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", roles=" + roles +
+                ", fullname='" + fullname + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", gender=" + gender +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
 

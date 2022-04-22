@@ -6,10 +6,13 @@ import vn.hanu.fit.se2flightreservation.enums.EStatus;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Table(name = "tickets")
 @Entity
-@Data
+@EqualsAndHashCode(exclude = "Ticket")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ticket implements Serializable {
@@ -51,4 +54,22 @@ public class Ticket implements Serializable {
     @ManyToOne
     @JoinColumn(name = "booking_id")
     private Booking booking;
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", airline=" + airline +
+                ", departureAirport=" + departureAirport +
+                ", arrivalAirport=" + arrivalAirport +
+                ", flightClass=" + flightClass +
+                ", airplane=" + airplane +
+                ", departureTime=" + departureTime +
+                ", arrivalTime=" + arrivalTime +
+                ", cost=" + cost +
+                ", status=" + status +
+                ", seat=" + seat +
+                ", booking=" + booking +
+                '}';
+    }
 }
