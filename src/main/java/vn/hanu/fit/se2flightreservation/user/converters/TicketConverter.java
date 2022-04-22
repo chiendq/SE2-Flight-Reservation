@@ -1,7 +1,7 @@
 package vn.hanu.fit.se2flightreservation.user.converters;
 
 import org.springframework.stereotype.Component;
-import vn.hanu.fit.se2flightreservation.dtos.AirportDto;
+import vn.hanu.fit.se2flightreservation.admin.dtos.AirportDto;
 import vn.hanu.fit.se2flightreservation.user.dtos.ticket.TicketResponseDto;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 

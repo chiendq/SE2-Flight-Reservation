@@ -7,7 +7,7 @@ import vn.hanu.fit.se2flightreservation.user.converters.TicketConverter;
 import vn.hanu.fit.se2flightreservation.user.dtos.ticket.TicketResponseDto;
 import vn.hanu.fit.se2flightreservation.user.dtos.ticket.TicketSearchDto;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
-import vn.hanu.fit.se2flightreservation.user.services.UserTicketService;
+import vn.hanu.fit.se2flightreservation.user.services.UTicketService;
 
 import java.text.ParseException;
 import java.util.List;
@@ -18,11 +18,11 @@ import java.util.List;
 public class UserTicketController {
     private static final Logger logger = LoggerFactory.getLogger(UserTicketController.class);
 
-    private UserTicketService ticketService;
+    private UTicketService ticketService;
 
     private TicketConverter ticketConverter;
 
-    public UserTicketController(UserTicketService ticketService, TicketConverter ticketConverter) {
+    public UserTicketController(UTicketService ticketService, TicketConverter ticketConverter) {
         this.ticketService = ticketService;
         this.ticketConverter = ticketConverter;
     }
