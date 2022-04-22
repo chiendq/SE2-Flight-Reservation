@@ -1,28 +1,23 @@
 package vn.hanu.fit.se2flightreservation.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import vn.hanu.fit.se2flightreservation.entities.Booking;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 
 import java.util.List;
 
 @Repository
-public interface TicketRepository
-        extends JpaRepository<Ticket, Integer> {
-//    List<Ticket> findAllByArrivalAirport_IdAndDepartureAirport_IdAndFlightClass_Id(int arrivalAirportId,
-//                                                                                   int departureAirportId,
-//                                                                                   int flightClassI);
+public interface TicketRepository extends JpaRepository<Ticket, Integer> {
 
     List<Ticket> findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_Id(String departureCode,
                                                                                        String arrivalCode,
                                                                                        int flightClassId);
-//
-//
-//    @Query(value="SELECT * FROM tickets where" +
-//            " flight_class_id= :flightClassId" +
-//            "AND arrival_airport_id = :arrivalAirportId " +
-//            "AND departure_airport_id = :departureAirportId" +
-//            "", nativeQuery=true)
-//    List<Ticket> search(int flightClassId, int arrivalAirportId, int departureAirportId );
+
+    @Modifying
+    @Query("UPDATE Ticket t SET t.booking =?1 WHERE t.id = ?2")
+    int setBooking(Booking booking, int ticketId);
 
 }
