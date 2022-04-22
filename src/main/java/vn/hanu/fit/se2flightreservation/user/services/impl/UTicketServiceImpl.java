@@ -33,10 +33,11 @@ public class UTicketServiceImpl implements UTicketService {
 
     @Override
     public List<Ticket> search(TicketSearchDto ticketSearchDto) {
-        List<Ticket> resultTickets = ticketRepository.findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_Id(
+        List<Ticket> resultTickets = ticketRepository.findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_IdAndBooking(
                 ticketSearchDto.getDeparture().split("-")[0],
                 ticketSearchDto.getDestination().split("-")[0],
-                ticketSearchDto.getFlightClassId()
+                ticketSearchDto.getFlightClassId(),
+                null
         );
         return filterDate(resultTickets,ticketSearchDto);
     }

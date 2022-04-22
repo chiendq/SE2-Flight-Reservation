@@ -20,4 +20,8 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
     @Query("UPDATE Ticket t SET t.booking =?1 WHERE t.id = ?2")
     int setBooking(Booking booking, int ticketId);
 
+    List<Ticket> findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_IdAndBooking(String departureCode,
+                                                                                                  String arrivalCode,
+                                                                                                  int flightClassId,
+                                                                                                  Booking booking);
 }
