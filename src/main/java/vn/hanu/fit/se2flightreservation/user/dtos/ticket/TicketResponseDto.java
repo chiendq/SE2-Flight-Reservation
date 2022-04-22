@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vn.hanu.fit.se2flightreservation.dtos.AirportDto;
+import vn.hanu.fit.se2flightreservation.admin.dtos.AirportDto;
 
 @AllArgsConstructor
 @NoArgsConstructor

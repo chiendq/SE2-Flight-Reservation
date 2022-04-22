@@ -1,23 +1,29 @@
 package vn.hanu.fit.se2flightreservation.user.services.impl;
 
 import org.springframework.stereotype.Service;
+import vn.hanu.fit.se2flightreservation.admin.services.BookingService;
+import vn.hanu.fit.se2flightreservation.entities.Booking;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.exceptions.ResourceNotFoundException;
 import vn.hanu.fit.se2flightreservation.repositories.TicketRepository;
 import vn.hanu.fit.se2flightreservation.user.dtos.ticket.TicketSearchDto;
-import vn.hanu.fit.se2flightreservation.user.services.UserTicketService;
+import vn.hanu.fit.se2flightreservation.user.services.UTicketService;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Service
-public class UserTicketServiceImpl implements UserTicketService {
+public class UTicketServiceImpl implements UTicketService {
 
     private final TicketRepository ticketRepository;
 
-    public UserTicketServiceImpl(TicketRepository ticketRepository) {
+    private final BookingService bookingService;
+
+    public UTicketServiceImpl(TicketRepository ticketRepository, BookingService bookingService) {
         this.ticketRepository = ticketRepository;
+        this.bookingService = bookingService;
     }
 
     @Override
@@ -34,6 +40,13 @@ public class UserTicketServiceImpl implements UserTicketService {
         );
         return filterDate(resultTickets,ticketSearchDto);
     }
+
+    @Override
+    public boolean saveBooking(Booking booking, int ticketId){
+
+        return ticketRepository.setBooking(booking, ticketId) > 0;
+    }
+
 
     private List<Ticket> filterDate(List<Ticket> resultTickets, TicketSearchDto ticketSearchDto){
 
