@@ -8,6 +8,7 @@ import vn.hanu.fit.se2flightreservation.admin.services.AirportService;
 
 import java.util.List;
 
+@CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequestMapping("/api/v1/admin/airports")
 public class AirportController {
