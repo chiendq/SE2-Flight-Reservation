@@ -10,7 +10,6 @@ import vn.hanu.fit.se2flightreservation.repositories.TicketRepository;
 import vn.hanu.fit.se2flightreservation.user.dtos.ticket.TicketSearchDto;
 import vn.hanu.fit.se2flightreservation.user.services.UTicketService;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,11 +33,10 @@ public class UTicketServiceImpl implements UTicketService {
 
     @Override
     public List<Ticket> search(TicketSearchDto ticketSearchDto) {
-        List<Ticket> resultTickets = ticketRepository.findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_IdAndBooking(
+        List<Ticket> resultTickets = ticketRepository.findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_Name(
                 ticketSearchDto.getDeparture().split("-")[0],
                 ticketSearchDto.getDestination().split("-")[0],
-                ticketSearchDto.getFlightClassId(),
-                null
+                ticketSearchDto.getTicketClass()
         );
         return filterDate(resultTickets,ticketSearchDto);
     }

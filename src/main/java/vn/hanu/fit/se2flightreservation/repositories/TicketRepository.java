@@ -21,11 +21,14 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
     @Query("UPDATE Ticket t SET t.booking =?1, t.status=?2 WHERE t.id = ?3")
     int setBooking(Booking booking,EStatus eStatus, int ticketId);
 
-    List<Ticket> findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_IdAndBooking(String departureCode,
+    List<Ticket> findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClassAndBooking(String departureCode,
                                                                                                   String arrivalCode,
                                                                                                   int flightClassId,
                                                                                                   Booking booking);
 
+    List<Ticket> findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_Name(String departureCode,
+                                                                                         String arrivalCode,
+                                                                                         String flightClass);
     List<Ticket> findAllByBooking(Booking booking);
 
 }

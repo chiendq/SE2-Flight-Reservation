@@ -17,7 +17,7 @@ public class TicketSearchDto implements Serializable {
 
     private String destination;
 
-    private int flightClassId;
+    private String ticketClass;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date departureDate;
