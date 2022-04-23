@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import vn.hanu.fit.se2flightreservation.entities.Booking;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
+import vn.hanu.fit.se2flightreservation.enums.EStatus;
 
 import java.util.List;
 
@@ -17,8 +18,8 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
                                                                                        int flightClassId);
 
     @Modifying
-    @Query("UPDATE Ticket t SET t.booking =?1 WHERE t.id = ?2")
-    int setBooking(Booking booking, int ticketId);
+    @Query("UPDATE Ticket t SET t.booking =?1, t.status=?2 WHERE t.id = ?3")
+    int setBooking(Booking booking,EStatus eStatus, int ticketId);
 
     List<Ticket> findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_IdAndBooking(String departureCode,
                                                                                                   String arrivalCode,

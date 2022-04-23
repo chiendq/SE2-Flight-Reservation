@@ -41,7 +41,7 @@ public class BookingConverter {
         });
 
         booking.setTickets(ticketSet);
-        booking.setCode("OKEYYY");
+        booking.setCode(String.valueOf(System.currentTimeMillis()).substring(3,13));
         booking.setPassengers(checkoutRequest.getPassengers());
         booking.setStatus(EStatus.STATUS_PENDING);
         booking.setPaymentMethod(EPaymentMethod.PAYMENT_CHECKIN);

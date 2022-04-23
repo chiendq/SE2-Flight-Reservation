@@ -14,4 +14,6 @@ public interface UTicketService {
     List<Ticket> search(TicketSearchDto ticketSearchDto) throws ParseException;
 
     boolean saveBooking(Booking booking, int id);
+
+    boolean isAvailable(int ticketId);
 }

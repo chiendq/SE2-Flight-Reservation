@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import vn.hanu.fit.se2flightreservation.admin.services.BookingService;
 import vn.hanu.fit.se2flightreservation.entities.Booking;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
+import vn.hanu.fit.se2flightreservation.enums.EStatus;
 import vn.hanu.fit.se2flightreservation.exceptions.ResourceNotFoundException;
 import vn.hanu.fit.se2flightreservation.repositories.TicketRepository;
 import vn.hanu.fit.se2flightreservation.user.dtos.ticket.TicketSearchDto;
@@ -45,9 +46,18 @@ public class UTicketServiceImpl implements UTicketService {
     @Override
     public boolean saveBooking(Booking booking, int ticketId){
 
-        return ticketRepository.setBooking(booking, ticketId) > 0;
+        return ticketRepository.setBooking(booking,booking.getStatus(), ticketId) > 0;
     }
 
+    @Override
+    public boolean isAvailable(int ticketId) {
+        Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(()->new ResourceNotFoundException("Ticket","id",ticketId));
+        System.out.println("ID : " + ticketId  + ", is avaiable: " + ticket.getStatus().equals(EStatus.STATUS_AVAILABLE)  );
+        if(!ticket.getStatus().equals(EStatus.STATUS_AVAILABLE)){
+            return false;
+        }
+        return true;
+    }
 
     private List<Ticket> filterDate(List<Ticket> resultTickets, TicketSearchDto ticketSearchDto){
 

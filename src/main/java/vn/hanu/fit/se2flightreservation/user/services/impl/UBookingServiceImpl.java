@@ -3,6 +3,8 @@ package vn.hanu.fit.se2flightreservation.user.services.impl;
 import org.springframework.stereotype.Service;
 import vn.hanu.fit.se2flightreservation.admin.services.TicketService;
 import vn.hanu.fit.se2flightreservation.entities.Booking;
+import vn.hanu.fit.se2flightreservation.enums.EStatus;
+import vn.hanu.fit.se2flightreservation.exceptions.EntityExistedByIdException;
 import vn.hanu.fit.se2flightreservation.repositories.BookingRepository;
 import vn.hanu.fit.se2flightreservation.repositories.TicketRepository;
 import vn.hanu.fit.se2flightreservation.user.converters.BookingConverter;
@@ -33,6 +35,10 @@ public class UBookingServiceImpl implements UBookingService {
         Booking booking = bookingConverter.fromCheckoutRequest(checkoutRequest);
         Booking savedBooking = bookingRepository.save(booking);
         booking.getTickets().forEach(ticket -> {
+            int ticketId = ticket.getId();
+            if(!ticketService.isAvailable(ticketId)){
+                throw new EntityExistedByIdException("Ticket","Status", EStatus.STATUS_PENDING);
+            }
             ticketService.saveBooking(savedBooking, ticket.getId());
         });
         return booking;
@@ -40,7 +46,6 @@ public class UBookingServiceImpl implements UBookingService {
 
     @Override
     public CheckoutResponse getBookingByCode(String code) {
-        System.out.println("OKEEEEEEEEEEEEEEE");
         return bookingConverter.toCheckoutResponse(bookingRepository.getBookingByCode(code));
     }
 }
