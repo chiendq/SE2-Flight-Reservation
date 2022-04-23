@@ -1,6 +1,8 @@
 package vn.hanu.fit.se2flightreservation.auth.controllers;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +13,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.WebUtils;
 import vn.hanu.fit.se2flightreservation.jwt.JwtUtils;
 import vn.hanu.fit.se2flightreservation.securityConfig.UserDetailsImpl;
+import vn.hanu.fit.se2flightreservation.user.controllers.CheckoutController;
 import vn.hanu.fit.se2flightreservation.user.converters.UserConverter;
 import vn.hanu.fit.se2flightreservation.entities.Role;
 import vn.hanu.fit.se2flightreservation.entities.User;
@@ -24,6 +28,8 @@ import vn.hanu.fit.se2flightreservation.auth.payload.response.UserInfoResponse;
 import vn.hanu.fit.se2flightreservation.admin.services.RoleService;
 import vn.hanu.fit.se2flightreservation.admin.services.UserService;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -31,6 +37,8 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+
     private final AuthenticationManager authenticationManager;
 
     private final UserService userService;
@@ -160,5 +168,15 @@ public class AuthController {
         ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
                 .body(new MessageResponse("You've been signed out!"));
+    }
+
+    @GetMapping("")
+    public boolean checkLoginStatus(@RequestBody String token, HttpServletRequest request){
+        Cookie cookie = WebUtils.getCookie(request,"token");
+        if(cookie == null) return false;
+        if(cookie.getValue().equals(token)){
+            return true;
+        }
+        return false;
     }
 }
