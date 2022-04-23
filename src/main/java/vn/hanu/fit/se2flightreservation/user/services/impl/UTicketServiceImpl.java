@@ -29,7 +29,7 @@ public class UTicketServiceImpl implements UTicketService {
 
     @Override
     public List<Ticket> getAll() {
-        return ticketRepository.findAll();
+        return ticketRepository.findAllByBooking(null);
     }
 
     @Override

@@ -9,6 +9,7 @@ import vn.hanu.fit.se2flightreservation.exceptions.ResourceNotFoundException;
 import vn.hanu.fit.se2flightreservation.repositories.TicketRepository;
 import vn.hanu.fit.se2flightreservation.admin.services.TicketService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,7 +34,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<Ticket> getAllTickets() {
-        return ticketRepository.findAll();
+        return ticketRepository.findAllByBooking(null);
     }
 
     @Override

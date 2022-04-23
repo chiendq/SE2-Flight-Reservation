@@ -31,7 +31,6 @@ public class TicketController {
     }
 
     @GetMapping("")
-    @JsonFormat
     public List<Ticket> getAllTickets() {
         return ticketService.getAllTickets();
     }

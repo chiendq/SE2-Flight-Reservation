@@ -26,5 +26,6 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
                                                                                                   int flightClassId,
                                                                                                   Booking booking);
 
+    List<Ticket> findAllByBooking(Booking booking);
 
 }
