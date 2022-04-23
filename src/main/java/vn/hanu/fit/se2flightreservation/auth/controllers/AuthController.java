@@ -94,6 +94,7 @@ public class AuthController {
                         userDetails.getUsername(),
                         userDetails.getEmail(),
                         userDetails.getFullName(),
+                        jwtCookie.getValue(),
                         userDetails.getGender(),
                         roles));
     }
@@ -144,12 +145,12 @@ public class AuthController {
 
         User registeredUser = userService.save(user);
 
-        String jwtCookie = jwtUtils.generateTokenFromUsername(user.getUsername());
+        Cookie jwtCookie = new Cookie("token", jwtUtils.generateTokenFromUsername(user.getUsername()));
 
 //        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.SET_COOKIE, jwtCookie)
+                .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
 //                        .header("Access-Control-Allow-Origin", "*")
 //                        .header("Access-Control-Allow-Headers", "*")
 //                        .header("Access-Control-Allow-Credentials", "true")
@@ -159,6 +160,7 @@ public class AuthController {
                         user.getUsername(),
                         user.getEmail(),
                         user.getFullname(),
+                        jwtCookie.getValue(),
                         user.getGender(),
                         Arrays.asList("ROLE_USER")));
     }

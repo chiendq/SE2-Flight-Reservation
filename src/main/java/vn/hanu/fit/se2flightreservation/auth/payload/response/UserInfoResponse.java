@@ -11,16 +11,18 @@ public class UserInfoResponse {
     private String username;
     private String email;
     private String fullName;
+    private String token;
     private EGender userGender;
     private List<String> roles;
 
-    public UserInfoResponse(int userId, String username, String email, String fullName, EGender gender, List<String> roles) {
+
+    public UserInfoResponse(int userId, String username, String email, String fullName, String token, EGender userGender, List<String> roles) {
         this.userId = userId;
         this.username = username;
-        this.fullName = fullName;
         this.email = email;
-        this.userGender = gender;
+        this.fullName = fullName;
+        this.token = token;
+        this.userGender = userGender;
         this.roles = roles;
     }
-
 }
