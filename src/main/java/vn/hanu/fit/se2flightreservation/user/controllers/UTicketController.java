@@ -15,14 +15,14 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequestMapping("/api/v1/tickets")
-public class UserTicketController {
-    private static final Logger logger = LoggerFactory.getLogger(UserTicketController.class);
+public class UTicketController {
+    private static final Logger logger = LoggerFactory.getLogger(UTicketController.class);
 
     private UTicketService ticketService;
 
     private TicketConverter ticketConverter;
 
-    public UserTicketController(UTicketService ticketService, TicketConverter ticketConverter) {
+    public UTicketController(UTicketService ticketService, TicketConverter ticketConverter) {
         this.ticketService = ticketService;
         this.ticketConverter = ticketConverter;
     }

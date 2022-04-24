@@ -5,6 +5,7 @@ import vn.hanu.fit.se2flightreservation.admin.services.TicketService;
 import vn.hanu.fit.se2flightreservation.entities.Booking;
 import vn.hanu.fit.se2flightreservation.enums.EStatus;
 import vn.hanu.fit.se2flightreservation.exceptions.EntityExistedByIdException;
+import vn.hanu.fit.se2flightreservation.exceptions.ResourceNotFoundException;
 import vn.hanu.fit.se2flightreservation.repositories.BookingRepository;
 import vn.hanu.fit.se2flightreservation.repositories.TicketRepository;
 import vn.hanu.fit.se2flightreservation.user.converters.BookingConverter;
@@ -46,6 +47,8 @@ public class UBookingServiceImpl implements UBookingService {
 
     @Override
     public CheckoutResponse getBookingByCode(String code) {
-        return bookingConverter.toCheckoutResponse(bookingRepository.getBookingByCode(code));
+        Booking booking = bookingRepository.getBookingByCode(code);
+        if(booking == null) throw new ResourceNotFoundException("Booking","code",code);
+        return bookingConverter.toCheckoutResponse(booking);
     }
 }

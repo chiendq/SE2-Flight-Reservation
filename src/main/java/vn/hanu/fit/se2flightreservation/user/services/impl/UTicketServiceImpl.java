@@ -1,5 +1,7 @@
 package vn.hanu.fit.se2flightreservation.user.services.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import vn.hanu.fit.se2flightreservation.admin.services.BookingService;
 import vn.hanu.fit.se2flightreservation.entities.Booking;
@@ -16,6 +18,7 @@ import java.util.List;
 
 @Service
 public class UTicketServiceImpl implements UTicketService {
+    private static final Logger logger = LoggerFactory.getLogger(UTicketServiceImpl.class);
 
     private final TicketRepository ticketRepository;
 
@@ -34,42 +37,40 @@ public class UTicketServiceImpl implements UTicketService {
     @Override
     public List<Ticket> search(TicketSearchDto ticketSearchDto) {
         List<Ticket> resultTickets = ticketRepository.findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_Name(
-                ticketSearchDto.getDeparture().split("-")[0],
-                ticketSearchDto.getDestination().split("-")[0],
+                ticketSearchDto.getDeparture().getCode(),
+                ticketSearchDto.getDestination().getCode(),
                 ticketSearchDto.getTicketClass()
         );
-        return filterDate(resultTickets,ticketSearchDto);
+        return filterDate(resultTickets, ticketSearchDto);
     }
 
     @Override
-    public boolean saveBooking(Booking booking, int ticketId){
+    public boolean saveBooking(Booking booking, int ticketId) {
 
-        return ticketRepository.setBooking(booking,booking.getStatus(), ticketId) > 0;
+        return ticketRepository.setBooking(booking, booking.getStatus(), ticketId) > 0;
     }
 
     @Override
     public boolean isAvailable(int ticketId) {
-        Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(()->new ResourceNotFoundException("Ticket","id",ticketId));
-        System.out.println("ID : " + ticketId  + ", is avaiable: " + ticket.getStatus().equals(EStatus.STATUS_AVAILABLE)  );
-        if(!ticket.getStatus().equals(EStatus.STATUS_AVAILABLE)){
-            return false;
-        }
-        return true;
+        Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(() -> new ResourceNotFoundException("Ticket", "id", ticketId));
+        System.out.println("ID : " + ticketId + ", is avaiable: " + ticket.getStatus().equals(EStatus.STATUS_AVAILABLE));
+        return ticket.getStatus().equals(EStatus.STATUS_AVAILABLE);
     }
 
-    private List<Ticket> filterDate(List<Ticket> resultTickets, TicketSearchDto ticketSearchDto){
+    private List<Ticket> filterDate(List<Ticket> resultTickets, TicketSearchDto ticketSearchDto) {
+        Date requestDate = ticketSearchDto.getDepartureTime();
 
-        Date departureDate =ticketSearchDto.getDepartureDate();
         List<Ticket> filteredTicket = new ArrayList<>();
         for (Ticket ticket : resultTickets) {
             Date ticketDate = new Date(ticket.getDepartureTime().getTime());
-            if (departureDate.getDay() == ticketDate.getDay()
-                    && departureDate.getMonth() == ticketDate.getMonth()
-                    && departureDate.getYear() == ticketDate.getYear()) {
+            if (ticketDate.getDay() == requestDate.getDay() &&
+                    ticketDate.getMonth() == requestDate.getMonth() &&
+                    ticketDate.getYear() == requestDate.getYear()) {
                 filteredTicket.add(ticket);
             }
         }
-        if (filteredTicket.size() == 0) {
+
+        if (filteredTicket.size() < ticketSearchDto.getPassengers()) {
             throw new ResourceNotFoundException("Ticket search", "TicketSearch", ticketSearchDto);
         }
         return filteredTicket;

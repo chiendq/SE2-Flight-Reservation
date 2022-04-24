@@ -4,6 +4,7 @@ import lombok.*;
 import vn.hanu.fit.se2flightreservation.admin.dtos.AirportDto;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,13 +16,13 @@ public class TicketResponseDto implements Serializable {
 
     private String airplane;
 
-    private AirportDto departureAirport;
+    private AirportDto departure;
 
-    private AirportDto arrivalAirport;
+    private AirportDto destination;
 
-    private String departureTime;
+    private long departureTime;
 
-    private String arrivalTime;
+    private long arrivalTime;
 
     private int price;
 
@@ -34,8 +35,8 @@ public class TicketResponseDto implements Serializable {
         return "TicketResponseDto{" +
                 "id=" + id +
                 ", airplane='" + airplane + '\'' +
-                ", departureAirport=" + departureAirport +
-                ", arrivalAirport=" + arrivalAirport +
+                ", departure=" + departure +
+                ", destination=" + destination +
                 ", departureTime='" + departureTime + '\'' +
                 ", arrivalTime='" + arrivalTime + '\'' +
                 ", price=" + price +

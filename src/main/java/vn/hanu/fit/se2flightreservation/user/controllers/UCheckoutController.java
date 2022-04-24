@@ -13,12 +13,12 @@ import vn.hanu.fit.se2flightreservation.user.services.UBookingService;
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequestMapping("/api/v1/checkout")
-public class CheckoutController {
-    private static final Logger logger = LoggerFactory.getLogger(CheckoutController.class);
+public class UCheckoutController {
+    private static final Logger logger = LoggerFactory.getLogger(UCheckoutController.class);
 
     private UBookingService bookingService;
 
-    public CheckoutController(UBookingService bookingService) {
+    public UCheckoutController(UBookingService bookingService) {
         this.bookingService = bookingService;
     }
 

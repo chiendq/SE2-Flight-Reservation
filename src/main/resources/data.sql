@@ -38,16 +38,22 @@ INSERT INTO roles (description, name) VALUES ('admin', 'ROLE_ADMIN');
 
 #init users
 INSERT INTO users (email, fullname, gender, password, phone, username) VALUES ('chieesnddafo@gmail.com', 'Dao Chien', 'male', '$2a$10$iCDLUsBEpOkLhq2iSrgdceAcNru1C/LMJ5eBVYEUATP.OAZTgucje', '123123123123', 'chieesnddafo');
+INSERT INTO users (email, fullname, gender, password, phone, username) VALUES ('admin@gmail.com', 'Toi la admin', 'female', '$2a$10$l6ga5K/6xosf8hzZGTaz6envHXaONVLunSKKYAoHXK/Dwt1e9LG8K', '123456789', 'admin');
+INSERT INTO users (email, fullname, gender, password, phone, username) VALUES ('user@gmail.com', 'Toi la user', 'female', '$2a$10$zfbSUb9VTkouQ4sPJnj6/Oof0TEFtKDgh7Az2ki.UVfrOR/7.4VrC', '123456789', 'user');
 
 # Init user_roles
 INSERT INTO user_roles (user_id, role_id) VALUES (1, 1);
 INSERT INTO user_roles (user_id, role_id) VALUES (1, 2);
 INSERT INTO user_roles (user_id, role_id) VALUES (1, 3);
+INSERT INTO user_roles (user_id, role_id) VALUES (2, 1);
+INSERT INTO user_roles (user_id, role_id) VALUES (3, 3);
 
 
 # Init tickets
-INSERT INTO tickets (arrival_time, cost, departure_time, status, airline_id, arrival_airport_id,  departure_airport_id, flight_class_id, seat, airplane_id) VALUES ('2022-04-29 18:00:00', 100, '2022-04-29 16:00:00', 'STATUS_AVAILABLE', 1, 2, 1, 1, 1, 1);
-INSERT INTO tickets (arrival_time, cost, departure_time, status, airline_id, arrival_airport_id,  departure_airport_id, flight_class_id, seat, airplane_id) VALUES ('2022-04-29 18:00:00', 200, '2022-04-29 16:00:00', 'STATUS_AVAILABLE', 1, 2, 1, 2, 2, 2);
-INSERT INTO tickets (arrival_time, cost, departure_time, status, airline_id, arrival_airport_id,  departure_airport_id, flight_class_id, seat, airplane_id) VALUES ('2022-04-29 18:00:00', 300, '2022-04-29 16:00:00', 'STATUS_AVAILABLE', 1, 2, 1, 3, 3, 3);
-INSERT INTO tickets (arrival_time, cost, departure_time, status, airline_id, arrival_airport_id,  departure_airport_id, flight_class_id, seat, airplane_id) VALUES ('2022-04-29 18:00:00', 400, '2022-04-29 16:00:00', 'STATUS_AVAILABLE', 1, 2, 1, 4, 4, 4);
-INSERT INTO tickets (arrival_time, cost, departure_time, status, airline_id, arrival_airport_id,  departure_airport_id, flight_class_id, seat, airplane_id) VALUES ('2022-04-29 18:00:00', 200, '2022-04-29 16:00:00', 'STATUS_AVAILABLE', 1, 2, 1, 1, 5, 5);
+INSERT INTO tickets (arrival_time, cost, departure_time, seat, status, airline_id, airplane_id, arrival_airport_id, booking_id, departure_airport_id, flight_class_id) VALUES ('2022-04-29 18:00:00', 100, '2022-04-29 16:00:00', 1, 'STATUS_AVAILABLE', 1, 1, 2, null, 1, 1);
+INSERT INTO tickets (arrival_time, cost, departure_time, seat, status, airline_id, airplane_id, arrival_airport_id, booking_id, departure_airport_id, flight_class_id) VALUES ('2022-04-29 18:00:00', 200, '2022-04-29 16:00:00', 2, 'STATUS_AVAILABLE', 1, 2, 2, null, 1, 2);
+INSERT INTO tickets (arrival_time, cost, departure_time, seat, status, airline_id, airplane_id, arrival_airport_id, booking_id, departure_airport_id, flight_class_id) VALUES ('2022-04-29 18:00:00', 300, '2022-04-29 16:00:00', 3, 'STATUS_AVAILABLE', 1, 3, 2, null, 1, 3);
+INSERT INTO tickets (arrival_time, cost, departure_time, seat, status, airline_id, airplane_id, arrival_airport_id, booking_id, departure_airport_id, flight_class_id) VALUES ('2022-04-29 18:00:00', 400, '2022-04-29 16:00:00', 4, 'STATUS_PENDING', 1, 4, 2, 1, 1, 4);
+INSERT INTO tickets (arrival_time, cost, departure_time, seat, status, airline_id, airplane_id, arrival_airport_id, booking_id, departure_airport_id, flight_class_id) VALUES ('2022-04-29 18:00:00', 200, '2022-04-29 16:00:00', 5, 'STATUS_AVAILABLE', 1, 5, 2, null, 1, 1);
+INSERT INTO tickets (arrival_time, cost, departure_time, seat, status, airline_id, airplane_id, arrival_airport_id, booking_id, departure_airport_id, flight_class_id) VALUES ('2022-04-29 18:00:00', 200, '2022-04-29 16:00:00', 6, 'STATUS_AVAILABLE', 1, 2, 2, null, 1, 1);
+INSERT INTO tickets (arrival_time, cost, departure_time, seat, status, airline_id, airplane_id, arrival_airport_id, booking_id, departure_airport_id, flight_class_id) VALUES ('2022-04-29 18:00:00', 200, '2022-04-29 16:00:00', 7, 'STATUS_AVAILABLE', 1, 3, 2, null, 1, 1);
