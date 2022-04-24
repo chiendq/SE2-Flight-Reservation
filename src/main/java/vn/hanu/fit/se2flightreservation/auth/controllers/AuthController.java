@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.WebUtils;
 import vn.hanu.fit.se2flightreservation.jwt.JwtUtils;
 import vn.hanu.fit.se2flightreservation.securityConfig.UserDetailsImpl;
-import vn.hanu.fit.se2flightreservation.user.controllers.CheckoutController;
 import vn.hanu.fit.se2flightreservation.user.converters.UserConverter;
 import vn.hanu.fit.se2flightreservation.entities.Role;
 import vn.hanu.fit.se2flightreservation.entities.User;
@@ -172,13 +171,4 @@ public class AuthController {
                 .body(new MessageResponse("You've been signed out!"));
     }
 
-    @GetMapping("")
-    public boolean checkLoginStatus(@RequestBody String token, HttpServletRequest request){
-        Cookie cookie = WebUtils.getCookie(request,"token");
-        if(cookie == null) return false;
-        if(cookie.getValue().equals(token)){
-            return true;
-        }
-        return false;
-    }
 }
