@@ -29,6 +29,9 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
     List<Ticket> findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_Name(String departureCode,
                                                                                          String arrivalCode,
                                                                                          String flightClass);
+
+    List<Ticket> findAllByDepartureAirport_CodeAndArrivalAirport_Code(String departureCode,
+                                                                                         String arrivalCode);
     List<Ticket> findAllByBooking(Booking booking);
 
 }

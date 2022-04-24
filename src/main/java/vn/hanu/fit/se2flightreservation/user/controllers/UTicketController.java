@@ -27,7 +27,7 @@ public class UTicketController {
         this.ticketConverter = ticketConverter;
     }
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     public List<TicketResponseDto> search(@RequestBody TicketSearchDto ticketSearchDto) throws ParseException {
         List<Ticket> resultTickets = ticketService.search(ticketSearchDto);
         return ticketConverter.toTicketResponseDtoList(resultTickets);
