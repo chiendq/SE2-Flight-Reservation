@@ -18,7 +18,7 @@ public class TicketConverter {
         ticketResponseDto.setSeat(ticket.getSeat());
         ticketResponseDto.setId(ticket.getId());
         ticketResponseDto.setPrice(ticket.getCost());
-        ticketResponseDto.setTicketClass(ticket.getFlightClass().getName());
+        ticketResponseDto.setTicketClass(ticket.getFlightClass());
 
         ticketResponseDto.setAirplane(ticket.getAirplane().getCode());
 

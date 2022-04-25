@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
-import vn.hanu.fit.se2flightreservation.securityConfig.UserDetailsImpl;
+import vn.hanu.fit.se2flightreservation.configs.securities.UserDetailsImpl;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

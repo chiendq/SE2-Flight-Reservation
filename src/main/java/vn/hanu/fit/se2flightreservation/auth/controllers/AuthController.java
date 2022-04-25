@@ -13,9 +13,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.WebUtils;
 import vn.hanu.fit.se2flightreservation.jwt.JwtUtils;
-import vn.hanu.fit.se2flightreservation.securityConfig.UserDetailsImpl;
+import vn.hanu.fit.se2flightreservation.configs.securities.UserDetailsImpl;
 import vn.hanu.fit.se2flightreservation.user.converters.UserConverter;
 import vn.hanu.fit.se2flightreservation.entities.Role;
 import vn.hanu.fit.se2flightreservation.entities.User;
@@ -28,7 +27,6 @@ import vn.hanu.fit.se2flightreservation.admin.services.RoleService;
 import vn.hanu.fit.se2flightreservation.admin.services.UserService;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
 

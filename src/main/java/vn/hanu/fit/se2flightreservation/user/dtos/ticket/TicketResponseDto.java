@@ -2,6 +2,7 @@ package vn.hanu.fit.se2flightreservation.user.dtos.ticket;
 
 import lombok.*;
 import vn.hanu.fit.se2flightreservation.admin.dtos.AirportDto;
+import vn.hanu.fit.se2flightreservation.entities.FlightClass;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -28,7 +29,7 @@ public class TicketResponseDto implements Serializable {
 
     private int seat;
 
-    private String ticketClass;
+    private FlightClass ticketClass;
 
     @Override
     public String toString() {
