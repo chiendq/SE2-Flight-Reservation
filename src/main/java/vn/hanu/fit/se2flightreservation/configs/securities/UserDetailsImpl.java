@@ -25,6 +25,8 @@ public class UserDetailsImpl implements UserDetails {
 
     private String fullName;
 
+    private String phoneNumber;
+
     @Enumerated(EnumType.STRING)
     private EGender gender;
 
@@ -33,12 +35,13 @@ public class UserDetailsImpl implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(int id, String username, String email, String fullName, String password, EGender gender,
+    public UserDetailsImpl(int id, String username, String email, String fullName, String phoneNumber, String password, EGender gender,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
         this.password = password;
         this.gender = gender;
         this.authorities = authorities;
@@ -54,6 +57,7 @@ public class UserDetailsImpl implements UserDetails {
                 user.getUsername(),
                 user.getEmail(),
                 user.getFullname(),
+                user.getPhone(),
                 user.getPassword(),
                 user.getGender(),
                 authorities);
@@ -86,6 +90,14 @@ public class UserDetailsImpl implements UserDetails {
 
     public EGender getGender() {
         return gender;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override

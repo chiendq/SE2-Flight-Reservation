@@ -91,6 +91,7 @@ public class AuthController {
                         userDetails.getUsername(),
                         userDetails.getEmail(),
                         userDetails.getFullName(),
+                        userDetails.getPhoneNumber(),
                         jwtCookie.getValue(),
                         userDetails.getGender(),
                         roles));
@@ -157,6 +158,7 @@ public class AuthController {
                         user.getUsername(),
                         user.getEmail(),
                         user.getFullname(),
+                        user.getPhone(),
                         jwtCookie.getValue(),
                         user.getGender(),
                         Arrays.asList("ROLE_USER")));
