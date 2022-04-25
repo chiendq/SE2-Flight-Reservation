@@ -2,21 +2,16 @@ package vn.hanu.fit.se2flightreservation.user.converters;
 
 import org.springframework.stereotype.Component;
 import vn.hanu.fit.se2flightreservation.admin.services.TicketService;
-import vn.hanu.fit.se2flightreservation.admin.services.UserService;
 import vn.hanu.fit.se2flightreservation.entities.Booking;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
-import vn.hanu.fit.se2flightreservation.entities.User;
 import vn.hanu.fit.se2flightreservation.enums.EPaymentMethod;
 import vn.hanu.fit.se2flightreservation.enums.EStatus;
 import vn.hanu.fit.se2flightreservation.user.dtos.checkout.CheckoutRequest;
 import vn.hanu.fit.se2flightreservation.user.dtos.checkout.CheckoutResponse;
-import vn.hanu.fit.se2flightreservation.user.dtos.ticket.TicketResponseDto;
 import vn.hanu.fit.se2flightreservation.user.services.UUserService;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Component
@@ -36,7 +31,7 @@ public class BookingConverter {
     public Booking fromCheckoutRequest(CheckoutRequest checkoutRequest){
         Booking booking = new Booking();
         Set<Ticket> ticketSet = new HashSet<>();
-        checkoutRequest.getTicketIdList().forEach(id->{
+        checkoutRequest.getTickets().forEach(id->{
             ticketSet.add(ticketService.getTicketById(id));
         });
 
@@ -44,10 +39,33 @@ public class BookingConverter {
         booking.setCode(String.valueOf(System.currentTimeMillis()).substring(3,13));
         booking.setPassengers(checkoutRequest.getPassengers());
         booking.setStatus(EStatus.STATUS_PENDING);
-        booking.setPaymentMethod(EPaymentMethod.PAYMENT_CHECKIN);
+        EStatus status = EStatus.STATUS_PENDING;
+        switch (checkoutRequest.getStatus()){
+            case "pending":
+                status = EStatus.STATUS_PENDING;
+                break;
+            case "paid" :
+                status = EStatus.STATUS_PAID;
+                break;
+            case "canceled":
+                status = EStatus.STATUS_CANCELED;
+                break;
+        }
+        booking.setStatus(status);
+
+        EPaymentMethod paymentMethod = EPaymentMethod.PAYMENT_CHECKIN;
+        switch (checkoutRequest.getPaymentMethod()){
+            case "onCheckin":
+                paymentMethod = EPaymentMethod.PAYMENT_CHECKIN;
+                break;
+            case "online":
+                paymentMethod = EPaymentMethod.PAYMENT_ONLINE;
+        }
+        booking.setPaymentMethod(paymentMethod);
+
         booking.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 
-        int userId = checkoutRequest.getUser().getUserId();
+        int userId = checkoutRequest.getUser().getId();
         if(userId != 0 && userService.isExistById(userId) ){
             booking.setUser(userService.getById(userId));
         }

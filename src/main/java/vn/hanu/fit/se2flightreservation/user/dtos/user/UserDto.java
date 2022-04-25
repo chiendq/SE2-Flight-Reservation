@@ -1,6 +1,5 @@
 package vn.hanu.fit.se2flightreservation.user.dtos.user;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,9 +13,10 @@ import java.io.Serializable;
 @Builder
 @EqualsAndHashCode(exclude = "UserDto")
 public class UserDto implements Serializable {
-    private int userId;
+    private int id;
 
     private String fullName;
+
     private String phone;
 
     @Enumerated(EnumType.STRING)
@@ -25,7 +25,7 @@ public class UserDto implements Serializable {
     @Override
     public String toString() {
         return "UserDto{" +
-                "userId=" + userId +
+                "userId=" + id +
                 ", fullName='" + fullName + '\'' +
                 ", phone='" + phone + '\'' +
                 ", gender=" + gender +

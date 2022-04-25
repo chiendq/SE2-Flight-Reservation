@@ -3,11 +3,8 @@ package vn.hanu.fit.se2flightreservation.user.dtos.checkout;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import vn.hanu.fit.se2flightreservation.enums.EPaymentMethod;
 import vn.hanu.fit.se2flightreservation.user.dtos.user.UserDto;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
@@ -18,12 +15,14 @@ import java.util.List;
 public class CheckoutRequest implements Serializable {
     private UserDto user;
 
-    @Enumerated(EnumType.STRING)
-    private EPaymentMethod paymentMethod;
+    private String status;
 
-    private List<Integer> ticketIdList;
+    private String paymentMethod;
 
     private int passengers;
 
     private Timestamp createdAt;
+
+    private List<Integer> tickets;
+
 }
