@@ -17,7 +17,7 @@ public class UserDto implements Serializable {
 
     private String fullName;
 
-    private String phone;
+    private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
     private EGender gender;
@@ -27,7 +27,7 @@ public class UserDto implements Serializable {
         return "UserDto{" +
                 "userId=" + id +
                 ", fullName='" + fullName + '\'' +
-                ", phone='" + phone + '\'' +
+                ", phone='" + phoneNumber + '\'' +
                 ", gender=" + gender +
                 '}';
     }

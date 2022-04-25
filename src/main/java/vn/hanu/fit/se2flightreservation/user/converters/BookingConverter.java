@@ -31,8 +31,8 @@ public class BookingConverter {
     public Booking fromCheckoutRequest(CheckoutRequest checkoutRequest){
         Booking booking = new Booking();
         Set<Ticket> ticketSet = new HashSet<>();
-        checkoutRequest.getTickets().forEach(id->{
-            ticketSet.add(ticketService.getTicketById(id));
+        checkoutRequest.getTickets().forEach(t->{
+            ticketSet.add(ticketService.getTicketById(t.getId()));
         });
 
         booking.setTickets(ticketSet);

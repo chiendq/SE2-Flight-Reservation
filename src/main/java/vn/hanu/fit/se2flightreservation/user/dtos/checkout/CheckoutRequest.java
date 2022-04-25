@@ -3,6 +3,7 @@ package vn.hanu.fit.se2flightreservation.user.dtos.checkout;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import vn.hanu.fit.se2flightreservation.user.dtos.ticket.UTicketDto;
 import vn.hanu.fit.se2flightreservation.user.dtos.user.UserDto;
 
 import java.io.Serializable;
@@ -23,6 +24,6 @@ public class CheckoutRequest implements Serializable {
 
     private Timestamp createdAt;
 
-    private List<Integer> tickets;
+    private List<UTicketDto> tickets;
 
 }
