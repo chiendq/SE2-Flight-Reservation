@@ -41,14 +41,14 @@ public class UTicketServiceImpl implements UTicketService {
                     ticketSearchDto.getDeparture().getCode(),
                     ticketSearchDto.getDestination().getCode()
             );
-            return filterDate(resultTickets, ticketSearchDto);
+            return filterAvailable(filterDate(resultTickets, ticketSearchDto));
         }
         List<Ticket> resultTickets = ticketRepository.findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_Name(
                 ticketSearchDto.getDeparture().getCode(),
                 ticketSearchDto.getDestination().getCode(),
                 ticketSearchDto.getTicketClass()
         );
-        return filterDate(resultTickets, ticketSearchDto);
+        return filterAvailable(filterDate(resultTickets, ticketSearchDto));
     }
 
     @Override
@@ -60,8 +60,18 @@ public class UTicketServiceImpl implements UTicketService {
     @Override
     public boolean isAvailable(int ticketId) {
         Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(() -> new ResourceNotFoundException("Ticket", "id", ticketId));
-        System.out.println("ID : " + ticketId + ", is avaiable: " + ticket.getStatus().equals(EStatus.STATUS_AVAILABLE));
+//        System.out.println("ID : " + ticketId + ", is avaiable: " + ticket.getStatus().equals(EStatus.STATUS_AVAILABLE));
         return ticket.getStatus().equals(EStatus.STATUS_AVAILABLE);
+    }
+
+    private List<Ticket> filterAvailable(List<Ticket> resultTickets){
+        List<Ticket> filteredTicket = new ArrayList<>();
+        for (Ticket ticket : resultTickets) {
+            if (ticket.getStatus() == EStatus.STATUS_AVAILABLE) {
+                filteredTicket.add(ticket);
+            }
+        }
+        return filteredTicket;
     }
 
     private List<Ticket> filterDate(List<Ticket> resultTickets, TicketSearchDto ticketSearchDto) {
