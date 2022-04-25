@@ -3,6 +3,7 @@ package vn.hanu.fit.se2flightreservation.user.converters;
 import org.springframework.stereotype.Component;
 import vn.hanu.fit.se2flightreservation.admin.services.TicketService;
 import vn.hanu.fit.se2flightreservation.entities.Booking;
+import vn.hanu.fit.se2flightreservation.entities.Guest;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.enums.EPaymentMethod;
 import vn.hanu.fit.se2flightreservation.enums.EStatus;
@@ -68,6 +69,9 @@ public class BookingConverter {
         int userId = checkoutRequest.getUser().getId();
         if(userId != 0 && userService.isExistById(userId) ){
             booking.setUser(userService.getById(userId));
+        }else {
+            booking.setGuest(new Guest(checkoutRequest.getUser().getFullName(),
+                    checkoutRequest.getUser().getPhoneNumber(),checkoutRequest.getUser().getGender()));
         }
 
         return booking;

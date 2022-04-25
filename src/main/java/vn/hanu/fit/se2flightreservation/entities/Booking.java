@@ -34,6 +34,11 @@ public class Booking implements Serializable {
     @JsonIgnore
     private User user;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "guest_id", referencedColumnName = "id")
+    @JsonIgnore
+    private Guest guest;
+
     private Timestamp createdAt;
 
     @Enumerated(EnumType.STRING)
