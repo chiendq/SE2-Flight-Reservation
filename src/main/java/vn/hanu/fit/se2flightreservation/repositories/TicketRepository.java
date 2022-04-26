@@ -30,8 +30,8 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
                                                                                          String arrivalCode,
                                                                                          String flightClass);
 
-    List<Ticket> findAllByDepartureAirport_CodeAndArrivalAirport_Code(String departureCode,
-                                                                                         String arrivalCode);
+    List<Ticket> findAllByDepartureAirport_CodeAndArrivalAirport_Code(String departureCode,String arrivalCode);
+    List<Ticket> findAllByDepartureAirport_Code(String departureCode);
     List<Ticket> findAllByBooking(Booking booking);
 
 }
