@@ -81,7 +81,8 @@ public class AuthController {
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+//                .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+                .header(HttpHeaders.AUTHORIZATION, jwtCookie.getValue())
 //                        .header("Access-Control-Allow-Origin", "*")
 //                        .header("Access-Control-Allow-Headers", "*")
 //                        .header("Access-Control-Allow-Credentials", "true")
@@ -142,13 +143,19 @@ public class AuthController {
         user.setRoles(roles);
 
         User registeredUser = userService.save(user);
+        Authentication authentication = authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(registeredUser.getUsername(), registeredUser.getPassword()));
 
-        Cookie jwtCookie = new Cookie("token", jwtUtils.generateTokenFromUsername(user.getUsername()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
 
 //        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+//                .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+                .header(HttpHeaders.AUTHORIZATION, jwtCookie.getValue())
 //                        .header("Access-Control-Allow-Origin", "*")
 //                        .header("Access-Control-Allow-Headers", "*")
 //                        .header("Access-Control-Allow-Credentials", "true")

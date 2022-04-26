@@ -4,13 +4,16 @@ import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
+import org.springframework.security.web.server.authorization.AuthorizationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 import vn.hanu.fit.se2flightreservation.configs.securities.UserDetailsImpl;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.Date;
 
 @Component
@@ -33,6 +36,10 @@ public class JwtUtils {
         } else {
             return null;
         }
+    }
+
+    public String getJwtFromAuthorization(HttpServletRequest request){
+        return request.getHeader(HttpHeaders.AUTHORIZATION);
     }
 
     public ResponseCookie generateJwtCookie(UserDetailsImpl userPrincipal) {
