@@ -20,7 +20,8 @@ public class UUserServiceImpl implements UUserService {
 
     @Override
     public User getById(int userId) {
-        return userRepository.findById(userId).orElseThrow(()->{ throw new ResourceNotFoundException("User","id",userId);
-        });
+        User user=  userRepository.findById(userId).get();
+        if(user == null) throw new ResourceNotFoundException("User","id",userId);
+        return user;
     }
 }
