@@ -11,7 +11,7 @@ import java.util.List;
 public class BookingServiceImpl implements BookingService {
     private BookingRepository bookingRepository;
 
-    private void setBookingRepository(BookingRepository bookingRepository){
+    public BookingServiceImpl(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
     }
     @Override
@@ -21,7 +21,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<Booking> getAllBookings() {
-        return null;
+        return bookingRepository.findAll();
     }
 
     @Override
