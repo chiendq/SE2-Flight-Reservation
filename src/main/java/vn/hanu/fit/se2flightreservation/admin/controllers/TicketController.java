@@ -11,7 +11,7 @@ import vn.hanu.fit.se2flightreservation.admin.services.TicketService;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:3000"})
+//@CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequestMapping("/api/v1/admin/tickets")
 public class TicketController {
@@ -30,10 +30,18 @@ public class TicketController {
         return new ResponseEntity<>(savedTicket, HttpStatus.CREATED);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
     public List<Ticket> getAllTickets() {
         return ticketService.getAllTickets();
     }
+
+//    @GetMapping("")
+//    public ResponseEntity<List<Ticket>> getAllTickets() {
+//        return ResponseEntity.ok()
+//                .header("Access-Control-Allow-Origin", "*")
+//                .body(ticketService.getAllTickets());
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Ticket> getTicketById(@PathVariable("id") int ticketId) {

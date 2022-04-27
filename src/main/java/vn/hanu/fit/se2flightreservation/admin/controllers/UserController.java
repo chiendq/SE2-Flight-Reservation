@@ -8,11 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.hanu.fit.se2flightreservation.admin.services.UserService;
 import vn.hanu.fit.se2flightreservation.admin.services.UserService;
+import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.entities.User;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:3000"})
+//@CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequestMapping("/api/v1/admin/users")
 public class UserController {
@@ -31,12 +32,17 @@ public class UserController {
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
+//    @GetMapping("")
+//    @JsonFormat
+//    public List<User> getAllUsers() {
+//        return userService.getAllUsers();
+//    }
+    @CrossOrigin(origins = {"http://localhost:3000"})
     @GetMapping("")
-    @JsonFormat
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok()
+                .body(userService.getAllUsers());
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") int userId) {
         User user = userService.getUserById(userId);

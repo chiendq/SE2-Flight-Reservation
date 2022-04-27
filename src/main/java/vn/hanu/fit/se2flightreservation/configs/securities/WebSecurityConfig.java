@@ -14,9 +14,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
 import vn.hanu.fit.se2flightreservation.jwt.AuthEntryPointJwt;
 import vn.hanu.fit.se2flightreservation.jwt.AuthTokenFilter;
 import vn.hanu.fit.se2flightreservation.admin.services.servicesImpl.UserDetailsServiceImpl;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -58,16 +61,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
+        corsConfiguration.setAllowedOriginPatterns(List.of("*"));
+        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PUT","OPTIONS","PATCH", "DELETE"));
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.setExposedHeaders(List.of("Authorization"));
+
+        http.csrf().disable().cors().configurationSource(request -> corsConfiguration).and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+                .antMatchers("/api/v1/admin/**").hasAuthority("ROLE_ADMIN")
+//                .antMatchers("/api/v1/admin/**").hasRole("ADMIN")
                 .antMatchers("/api/v1/auth/**").permitAll()
-                .antMatchers("/api/v1/admin/**").hasRole("ADMIN")
-                .antMatchers("/api/v1/**").permitAll();
+                .antMatchers("/api/v1/**").permitAll()
+        ;
 //                .anyRequest().authenticated();
-        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
 
