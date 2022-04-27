@@ -81,8 +81,8 @@ public class AuthController {
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok()
-//                .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-                .header(HttpHeaders.AUTHORIZATION, jwtCookie.getValue())
+                .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+//                .header(HttpHeaders.AUTHORIZATION, jwtCookie.getValue())
 //                        .header("Access-Control-Allow-Origin", "*")
 //                        .header("Access-Control-Allow-Headers", "*")
 //                        .header("Access-Control-Allow-Credentials", "true")
@@ -154,8 +154,8 @@ public class AuthController {
 //        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 
         return ResponseEntity.ok()
-//                .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-                .header(HttpHeaders.AUTHORIZATION, jwtCookie.getValue())
+                .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+//                .header(HttpHeaders.AUTHORIZATION, jwtCookie.getValue())
 //                        .header("Access-Control-Allow-Origin", "*")
 //                        .header("Access-Control-Allow-Headers", "*")
 //                        .header("Access-Control-Allow-Credentials", "true")

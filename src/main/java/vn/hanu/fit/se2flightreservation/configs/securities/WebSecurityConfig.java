@@ -63,16 +63,40 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         List<String> allowedHeaders = new java.util.ArrayList<>();
-        allowedHeaders.add("Authorization");
-        allowedHeaders.add("Cache-Control");
+        allowedHeaders.add("X-Requested-With");
+        allowedHeaders.add("Origin");
         allowedHeaders.add("Content-Type");
+        allowedHeaders.add("Authorization");
+        allowedHeaders.add("Access-Control-Allow-Credentials");
+        allowedHeaders.add("Access-Control-Allow-Headers");
+        allowedHeaders.add("Access-Control-Allow-Methods");
+        allowedHeaders.add("Access-Control-Allow-Origin");
+        allowedHeaders.add("Access-Control-Expose-Headers");
+        allowedHeaders.add("Access-Control-Max-Age");
+        allowedHeaders.add("Access-Control-Request-Headers");
+        allowedHeaders.add("Access-Control-Request-Method");
+        allowedHeaders.add("Age");
+        allowedHeaders.add("Allow");
+        allowedHeaders.add("Alternates");
+        allowedHeaders.add("Content-Range");
+        allowedHeaders.add("Content-Disposition");
+        allowedHeaders.add("Content-Description");
+        allowedHeaders.add("Accept");
+        allowedHeaders.add("Referer");
+        allowedHeaders.add("Cookies");
+        allowedHeaders.add("withCredentials");
         corsConfiguration.setAllowedHeaders(allowedHeaders);
 
+
         List<String> origins = new java.util.ArrayList<>();
-        origins.add("http://localhost:3000/");
+//        origins.add("*");
+//        corsConfiguration.setAllowedOriginPatterns(origins);
+
+        origins.add("http://localhost:3000");
         origins.add("https://train-reservation.vercel.app/");
         origins.add("https://flight-reservation.vercel.app/");
         corsConfiguration.setAllowedOrigins(origins);
+
         List<String> allowedMethods = new java.util.ArrayList<>();
         allowedMethods.add("GET");
         allowedMethods.add("POST");
@@ -83,9 +107,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         allowedMethods.add("PATCH");
         allowedMethods.add("DELETE");
         corsConfiguration.setAllowedMethods(allowedMethods);
-        corsConfiguration.setAllowCredentials(true);
+
+        corsConfiguration.setAllowCredentials(false);
+
         List<String> exposedHeaders = new java.util.ArrayList<>();
+        exposedHeaders.add("*");
         exposedHeaders.add("Authorization");
+        exposedHeaders.add("Cookies");
+
         corsConfiguration.setExposedHeaders(exposedHeaders);
 
         http.csrf().disable().cors().configurationSource(request -> corsConfiguration).and()

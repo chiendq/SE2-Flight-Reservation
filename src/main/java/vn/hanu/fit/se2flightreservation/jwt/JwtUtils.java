@@ -30,12 +30,7 @@ public class JwtUtils {
     private String jwtCookie;
 
     public String getJwtFromCookies(HttpServletRequest request) {
-        Cookie cookie = WebUtils.getCookie(request, jwtCookie);
-        if (cookie != null) {
-            return cookie.getValue();
-        } else {
-            return null;
-        }
+        return  request.getHeader("Cookies");
     }
 
     public String getJwtFromAuthorization(HttpServletRequest request){
