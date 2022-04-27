@@ -67,4 +67,14 @@ public class UserServiceImpl implements UserService {
         }
         userRepository.deleteById(id);
     }
+
+    @Override
+    public void deleteAll() {
+        userRepository.deleteAll();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return userRepository.findAll().size() == 0;
+    }
 }

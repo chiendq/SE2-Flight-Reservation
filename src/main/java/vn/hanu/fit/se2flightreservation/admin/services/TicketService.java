@@ -17,4 +17,6 @@ public interface TicketService {
 
     void deleteTicketById(int id);
 
+    void deleteAll();
+
 }

@@ -8,6 +8,8 @@ import java.io.Serializable;
 @Table(name = "airlines")
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Airline implements Serializable {
 
     @Id

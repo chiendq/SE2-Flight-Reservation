@@ -62,11 +62,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
-        corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000/"));
-        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PUT","OPTIONS","PATCH", "DELETE"));
+        List<String> allowedHeaders = new java.util.ArrayList<>();
+        allowedHeaders.add("Authorization");
+        allowedHeaders.add("Cache-Control");
+        allowedHeaders.add("Content-Type");
+        corsConfiguration.setAllowedHeaders(allowedHeaders);
+
+        List<String> origins = new java.util.ArrayList<>();
+        origins.add("http://localhost:3000/");
+        origins.add("https://train-reservation.vercel.app/");
+        origins.add("https://flight-reservation.vercel.app/");
+        corsConfiguration.setAllowedOrigins(origins);
+        List<String> allowedMethods = new java.util.ArrayList<>();
+        allowedMethods.add("GET");
+        allowedMethods.add("POST");
+        allowedMethods.add("PUT");
+        allowedMethods.add("DELETE");
+        allowedMethods.add("PUT");
+        allowedMethods.add("OPTIONS");
+        allowedMethods.add("PATCH");
+        allowedMethods.add("DELETE");
+        corsConfiguration.setAllowedMethods(allowedMethods);
         corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.setExposedHeaders(List.of("Authorization"));
+        List<String> exposedHeaders = new java.util.ArrayList<>();
+        exposedHeaders.add("Authorization");
+        corsConfiguration.setExposedHeaders(exposedHeaders);
 
         http.csrf().disable().cors().configurationSource(request -> corsConfiguration).and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()

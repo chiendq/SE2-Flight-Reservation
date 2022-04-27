@@ -63,4 +63,8 @@ public class AirlineServiceImpl implements AirlineService {
         airlineRepository.delete(existingAirline);
     }
 
+    @Override
+    public void deleteAll() {
+        airlineRepository.deleteAll();
+    }
 }

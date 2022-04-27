@@ -15,4 +15,7 @@ public interface AirplaneService {
     Airplane updateAirplane(Airplane airplane, int id);
 
     void deleteAirplaneById(int id);
+
+    void deleteAll();
+
 }

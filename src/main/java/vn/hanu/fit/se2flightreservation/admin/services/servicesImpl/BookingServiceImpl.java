@@ -36,6 +36,11 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public void deleteBookingById(int id) {
+        bookingRepository.deleteById(id);
+    }
 
+    @Override
+    public void deleteAll() {
+        bookingRepository.deleteAll();
     }
 }

@@ -50,4 +50,9 @@ public class AirportServiceImpl implements AirportService {
         airportRepository.delete(existingAirport);
     }
 
+    @Override
+    public void deleteAll() {
+        airportRepository.deleteAll();
+    }
+
 }

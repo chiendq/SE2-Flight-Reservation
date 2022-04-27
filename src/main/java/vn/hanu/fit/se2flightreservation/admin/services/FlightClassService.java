@@ -15,4 +15,7 @@ public interface FlightClassService {
     FlightClass updateFlightClass(FlightClass flightClass, int id);
 
     void deleteFlightClassById(int id);
+
+    void deleteAll();
+
 }

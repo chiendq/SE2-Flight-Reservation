@@ -15,4 +15,6 @@ public interface AirlineService {
 
     void deleteAirlineById(int id);
 
+    void deleteAll();
+
 }

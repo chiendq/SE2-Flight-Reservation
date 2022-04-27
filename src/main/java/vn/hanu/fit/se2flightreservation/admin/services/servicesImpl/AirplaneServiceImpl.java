@@ -48,4 +48,9 @@ public class AirplaneServiceImpl implements AirplaneService {
                 ()-> new ResourceNotFoundException("Airplane","Id",id));
         airplaneRepository.delete(existingAirplane);
     }
+
+    @Override
+    public void deleteAll() {
+        airplaneRepository.deleteAll();
+    }
 }

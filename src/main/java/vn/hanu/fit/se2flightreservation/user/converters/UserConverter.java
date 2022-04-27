@@ -1,11 +1,13 @@
 package vn.hanu.fit.se2flightreservation.user.converters;
 
 import org.springframework.stereotype.Component;
+import vn.hanu.fit.se2flightreservation.entities.Role;
 import vn.hanu.fit.se2flightreservation.entities.User;
 import vn.hanu.fit.se2flightreservation.enums.EGender;
 import vn.hanu.fit.se2flightreservation.auth.payload.request.SignupRequest;
 import vn.hanu.fit.se2flightreservation.admin.services.RoleService;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Component
@@ -24,7 +26,9 @@ public class UserConverter {
         signedUpUser.setEmail(signupRequest.getEmail());
         signedUpUser.setFullname(signedUpUser.getFullname());
         signedUpUser.setPhone(signupRequest.getPhone());
-        signedUpUser.setRoles(Set.of(roleService.getById(1)));
+        Set<Role> roles = new HashSet<>();
+        roles.add(roleService.getById(1));
+        signedUpUser.setRoles(roles);
 
         signedUpUser.setGender(EGender.valueOf(signupRequest.getGender()));
 

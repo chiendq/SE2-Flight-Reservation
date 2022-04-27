@@ -64,4 +64,8 @@ public class TicketServiceImpl implements TicketService {
         ticketRepository.delete(existingTicket);
     }
 
+    @Override
+    public void deleteAll() {
+        ticketRepository.deleteAll();
+    }
 }

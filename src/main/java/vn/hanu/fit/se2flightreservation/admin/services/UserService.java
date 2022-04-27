@@ -18,4 +18,8 @@ public interface UserService {
     User updateUser(User userUpdate, int id);
 
     void deleteUserById(int id);
+
+    void deleteAll();
+
+    boolean isEmpty();
 }
