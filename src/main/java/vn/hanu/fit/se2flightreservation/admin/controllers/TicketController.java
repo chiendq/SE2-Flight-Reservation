@@ -1,11 +1,12 @@
 package vn.hanu.fit.se2flightreservation.admin.controllers;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.hanu.fit.se2flightreservation.admin.dtos.Ticket.ResponseTicketDto;
+import vn.hanu.fit.se2flightreservation.admin.converters.TicketConverter;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.admin.services.TicketService;
 
@@ -19,9 +20,11 @@ public class TicketController {
 
     private final TicketService ticketService;
 
-    public TicketController(TicketService ticketService) {
-        super();
+    private TicketConverter ticketConverter;
+
+    public TicketController(TicketService ticketService, TicketConverter ticketConverter) {
         this.ticketService = ticketService;
+        this.ticketConverter = ticketConverter;
     }
 
     @PostMapping("")
@@ -32,10 +35,10 @@ public class TicketController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
-    public ResponseEntity<List<Ticket>> getAllTickets() {
+    public ResponseEntity<List<ResponseTicketDto>> getAllTickets() {
         return ResponseEntity.ok()
                 .header("Access-Control-Allow-Credentials", String.valueOf(true))
-                .body(ticketService.getAllTickets());
+                .body(ticketConverter.toResponseTicketDtoList(ticketService.getAllTickets()));
     }
 
 //    @GetMapping("")

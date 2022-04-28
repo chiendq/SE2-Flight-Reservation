@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import vn.hanu.fit.se2flightreservation.jwt.JwtUtils;
 import vn.hanu.fit.se2flightreservation.configs.securities.UserDetailsImpl;
-import vn.hanu.fit.se2flightreservation.user.converters.UserConverter;
+import vn.hanu.fit.se2flightreservation.user.converters.UUserConverter;
 import vn.hanu.fit.se2flightreservation.entities.Role;
 import vn.hanu.fit.se2flightreservation.entities.User;
 import vn.hanu.fit.se2flightreservation.enums.ERole;
@@ -45,7 +45,7 @@ public class AuthController {
 
     private final JwtUtils jwtUtils;
 
-    private final UserConverter userConverter;
+    private final UUserConverter userConverter;
 
 
     public AuthController(AuthenticationManager authenticationManager,
@@ -53,7 +53,7 @@ public class AuthController {
                           RoleService roleService,
                           PasswordEncoder encoder,
                           JwtUtils jwtUtils,
-                          UserConverter userConverter) {
+                          UUserConverter userConverter) {
         this.authenticationManager = authenticationManager;
         this.userService = userService;
         this.roleService = roleService;
@@ -83,7 +83,7 @@ public class AuthController {
                 .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
 //                .header(HttpHeaders.AUTHORIZATION, jwtCookie.getValue())
 //                        .header("Access-Control-Allow-Origin", "*")
-//                        .header("Access-Control-Allow-Headers", "*")
+//                        .header("Access-Control-Allow-Headers", "true")
 //                        .header("Access-Control-Allow-Credentials", "true")
 //                        .header("Access-Control-Allow-Methods", "*")
 //                        .header("Access-Control-Max-Age", "1209600")
