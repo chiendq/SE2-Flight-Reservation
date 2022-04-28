@@ -2,10 +2,12 @@ package vn.hanu.fit.se2flightreservation.payload.request;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.Set;
 
 @Data
+@ToString
 public class SignupRequest {
 
     private String fullName;

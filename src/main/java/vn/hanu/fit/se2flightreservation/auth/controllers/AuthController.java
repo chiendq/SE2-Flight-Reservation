@@ -110,41 +110,19 @@ public class AuthController {
         // Create new user's account
         PasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = bCryptPasswordEncoder.encode( signUpRequest.getPassword());
-        signUpRequest.setPassword(encodedPassword);
-
         User user = userConverter.fromSignupRequest(signUpRequest);
+        user.setPassword(encodedPassword);
 
-        Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
 
-        if (strRoles == null) {
-            Role userRole = roleService.findByName(ERole.ROLE_USER);
-            roles.add(userRole);
-        } else {
-            strRoles.forEach(role -> {
-                switch (role) {
-                    case "admin":
-                        Role adminRole = roleService.findByName(ERole.ROLE_ADMIN);
-                        roles.add(adminRole);
-
-                        break;
-                    case "mod":
-                        Role modRole = roleService.findByName(ERole.ROLE_MODERATOR);
-                        roles.add(modRole);
-
-                        break;
-                    default:
-                        Role userRole = roleService.findByName(ERole.ROLE_USER);
-                        roles.add(userRole);
-                }
-            });
-        }
+        Role userRole = roleService.findByName(ERole.ROLE_USER);
+        roles.add(userRole);
         user.setRoles(roles);
-
         User registeredUser = userService.save(user);
+        System.out.println(registeredUser.toString());
+        System.out.println(signUpRequest.toString());
         Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(registeredUser.getUsername(), registeredUser.getPassword()));
-
+                .authenticate(new UsernamePasswordAuthenticationToken(registeredUser.getUsername(), signUpRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
@@ -157,7 +135,7 @@ public class AuthController {
 //                .header(HttpHeaders.AUTHORIZATION, jwtCookie.getValue())
 //                        .header("Access-Control-Allow-Origin", "*")
 //                        .header("Access-Control-Allow-Headers", "*")
-                        .header("Access-Control-Allow-Credentials", "true")
+//                        .header("Access-Control-Allow-Credentials", "true")
 //                        .header("Access-Control-Allow-Methods", "*")
 //                        .header("Access-Control-Max-Age", "1209600")
                 .body(new UserInfoResponse(user.getId(),
