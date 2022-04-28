@@ -29,7 +29,7 @@ import vn.hanu.fit.se2flightreservation.admin.services.UserService;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = {"http://localhost:3000"})
+//@CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
@@ -84,7 +84,7 @@ public class AuthController {
 //                .header(HttpHeaders.AUTHORIZATION, jwtCookie.getValue())
 //                        .header("Access-Control-Allow-Origin", "*")
 //                        .header("Access-Control-Allow-Headers", "*")
-                        .header("Access-Control-Allow-Credentials", "true")
+//                        .header("Access-Control-Allow-Credentials", "true")
 //                        .header("Access-Control-Allow-Methods", "*")
 //                        .header("Access-Control-Max-Age", "1209600")
                 .body(new UserInfoResponse(userDetails.getId(),
