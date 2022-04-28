@@ -1,6 +1,5 @@
 package vn.hanu.fit.se2flightreservation.user.controllers;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.hanu.fit.se2flightreservation.entities.FlightClass;
@@ -21,8 +20,10 @@ public class UFlightClassController {
     }
 
     @GetMapping("")
-    public List<FlightClass> getAllFlightClasss() {
-        return flightClassService.getAllFlightClasss();
+    public ResponseEntity<List<FlightClass>> getAllFlightClasss() {
+        return ResponseEntity.ok()
+                .header("Access-Control-Allow-Credentials", String.valueOf(true))
+                .body(flightClassService.getAllFlightClasss());
     }
 
 }

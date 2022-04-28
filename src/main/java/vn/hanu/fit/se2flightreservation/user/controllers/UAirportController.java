@@ -1,6 +1,5 @@
 package vn.hanu.fit.se2flightreservation.user.controllers;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.hanu.fit.se2flightreservation.admin.services.AirportService;
@@ -21,8 +20,10 @@ public class UAirportController {
     }
 
     @GetMapping("")
-    public List<Airport> getAllAirports() {
-        return airportService.getAllAirports();
+    public ResponseEntity<List<Airport>> getAllAirports() {
+        return ResponseEntity.ok()
+                .header("Access-Control-Allow-Credentials", String.valueOf(true))
+                .body(airportService.getAllAirports());
     }
 
 }
