@@ -29,10 +29,13 @@ public class BookingConverter {
         String status = "";
         switch (booking.getStatus()){
             case STATUS_PENDING:
-                status = "onCheckin";
+                status = "pending";
                 break;
             case STATUS_PAID:
-                status = "online";
+                status = "paid";
+                break;
+            case STATUS_CANCELED:
+                status = "cancelled";
                 break;
         }
         responseBookingDto.setStatus(status);
