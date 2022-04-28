@@ -30,7 +30,24 @@ public class JwtUtils {
     private String jwtCookie;
 
     public String getJwtFromCookies(HttpServletRequest request) {
-        return  request.getHeader("Cookies");
+        String rawCookie = request.getHeader("Cookie");
+        if(rawCookie == null) return null;
+        if(rawCookie.contains(";")){
+            String[] rawCookieParams = rawCookie.split(";");
+            for(String rawCookieNameAndValue :rawCookieParams)
+            {
+                String[] rawCookieNameAndValuePair = rawCookieNameAndValue.split("=");
+                if(rawCookieNameAndValuePair[0].equals(jwtCookie)){
+                    return rawCookieNameAndValuePair[1];
+                }
+            }
+        }else {
+            String[] rawCookieNameAndValuePair = rawCookie.split("=");
+            if(rawCookieNameAndValuePair[0].equals(jwtCookie)){
+                return rawCookieNameAndValuePair[1];
+            }
+        }
+        return null;
     }
 
     public String getJwtFromAuthorization(HttpServletRequest request){
