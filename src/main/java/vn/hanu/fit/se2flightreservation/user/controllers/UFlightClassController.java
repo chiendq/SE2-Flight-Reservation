@@ -22,7 +22,7 @@ public class UFlightClassController {
     @GetMapping("")
     public ResponseEntity<List<FlightClass>> getAllFlightClasss() {
         return ResponseEntity.ok()
-                .header("Access-Control-Allow-Credentials", String.valueOf(true))
+//                .header("Access-Control-Allow-Credentials", String.valueOf(true))
                 .body(flightClassService.getAllFlightClasss());
     }
 

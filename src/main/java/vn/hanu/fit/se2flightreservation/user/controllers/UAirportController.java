@@ -22,7 +22,7 @@ public class UAirportController {
     @GetMapping("")
     public ResponseEntity<List<Airport>> getAllAirports() {
         return ResponseEntity.ok()
-                .header("Access-Control-Allow-Credentials", String.valueOf(true))
+//                .header("Access-Control-Allow-Credentials", String.valueOf(true))
                 .body(airportService.getAllAirports());
     }
 

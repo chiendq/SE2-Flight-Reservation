@@ -37,7 +37,7 @@ public class UTicketController {
     @GetMapping("")
     public ResponseEntity<List<TicketResponseDto>> getAll(){
         return ResponseEntity.ok()
-                .header("Access-Control-Allow-Credentials", String.valueOf(true))
+//                .header("Access-Control-Allow-Credentials", String.valueOf(true))
                 .body(ticketConverter.toTicketResponseDtoList(ticketService.getAll()));
     }
 }
