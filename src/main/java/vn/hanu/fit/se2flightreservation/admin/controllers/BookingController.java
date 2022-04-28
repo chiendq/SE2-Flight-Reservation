@@ -32,8 +32,10 @@ public class BookingController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
-    public List<Booking> getAllBookings() {
-        return bookingService.getAllBookings();
+    public ResponseEntity<List<Booking>> getAllBookings() {
+        return ResponseEntity.ok()
+                .header("Access-Control-Allow-Credentials", String.valueOf(true))
+                .body(bookingService.getAllBookings());
     }
 
 //    @GetMapping("")

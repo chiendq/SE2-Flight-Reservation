@@ -19,14 +19,13 @@ import vn.hanu.fit.se2flightreservation.user.converters.UserConverter;
 import vn.hanu.fit.se2flightreservation.entities.Role;
 import vn.hanu.fit.se2flightreservation.entities.User;
 import vn.hanu.fit.se2flightreservation.enums.ERole;
-import vn.hanu.fit.se2flightreservation.auth.payload.request.LoginRequest;
-import vn.hanu.fit.se2flightreservation.auth.payload.request.SignupRequest;
-import vn.hanu.fit.se2flightreservation.auth.payload.response.MessageResponse;
-import vn.hanu.fit.se2flightreservation.auth.payload.response.UserInfoResponse;
+import vn.hanu.fit.se2flightreservation.payload.request.LoginRequest;
+import vn.hanu.fit.se2flightreservation.payload.request.SignupRequest;
+import vn.hanu.fit.se2flightreservation.payload.response.MessageResponse;
+import vn.hanu.fit.se2flightreservation.payload.response.UserInfoResponse;
 import vn.hanu.fit.se2flightreservation.admin.services.RoleService;
 import vn.hanu.fit.se2flightreservation.admin.services.UserService;
 
-import javax.servlet.http.Cookie;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -85,7 +84,7 @@ public class AuthController {
 //                .header(HttpHeaders.AUTHORIZATION, jwtCookie.getValue())
 //                        .header("Access-Control-Allow-Origin", "*")
 //                        .header("Access-Control-Allow-Headers", "*")
-//                        .header("Access-Control-Allow-Credentials", "true")
+                        .header("Access-Control-Allow-Credentials", "true")
 //                        .header("Access-Control-Allow-Methods", "*")
 //                        .header("Access-Control-Max-Age", "1209600")
                 .body(new UserInfoResponse(userDetails.getId(),
@@ -158,7 +157,7 @@ public class AuthController {
 //                .header(HttpHeaders.AUTHORIZATION, jwtCookie.getValue())
 //                        .header("Access-Control-Allow-Origin", "*")
 //                        .header("Access-Control-Allow-Headers", "*")
-//                        .header("Access-Control-Allow-Credentials", "true")
+                        .header("Access-Control-Allow-Credentials", "true")
 //                        .header("Access-Control-Allow-Methods", "*")
 //                        .header("Access-Control-Max-Age", "1209600")
                 .body(new UserInfoResponse(user.getId(),
@@ -174,7 +173,8 @@ public class AuthController {
     @GetMapping("/signout")
     public ResponseEntity<?> logoutUser() {
         ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
-        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
+        return ResponseEntity.ok()
+                .header("Access-Control-Allow-Credentials", "true")
                 .body(new MessageResponse("You've been signed out!"));
     }
 

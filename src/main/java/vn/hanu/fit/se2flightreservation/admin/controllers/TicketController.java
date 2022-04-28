@@ -32,8 +32,10 @@ public class TicketController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
-    public List<Ticket> getAllTickets() {
-        return ticketService.getAllTickets();
+    public ResponseEntity<List<Ticket>> getAllTickets() {
+        return ResponseEntity.ok()
+                .header("Access-Control-Allow-Credentials", String.valueOf(true))
+                .body(ticketService.getAllTickets());
     }
 
 //    @GetMapping("")

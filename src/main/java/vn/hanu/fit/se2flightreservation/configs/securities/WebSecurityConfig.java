@@ -66,6 +66,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         allowedHeaders.add("X-Requested-With");
         allowedHeaders.add("Origin");
         allowedHeaders.add("Content-Type");
+        allowedHeaders.add("Accept");
+        allowedHeaders.add("Accept-Encoding");
+        allowedHeaders.add("Accept-Language");
         allowedHeaders.add("Authorization");
         allowedHeaders.add("Access-Control-Allow-Credentials");
         allowedHeaders.add("Access-Control-Allow-Headers");
@@ -80,10 +83,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         allowedHeaders.add("Alternates");
         allowedHeaders.add("Content-Range");
         allowedHeaders.add("Content-Disposition");
-        allowedHeaders.add("Content-Description");
-        allowedHeaders.add("Accept");
-        allowedHeaders.add("Referer");
+        allowedHeaders.add("Connection");
         allowedHeaders.add("Cookies");
+        allowedHeaders.add("Cookie");
+        allowedHeaders.add("Referer");
+        allowedHeaders.add("Host");
         allowedHeaders.add("withCredentials");
         corsConfiguration.setAllowedHeaders(allowedHeaders);
 
@@ -113,6 +117,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         List<String> exposedHeaders = new java.util.ArrayList<>();
         exposedHeaders.add("*");
         exposedHeaders.add("Authorization");
+        exposedHeaders.add("Cookie");
         exposedHeaders.add("Cookies");
 
         corsConfiguration.setExposedHeaders(exposedHeaders);

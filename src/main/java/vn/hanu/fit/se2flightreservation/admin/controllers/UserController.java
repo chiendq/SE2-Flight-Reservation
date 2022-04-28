@@ -41,6 +41,7 @@ public class UserController {
     @GetMapping("")
     public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok()
+                .header("Access-Control-Allow-Credentials", String.valueOf(true))
                 .body(userService.getAllUsers());
     }
     @GetMapping("/{id}")
