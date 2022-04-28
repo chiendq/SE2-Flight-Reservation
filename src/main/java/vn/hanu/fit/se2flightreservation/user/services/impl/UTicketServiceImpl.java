@@ -9,7 +9,7 @@ import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.enums.EStatus;
 import vn.hanu.fit.se2flightreservation.exceptions.ResourceNotFoundException;
 import vn.hanu.fit.se2flightreservation.repositories.TicketRepository;
-import vn.hanu.fit.se2flightreservation.user.dtos.ticket.TicketSearchDto;
+import vn.hanu.fit.se2flightreservation.user.dtos.ticket.UTicketSearchDto;
 import vn.hanu.fit.se2flightreservation.user.services.UTicketService;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class UTicketServiceImpl implements UTicketService {
     }
 
     @Override
-    public List<Ticket> search(TicketSearchDto ticketSearchDto) {
+    public List<Ticket> search(UTicketSearchDto ticketSearchDto) {
         if(ticketSearchDto.getTicketClass() == null){
             if(ticketSearchDto.getDestination() == null
             || ticketSearchDto.getDeparture() == null){
@@ -80,7 +80,7 @@ public class UTicketServiceImpl implements UTicketService {
         return filteredTicket;
     }
 
-    private List<Ticket> filterDate(List<Ticket> resultTickets, TicketSearchDto ticketSearchDto) {
+    private List<Ticket> filterDate(List<Ticket> resultTickets, UTicketSearchDto ticketSearchDto) {
         Date requestDate = ticketSearchDto.getDepartureTime();
 
         List<Ticket> filteredTicket = new ArrayList<>();

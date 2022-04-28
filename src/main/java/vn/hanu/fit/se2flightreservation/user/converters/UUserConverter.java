@@ -11,10 +11,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Component
-public class UserConverter {
+public class UUserConverter {
     private final RoleService roleService;
 
-    public UserConverter(RoleService roleService) {
+    public UUserConverter(RoleService roleService) {
         this.roleService = roleService;
     }
 

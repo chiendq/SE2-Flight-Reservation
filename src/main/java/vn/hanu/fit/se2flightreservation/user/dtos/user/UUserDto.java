@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 @Builder
 @EqualsAndHashCode(exclude = "UserDto")
-public class UserDto implements Serializable {
+public class UUserDto implements Serializable {
     private int id;
 
     private String fullName;

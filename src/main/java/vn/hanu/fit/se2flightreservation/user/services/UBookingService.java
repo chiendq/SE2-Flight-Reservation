@@ -1,12 +1,12 @@
 package vn.hanu.fit.se2flightreservation.user.services;
 
 import vn.hanu.fit.se2flightreservation.entities.Booking;
-import vn.hanu.fit.se2flightreservation.user.dtos.checkout.CheckoutRequest;
-import vn.hanu.fit.se2flightreservation.user.dtos.checkout.CheckoutResponse;
+import vn.hanu.fit.se2flightreservation.user.dtos.checkout.UCheckoutRequest;
+import vn.hanu.fit.se2flightreservation.user.dtos.checkout.UCheckoutResponse;
 
 public interface UBookingService {
 
-    Booking save(CheckoutRequest checkoutRequest);
+    Booking save(UCheckoutRequest checkoutRequest);
 
-    CheckoutResponse getBookingByCode(String code);
+    UCheckoutResponse getBookingByCode(String code);
 }

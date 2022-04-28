@@ -5,14 +5,13 @@ import vn.hanu.fit.se2flightreservation.admin.dtos.AirportDto;
 import vn.hanu.fit.se2flightreservation.entities.FlightClass;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(exclude = "TicketResponseDto")
-public class TicketResponseDto implements Serializable {
+public class UITicketResponseDto implements Serializable {
     private int id;
 
     private String airplane;

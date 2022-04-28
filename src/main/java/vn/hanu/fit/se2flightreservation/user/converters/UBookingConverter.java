@@ -7,8 +7,8 @@ import vn.hanu.fit.se2flightreservation.entities.Guest;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.enums.EPaymentMethod;
 import vn.hanu.fit.se2flightreservation.enums.EStatus;
-import vn.hanu.fit.se2flightreservation.user.dtos.checkout.CheckoutRequest;
-import vn.hanu.fit.se2flightreservation.user.dtos.checkout.CheckoutResponse;
+import vn.hanu.fit.se2flightreservation.user.dtos.checkout.UCheckoutRequest;
+import vn.hanu.fit.se2flightreservation.user.dtos.checkout.UCheckoutResponse;
 import vn.hanu.fit.se2flightreservation.user.services.UUserService;
 
 import java.sql.Timestamp;
@@ -16,20 +16,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Component
-public class BookingConverter {
+public class UBookingConverter {
     private TicketService ticketService;
 
     private UUserService userService;
 
-    private TicketConverter ticketConverter;
+    private UTicketConverter ticketConverter;
 
-    public BookingConverter(TicketService ticketService, UUserService userService, TicketConverter ticketConverter) {
+    public UBookingConverter(TicketService ticketService, UUserService userService, UTicketConverter ticketConverter) {
         this.ticketService = ticketService;
         this.userService = userService;
         this.ticketConverter = ticketConverter;
     }
 
-    public Booking fromCheckoutRequest(CheckoutRequest checkoutRequest){
+    public Booking fromCheckoutRequest(UCheckoutRequest checkoutRequest){
         Booking booking = new Booking();
         Set<Ticket> ticketSet = new HashSet<>();
         checkoutRequest.getTickets().forEach(t->{
@@ -77,8 +77,8 @@ public class BookingConverter {
         return booking;
     }
 
-    public CheckoutResponse toCheckoutResponse(Booking booking){
-        CheckoutResponse checkoutResponse = new CheckoutResponse();
+    public UCheckoutResponse toCheckoutResponse(Booking booking){
+        UCheckoutResponse checkoutResponse = new UCheckoutResponse();
 
         checkoutResponse.setCode(booking.getCode());
         checkoutResponse.setPassengers(booking.getPassengers());
