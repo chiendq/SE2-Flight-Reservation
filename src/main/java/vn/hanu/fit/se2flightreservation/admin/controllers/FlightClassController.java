@@ -26,8 +26,10 @@ public class FlightClassController {
     }
 
     @GetMapping("")
-    public List<FlightClass> getAllFlightClasss() {
-        return flightClassService.getAllFlightClasss();
+    public ResponseEntity<List<FlightClass>> getAllFlightClasss() {
+        return ResponseEntity.ok()
+                .header("Access-Control-Allow-Credentials", String.valueOf(true))
+                .body(flightClassService.getAllFlightClasss());
     }
 
     @GetMapping("/{id}")
