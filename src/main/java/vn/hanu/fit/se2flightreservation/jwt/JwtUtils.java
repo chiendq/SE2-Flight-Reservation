@@ -37,13 +37,13 @@ public class JwtUtils {
             for(String rawCookieNameAndValue :rawCookieParams)
             {
                 String[] rawCookieNameAndValuePair = rawCookieNameAndValue.split("=");
-                if(rawCookieNameAndValuePair[0].equals(jwtCookie)){
+                if(rawCookieNameAndValuePair[0].trim().equals(jwtCookie)){
                     return rawCookieNameAndValuePair[1];
                 }
             }
         }else {
             String[] rawCookieNameAndValuePair = rawCookie.split("=");
-            if(rawCookieNameAndValuePair[0].equals(jwtCookie)){
+            if(rawCookieNameAndValuePair[0].trim().equals(jwtCookie)){
                 return rawCookieNameAndValuePair[1];
             }
         }
