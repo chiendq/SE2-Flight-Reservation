@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.auth.payload.response;
+package vn.hanu.fit.se2flightreservation.payload.response;
 
 public class MessageResponse {
     private String message;

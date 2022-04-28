@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.auth.payload.request;
+package vn.hanu.fit.se2flightreservation.payload.request;
 
 public class LoginRequest {
     private String username;
