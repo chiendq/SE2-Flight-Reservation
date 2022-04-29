@@ -115,7 +115,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         corsConfiguration.setAllowCredentials(false);
 
         List<String> exposedHeaders = new java.util.ArrayList<>();
-        exposedHeaders.add("*");
         exposedHeaders.add("Authorization");
         exposedHeaders.add("Cookie");
         exposedHeaders.add("Cookies");

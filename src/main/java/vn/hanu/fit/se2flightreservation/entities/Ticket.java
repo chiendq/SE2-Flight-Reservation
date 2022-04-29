@@ -2,6 +2,7 @@ package vn.hanu.fit.se2flightreservation.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import vn.hanu.fit.se2flightreservation.enums.EStatus;
@@ -18,6 +19,7 @@ import java.util.Objects;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Ticket implements Serializable {
 
     @Id
