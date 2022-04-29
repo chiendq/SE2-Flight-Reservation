@@ -29,9 +29,13 @@ public class TicketConverter {
 
     private AirplaneService airplaneService;
 
-    public TicketConverter(AirportConverter airportConverter, FlightClassConverter flightClassConverter) {
+    public TicketConverter(AirportConverter airportConverter, FlightClassConverter flightClassConverter, AirlineService airlineService, AirportService airportService, FlightClassService flightClassService, AirplaneService airplaneService) {
         this.airportConverter = airportConverter;
         this.flightClassConverter = flightClassConverter;
+        this.airlineService = airlineService;
+        this.airportService = airportService;
+        this.flightClassService = flightClassService;
+        this.airplaneService = airplaneService;
     }
 
     public ResponseTicketDto toResponseTicketDto(Ticket ticket){
@@ -91,7 +95,7 @@ public class TicketConverter {
         ticket.setCost(ticketDto.getCost());
         ticket.setStatus(ticketDto.getStatus());
         ticket.setSeat(ticketDto.getSeat());
-
+        ticket.setBooking(null);
         return ticket;
     }
 }
