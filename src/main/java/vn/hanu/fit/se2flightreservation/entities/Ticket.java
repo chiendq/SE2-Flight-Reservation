@@ -91,4 +91,18 @@ public class Ticket implements Serializable {
     public int hashCode() {
         return Objects.hash(id, airline, departureAirport, arrivalAirport, flightClass, airplane, departureTime, arrivalTime, cost, status, seat, booking);
     }
+
+    public Ticket(Airline airline, Airport departureAirport, Airport arrivalAirport, FlightClass flightClass, Airplane airplane, Timestamp departureTime, Timestamp arrivalTime, Integer cost, EStatus status, int seat, Booking booking) {
+        this.airline = airline;
+        this.departureAirport = departureAirport;
+        this.arrivalAirport = arrivalAirport;
+        this.flightClass = flightClass;
+        this.airplane = airplane;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+        this.cost = cost;
+        this.status = status;
+        this.seat = seat;
+        this.booking = booking;
+    }
 }

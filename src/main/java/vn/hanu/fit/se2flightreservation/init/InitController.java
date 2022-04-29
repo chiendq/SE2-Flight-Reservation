@@ -11,6 +11,7 @@ import vn.hanu.fit.se2flightreservation.enums.EStatus;
 
 import java.sql.Timestamp;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
@@ -154,6 +155,44 @@ public class InitController {
             ticketService.save(ticket);
         });
         logger.info("INITIALIZED tickets");
+    }
+
+    @GetMapping("/random/Tickets")
+    public String initRandomTenTicketS(){
+        for (int i = 0; i < 10; i++) {
+            ThreadLocalRandom rand = ThreadLocalRandom.current();
+            int airlineId = rand.nextInt(1,4);
+            int departureAirportId = rand.nextInt(1,7);
+            int arrivalAirportId = rand.nextInt(1,7);
+            if(departureAirportId == arrivalAirportId){
+                arrivalAirportId = rand.nextInt(1,7);
+            }
+            int flightClassId = rand.nextInt(1,4);
+            int airplaneId = rand.nextInt(1,7);
+            int departureDate = rand.nextInt(1,29);
+            int arrivalDate = rand.nextInt(1,29);
+            if(departureDate > arrivalDate){
+                int temp = departureDate;
+                departureDate = arrivalDate;
+                arrivalDate = temp;
+            }
+            int hour = rand.nextInt(1,24);
+            int cost = rand.nextInt(200,999);
+            int seat = rand.nextInt(1,100);
+            ticketService.save(new Ticket(
+                    airlineService.getAirlineById(airlineId),
+                    airportService.getAirportById(departureAirportId),
+                    airportService.getAirportById(arrivalAirportId),
+                    flightClassService.getFlightClassById(flightClassId),
+                    airplaneService.getAirplaneById(airplaneId),
+                    new Timestamp(2022,05,departureDate,hour,0,0,0),
+                    new Timestamp(2022,05,arrivalDate,hour,0,0,0),
+                    cost,
+                    EStatus.STATUS_AVAILABLE,
+                    seat,
+                    null));
+        }
+        return "Initialized 10 random ticket";
     }
 
     public void initRoles(){

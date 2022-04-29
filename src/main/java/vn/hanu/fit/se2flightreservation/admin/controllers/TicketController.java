@@ -12,7 +12,7 @@ import vn.hanu.fit.se2flightreservation.admin.services.TicketService;
 
 import java.util.List;
 
-//@CrossOrigin(origins = {"http://localhost:3000"})
+@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*", allowCredentials = "true")
 @RestController
 @RequestMapping("/api/v1/admin/tickets")
 public class TicketController {

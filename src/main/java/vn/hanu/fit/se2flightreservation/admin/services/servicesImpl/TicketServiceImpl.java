@@ -25,7 +25,8 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket save(Ticket ticket) {
-        int id = ticket.getId();
+        Integer id = ticket.getId();
+        if(id == null) return ticketRepository.save(ticket);
         if (ticketRepository.existsById(id)) {
             throw new EntityExistedByIdException("Ticket", "Id", id);
         }
