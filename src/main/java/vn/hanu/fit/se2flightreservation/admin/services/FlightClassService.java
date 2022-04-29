@@ -18,4 +18,5 @@ public interface FlightClassService {
 
     void deleteAll();
 
+    FlightClass getFlightClassByName(String name);
 }

@@ -53,4 +53,9 @@ public class AirplaneServiceImpl implements AirplaneService {
     public void deleteAll() {
         airplaneRepository.deleteAll();
     }
+
+    @Override
+    public Airplane getAirplaneByCode(String code) {
+        return airplaneRepository.getAirplaneByCode(code);
+    }
 }

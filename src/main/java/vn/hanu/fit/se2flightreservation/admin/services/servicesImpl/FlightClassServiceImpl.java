@@ -54,4 +54,9 @@ public class FlightClassServiceImpl implements FlightClassService {
     public void deleteAll() {
         flightClassRepository.deleteAll();
     }
+
+    @Override
+    public FlightClass getFlightClassByName(String name) {
+        return flightClassRepository.getFlightClassByName(name);
+    }
 }

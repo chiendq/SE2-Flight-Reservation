@@ -1,7 +1,6 @@
 package vn.hanu.fit.se2flightreservation.admin.converters;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import vn.hanu.fit.se2flightreservation.admin.dtos.Ticket.ResponseTicketDto;
 import vn.hanu.fit.se2flightreservation.admin.dtos.Ticket.SaveTicketDto;
@@ -9,8 +8,8 @@ import vn.hanu.fit.se2flightreservation.admin.services.AirlineService;
 import vn.hanu.fit.se2flightreservation.admin.services.AirplaneService;
 import vn.hanu.fit.se2flightreservation.admin.services.AirportService;
 import vn.hanu.fit.se2flightreservation.admin.services.FlightClassService;
-import vn.hanu.fit.se2flightreservation.entities.Airplane;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
+import vn.hanu.fit.se2flightreservation.enums.EStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,15 +84,14 @@ public class TicketConverter {
 
     public Ticket fromDtoToTicket(SaveTicketDto ticketDto){
         Ticket ticket = new Ticket();
-        ticket.setAirline(airlineService.getAirlineById(ticketDto.getAirlineId()));
-        ticket.setDepartureAirport(airportService.getAirportById(ticketDto.getDepartureAirportId()));
-        ticket.setArrivalAirport(airportService.getAirportById(ticketDto.getArrivalAirportId()));
-        ticket.setFlightClass(flightClassService.getFlightClassById(ticketDto.getFlightClassId()));
-        ticket.setAirplane(airplaneService.getAirplaneById(ticketDto.getAirplaneId()));
+        ticket.setDepartureAirport(airportService.getAirportByCode(ticketDto.getDeparture()));
+        ticket.setArrivalAirport(airportService.getAirportByCode(ticketDto.getDestination()));
+        ticket.setFlightClass(flightClassService.getFlightClassByName(ticketDto.getTicketClass()));
+        ticket.setAirplane(airplaneService.getAirplaneByCode(ticketDto.getAirplane()));
         ticket.setDepartureTime(ticketDto.getDepartureTime());
         ticket.setArrivalTime(ticketDto.getArrivalTime());
-        ticket.setCost(ticketDto.getCost());
-        ticket.setStatus(ticketDto.getStatus());
+        ticket.setCost(ticketDto.getPrice());
+        ticket.setStatus(EStatus.STATUS_AVAILABLE);
         ticket.setSeat(ticketDto.getSeat());
         ticket.setBooking(null);
         return ticket;

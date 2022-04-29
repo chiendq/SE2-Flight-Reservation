@@ -18,4 +18,5 @@ public interface AirplaneService {
 
     void deleteAll();
 
+    Airplane getAirplaneByCode(String code);
 }

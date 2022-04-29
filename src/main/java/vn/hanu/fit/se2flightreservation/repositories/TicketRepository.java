@@ -38,4 +38,6 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
 
     @Query("SELECT t FROM Ticket t")
     Page<Ticket> getPageableTicket(Pageable pageable);
+
+
 }

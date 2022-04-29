@@ -8,4 +8,5 @@ import vn.hanu.fit.se2flightreservation.entities.FlightClass;
 public interface FlightClassRepository
         extends JpaRepository<FlightClass, Integer> {
 
+    FlightClass getFlightClassByName(String code);
 }

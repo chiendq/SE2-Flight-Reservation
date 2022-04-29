@@ -55,4 +55,9 @@ public class AirportServiceImpl implements AirportService {
         airportRepository.deleteAll();
     }
 
+    @Override
+    public Airport getAirportByCode(String code) {
+        return airportRepository.getAirportByCode(code);
+    }
+
 }

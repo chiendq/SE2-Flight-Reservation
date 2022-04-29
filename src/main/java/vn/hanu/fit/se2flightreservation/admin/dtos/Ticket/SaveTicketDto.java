@@ -13,14 +13,12 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SaveTicketDto {
-    private int airlineId;
-    private int departureAirportId;
-    private int arrivalAirportId;
-    private int flightClassId;
-    private int airplaneId;
+    private String departure;
+    private String destination;
+    private int price;
+    private String ticketClass;
+    private int seat;
+    private String airplane;
     private Timestamp departureTime;
     private Timestamp arrivalTime;
-    private int cost;
-    private EStatus status;
-    private int seat;
 }

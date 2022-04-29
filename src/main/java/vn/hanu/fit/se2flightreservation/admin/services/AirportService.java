@@ -18,4 +18,5 @@ public interface AirportService {
 
     void deleteAll();
 
+    Airport getAirportByCode(String code);
 }

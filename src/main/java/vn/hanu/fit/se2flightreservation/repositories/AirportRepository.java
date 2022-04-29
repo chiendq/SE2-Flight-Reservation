@@ -7,4 +7,5 @@ import vn.hanu.fit.se2flightreservation.entities.Airport;
 @Repository
 public interface AirportRepository
         extends JpaRepository<Airport, Integer> {
+    Airport getAirportByCode(String code);
 }
