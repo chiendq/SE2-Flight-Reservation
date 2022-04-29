@@ -4,6 +4,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import vn.hanu.fit.se2flightreservation.admin.dtos.Ticket.ResponseTicketDto;
+import vn.hanu.fit.se2flightreservation.admin.dtos.Ticket.SaveTicketDto;
+import vn.hanu.fit.se2flightreservation.admin.services.AirlineService;
+import vn.hanu.fit.se2flightreservation.admin.services.AirplaneService;
+import vn.hanu.fit.se2flightreservation.admin.services.AirportService;
+import vn.hanu.fit.se2flightreservation.admin.services.FlightClassService;
+import vn.hanu.fit.se2flightreservation.entities.Airplane;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 
 import java.util.ArrayList;
@@ -14,6 +20,14 @@ public class TicketConverter {
     private AirportConverter airportConverter;
 
     private FlightClassConverter flightClassConverter;
+
+    private AirlineService airlineService;
+
+    private AirportService airportService;
+
+    private FlightClassService flightClassService;
+
+    private AirplaneService airplaneService;
 
     public TicketConverter(AirportConverter airportConverter, FlightClassConverter flightClassConverter) {
         this.airportConverter = airportConverter;
@@ -63,5 +77,21 @@ public class TicketConverter {
             return toResponseTicketDto(ticket);
         });
         return responseTicketDtoPage;
+    }
+
+    public Ticket fromDtoToTicket(SaveTicketDto ticketDto){
+        Ticket ticket = new Ticket();
+        ticket.setAirline(airlineService.getAirlineById(ticketDto.getAirlineId()));
+        ticket.setDepartureAirport(airportService.getAirportById(ticketDto.getDepartureAirportId()));
+        ticket.setArrivalAirport(airportService.getAirportById(ticketDto.getArrivalAirportId()));
+        ticket.setFlightClass(flightClassService.getFlightClassById(ticketDto.getFlightClassId()));
+        ticket.setAirplane(airplaneService.getAirplaneById(ticketDto.getAirplaneId()));
+        ticket.setDepartureTime(ticketDto.getDepartureTime());
+        ticket.setArrivalTime(ticketDto.getArrivalTime());
+        ticket.setCost(ticketDto.getCost());
+        ticket.setStatus(ticketDto.getStatus());
+        ticket.setSeat(ticketDto.getSeat());
+
+        return ticket;
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.hanu.fit.se2flightreservation.admin.converters.TicketConverter;
 import vn.hanu.fit.se2flightreservation.admin.dtos.Ticket.ResponseTicketDto;
+import vn.hanu.fit.se2flightreservation.admin.dtos.Ticket.SaveTicketDto;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.admin.services.TicketService;
 
@@ -31,9 +32,9 @@ public class TicketController {
         this.ticketConverter = ticketConverter;
     }
 
-    @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Ticket> saveTicket(@RequestBody Ticket ticket) {
-        Ticket savedTicket = ticketService.save(ticket);
+    @PostMapping(value = "")
+    public ResponseEntity<Ticket> saveTicket(@RequestBody SaveTicketDto ticket) {
+        Ticket savedTicket = ticketService.save(ticketConverter.fromDtoToTicket(ticket));
         return new ResponseEntity<>(savedTicket, HttpStatus.CREATED);
     }
 
