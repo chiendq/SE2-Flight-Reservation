@@ -31,7 +31,7 @@ public class TicketController {
         this.ticketConverter = ticketConverter;
     }
 
-    @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Ticket> saveTicket(@RequestBody Ticket ticket) {
         Ticket savedTicket = ticketService.save(ticket);
         return new ResponseEntity<>(savedTicket, HttpStatus.CREATED);
