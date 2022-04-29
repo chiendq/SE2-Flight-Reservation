@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.hanu.fit.se2flightreservation.admin.converters.TicketConverter;
@@ -30,7 +31,7 @@ public class TicketController {
         this.ticketConverter = ticketConverter;
     }
 
-    @PostMapping("")
+    @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Ticket> saveTicket(@RequestBody Ticket ticket) {
         Ticket savedTicket = ticketService.save(ticket);
         return new ResponseEntity<>(savedTicket, HttpStatus.CREATED);
@@ -40,13 +41,7 @@ public class TicketController {
     public ResponseEntity<List<ResponseTicketDto>> getAllTickets(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
                                                                  @RequestParam(name = "size", required = false, defaultValue = "50") Integer size,
                                                                  @RequestParam(name = "sort", required = false, defaultValue = "ASC") String sort){
-//        Sort sortable = null;
-//        if (sort.equals("ASC")) {
-//            sortable = Sort.by("id").ascending();
-//        }
-//        if (sort.equals("DESC")) {
-//            sortable = Sort.by("id").descending();
-//        }
+
         return ResponseEntity.ok()
 //                .header("Access-Control-Allow-Credentials", "true")
                 .body(ticketConverter.toResponseTicketDtoList(ticketService.getPageableTickets(page, size, sort)));

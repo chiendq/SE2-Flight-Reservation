@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.exceptions.EntityExistedByIdException;
@@ -78,8 +79,15 @@ public class TicketServiceImpl implements TicketService {
         List<Ticket> allTickets = ticketRepository.findAll();
 
         int totalPage = allTickets.size()/pageSize;
-
+        
+        List<Ticket> resultTickets;
+        
         if(requestPage < totalPage){
+//            if (sort.equals("ASC")) {
+//
+//            }else if (sort.equals("DESC")) {
+//
+//            }
             return allTickets.subList(requestPage*pageSize,requestPage*pageSize + pageSize);
         }else if(requestPage == totalPage){
             return allTickets.subList(requestPage*pageSize, allTickets.size()-1);
