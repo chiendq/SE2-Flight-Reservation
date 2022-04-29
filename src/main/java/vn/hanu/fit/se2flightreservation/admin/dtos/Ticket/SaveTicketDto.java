@@ -20,5 +20,5 @@ public class SaveTicketDto {
     private int seat;
     private String airplane;
     private Timestamp departureTime;
-    private Timestamp arrivalTime;
+    private Timestamp destinationTime;
 }

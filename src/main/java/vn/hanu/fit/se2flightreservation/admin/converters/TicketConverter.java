@@ -89,7 +89,7 @@ public class TicketConverter {
         ticket.setFlightClass(flightClassService.getFlightClassByName(ticketDto.getTicketClass()));
         ticket.setAirplane(airplaneService.getAirplaneByCode(ticketDto.getAirplane()));
         ticket.setDepartureTime(ticketDto.getDepartureTime());
-        ticket.setArrivalTime(ticketDto.getArrivalTime());
+        ticket.setArrivalTime(ticketDto.getDestinationTime());
         ticket.setCost(ticketDto.getPrice());
         ticket.setStatus(EStatus.STATUS_AVAILABLE);
         ticket.setSeat(ticketDto.getSeat());
