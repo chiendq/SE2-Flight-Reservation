@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import vn.hanu.fit.se2flightreservation.admin.converters.TicketConverter;
 import vn.hanu.fit.se2flightreservation.admin.dtos.Ticket.ResponseTicketDto;
 import vn.hanu.fit.se2flightreservation.admin.dtos.Ticket.SaveTicketDto;
+import vn.hanu.fit.se2flightreservation.admin.dtos.Ticket.TicketPaginationDto;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.admin.services.TicketService;
 
@@ -39,13 +40,17 @@ public class TicketController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<ResponseTicketDto>> getAllTickets(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
+    public ResponseEntity<TicketPaginationDto> getAllTickets(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
                                                                  @RequestParam(name = "size", required = false, defaultValue = "50") Integer size,
                                                                  @RequestParam(name = "sort", required = false, defaultValue = "ASC") String sort){
-
+        TicketPaginationDto ticketPaginationDto = new TicketPaginationDto();
+        ticketPaginationDto.setItems(ticketConverter.toResponseTicketDtoList(ticketService.getPageableTickets(page, size, sort)));
+        int totalElement = ticketService.getAllTickets().size();
+        ticketPaginationDto.setTotalPage(totalElement/ size);
+        ticketPaginationDto.setTotalElements(totalElement);
         return ResponseEntity.ok()
 //                .header("Access-Control-Allow-Credentials", "true")
-                .body(ticketConverter.toResponseTicketDtoList(ticketService.getPageableTickets(page, size, sort)));
+                .body(ticketPaginationDto);
     }
 
 //    @GetMapping("")
