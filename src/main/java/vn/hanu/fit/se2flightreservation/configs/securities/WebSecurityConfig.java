@@ -93,12 +93,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         List<String> origins = new java.util.ArrayList<>();
-//        origins.add("*");
 //        corsConfiguration.setAllowedOriginPatterns(origins);
 
         origins.add("http://localhost:3000");
-        origins.add("https://train-reservation.vercel.app/");
-        origins.add("https://flight-reservation.vercel.app/");
+//        origins.add("https://train-reservation.vercel.app/");
+//        origins.add("https://flight-reservation.vercel.app/");
         corsConfiguration.setAllowedOrigins(origins);
 
         List<String> allowedMethods = new java.util.ArrayList<>();
@@ -115,12 +114,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         corsConfiguration.setAllowCredentials(false);
 
         List<String> exposedHeaders = new java.util.ArrayList<>();
-        exposedHeaders.add("Authorization");
         exposedHeaders.add("Cookie");
-        exposedHeaders.add("Cookies");
 
         corsConfiguration.setExposedHeaders(exposedHeaders);
-
         http.csrf().disable().cors().configurationSource(request -> corsConfiguration).and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

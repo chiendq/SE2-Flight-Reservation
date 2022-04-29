@@ -2,6 +2,7 @@ package vn.hanu.fit.se2flightreservation.admin.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +13,6 @@ import vn.hanu.fit.se2flightreservation.admin.services.TicketService;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*", allowCredentials = "true")
 @RestController
 @RequestMapping("/api/v1/admin/tickets")
 public class TicketController {
@@ -33,11 +33,11 @@ public class TicketController {
         return new ResponseEntity<>(savedTicket, HttpStatus.CREATED);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
     public ResponseEntity<List<ResponseTicketDto>> getAllTickets() {
         return ResponseEntity.ok()
-                .header("Access-Control-Allow-Credentials", String.valueOf(true))
+                .header("Access-Control-Allow-Credentials", "true")
                 .body(ticketConverter.toResponseTicketDtoList(ticketService.getAllTickets()));
     }
 

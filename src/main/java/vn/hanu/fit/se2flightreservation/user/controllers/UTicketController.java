@@ -13,7 +13,6 @@ import vn.hanu.fit.se2flightreservation.user.services.UTicketService;
 import java.text.ParseException;
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequestMapping("/api/v1/tickets")
 public class UTicketController {
@@ -34,6 +33,7 @@ public class UTicketController {
         return ticketConverter.toTicketResponseDtoList(resultTickets);
     }
 
+    @CrossOrigin({"http:localhost:3000"})
     @GetMapping("")
     public ResponseEntity<List<UITicketResponseDto>> getAll(){
         return ResponseEntity.ok()
