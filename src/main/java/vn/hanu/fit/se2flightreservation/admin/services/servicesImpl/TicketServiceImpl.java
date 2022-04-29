@@ -30,7 +30,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public Ticket save(Ticket ticket) {
         Integer id = ticket.getId();
-        if(id == null) return ticketRepository.save(ticket);
+        if (id == null) return ticketRepository.save(ticket);
         if (ticketRepository.existsById(id)) {
             throw new EntityExistedByIdException("Ticket", "Id", id);
         }
@@ -76,21 +76,22 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<Ticket> getPageableTickets(int requestPage, int pageSize, String sort) {
-        List<Ticket> allTickets = ticketRepository.findAll();
+        List<Ticket> allTickets = new ArrayList<>();
+        if (sort.equalsIgnoreCase("ASC")) {
+            allTickets.addAll(ticketRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
+        } else if (sort.equalsIgnoreCase("DESC")) {
+            allTickets.addAll(ticketRepository.findAll(Sort.by(Sort.Direction.DESC, "id")));
+        }
 
-        int totalPage = allTickets.size()/pageSize;
-        
+        int totalPage = allTickets.size() / pageSize;
+
         List<Ticket> resultTickets;
-        
-        if(requestPage < totalPage){
-//            if (sort.equals("ASC")) {
-//
-//            }else if (sort.equals("DESC")) {
-//
-//            }
-            return allTickets.subList(requestPage*pageSize,requestPage*pageSize + pageSize);
-        }else if(requestPage == totalPage){
-            return allTickets.subList(requestPage*pageSize, allTickets.size()-1);
+
+        if (requestPage < totalPage) {
+
+            return allTickets.subList(requestPage * pageSize, requestPage * pageSize + pageSize);
+        } else if (requestPage == totalPage) {
+            return allTickets.subList(requestPage * pageSize, allTickets.size() - 1);
         }
         return allTickets;
     }
