@@ -11,24 +11,16 @@ import java.io.Serializable;
 @Getter
 @Setter
 @EqualsAndHashCode(exclude = "TicketResponseDto")
-public class UITicketResponseDto implements Serializable {
+public class UTicketResponseDto implements Serializable {
     private int id;
-
-    private String airplane;
-
-    private AirportDto departure;
-
     private AirportDto destination;
-
+    private AirportDto departure;
     private long departureTime;
-
-    private long arrivalTime;
-
     private int price;
-
     private int seat;
-
     private FlightClass ticketClass;
+    private long arrivalTime;
+    private String airplane;
 
     @Override
     public String toString() {

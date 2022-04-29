@@ -19,4 +19,6 @@ public interface UTicketService {
     boolean isAvailable(int ticketId);
 
     Page<Ticket> getPageableTickets();
+
+    List<Ticket> getPageableTickets(Integer page, Integer size, String sort);
 }

@@ -80,6 +80,27 @@ public class UTicketServiceImpl implements UTicketService {
         return ticketRepository.getPageableTicket(pageable);
     }
 
+    @Override
+    public List<Ticket> getPageableTickets(Integer requestPage, Integer pageSize, String sort) {
+        List<Ticket> allTickets = new ArrayList<>();
+        if (sort.equalsIgnoreCase("ASC")) {
+            allTickets.addAll(ticketRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
+        } else if (sort.equalsIgnoreCase("DESC")) {
+            allTickets.addAll(ticketRepository.findAll(Sort.by(Sort.Direction.DESC, "id")));
+        }
+        int totalPage = allTickets.size() / pageSize;
+
+        List<Ticket> resultTickets;
+
+        if (requestPage < totalPage) {
+
+            return allTickets.subList(requestPage * pageSize, requestPage * pageSize + pageSize);
+        } else if (requestPage == totalPage) {
+            return allTickets.subList(requestPage * pageSize, allTickets.size() - 1);
+        }
+        return allTickets;
+    }
+
     private List<Ticket> filterAvailable(List<Ticket> resultTickets){
         List<Ticket> filteredTicket = new ArrayList<>();
         for (Ticket ticket : resultTickets) {

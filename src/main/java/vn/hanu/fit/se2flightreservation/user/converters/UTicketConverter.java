@@ -2,7 +2,7 @@ package vn.hanu.fit.se2flightreservation.user.converters;
 
 import org.springframework.stereotype.Component;
 import vn.hanu.fit.se2flightreservation.admin.dtos.AirportDto;
-import vn.hanu.fit.se2flightreservation.user.dtos.ticket.UITicketResponseDto;
+import vn.hanu.fit.se2flightreservation.user.dtos.ticket.UTicketResponseDto;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 
 import java.util.ArrayList;
@@ -10,8 +10,8 @@ import java.util.List;
 
 @Component
 public class UTicketConverter {
-    public UITicketResponseDto toTicketResponse(Ticket ticket){
-        UITicketResponseDto ticketResponseDto = new UITicketResponseDto();
+    public UTicketResponseDto toTicketResponse(Ticket ticket){
+        UTicketResponseDto ticketResponseDto = new UTicketResponseDto();
         ticketResponseDto.setSeat(ticket.getSeat());
         ticketResponseDto.setId(ticket.getId());
         ticketResponseDto.setPrice(ticket.getCost());
@@ -43,8 +43,8 @@ public class UTicketConverter {
         return ticketResponseDto;
     }
 
-    public List<UITicketResponseDto> toTicketResponseDtoList(List<Ticket> ticketList){
-        List<UITicketResponseDto> convertedTicketResponseDtoList = new ArrayList<>();
+    public List<UTicketResponseDto> toTicketResponseDtoList(List<Ticket> ticketList){
+        List<UTicketResponseDto> convertedTicketResponseDtoList = new ArrayList<>();
         ticketList.forEach(ticket -> convertedTicketResponseDtoList.add(toTicketResponse(ticket)));
         return convertedTicketResponseDtoList;
     }
