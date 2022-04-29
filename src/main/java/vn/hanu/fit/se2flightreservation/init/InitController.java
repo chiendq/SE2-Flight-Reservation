@@ -157,9 +157,9 @@ public class InitController {
         logger.info("INITIALIZED tickets");
     }
 
-    @GetMapping("/random/Tickets")
+    @GetMapping("/random/tickets")
     public String initRandomTenTicketS(){
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1000; i++) {
             ThreadLocalRandom rand = ThreadLocalRandom.current();
             int airlineId = rand.nextInt(1,4);
             int departureAirportId = rand.nextInt(1,7);
@@ -176,7 +176,8 @@ public class InitController {
                 departureDate = arrivalDate;
                 arrivalDate = temp;
             }
-            int hour = rand.nextInt(1,24);
+            int hourDepature = rand.nextInt(1,24);
+            int hourArrival = rand.nextInt(1,24);
             int cost = rand.nextInt(200,999);
             int seat = rand.nextInt(1,100);
             ticketService.save(new Ticket(
@@ -185,14 +186,46 @@ public class InitController {
                     airportService.getAirportById(arrivalAirportId),
                     flightClassService.getFlightClassById(flightClassId),
                     airplaneService.getAirplaneById(airplaneId),
-                    new Timestamp(2022,05,departureDate,hour,0,0,0),
-                    new Timestamp(2022,05,arrivalDate,hour,0,0,0),
+                    new Timestamp(122,04,departureDate,hourDepature,0,0,0),
+                    new Timestamp(122,04,arrivalDate,hourArrival,0,0,0),
                     cost,
                     EStatus.STATUS_AVAILABLE,
                     seat,
                     null));
         }
-        return "Initialized 10 random ticket";
+        deleteDuplicatedAirport();
+        return "Initialized 1000 random ticket";
+    }
+    @DeleteMapping("/tickets")
+    public String deleteDuplicatedAirport(){
+        int count = 0;
+        for (Ticket ticket: ticketService.getAllTickets()
+             ) {
+            if(ticket.getStatus().equals(EStatus.STATUS_AVAILABLE)
+            && ticket.getArrivalAirport().equals(ticket.getDepartureAirport())){
+                ticketService.deleteTicketById(ticket.getId());
+                count ++;
+            }
+        }
+        return "Deleted " + count + " ticket that duplicate";
+    }
+
+    @PutMapping("/tickets")
+    public String updateIncorrectTicketType(){
+        int count = 0;
+        ThreadLocalRandom rand = ThreadLocalRandom.current();
+        for (Ticket ticket: ticketService.getAllTickets()
+        ) {
+            int hourDepature = rand.nextInt(0,23);
+            int hourArrival = rand.nextInt(0,23);
+
+            ticket.getDepartureTime().setHours(hourDepature);
+            ticket.getArrivalTime().setHours(hourArrival);
+            ticketService.updateTicket(ticket, ticket.getId());
+                count ++;
+        }
+
+        return "Update " + count + " ticket that incorrect Data";
     }
 
     public void initRoles(){
@@ -314,4 +347,5 @@ public class InitController {
         ticketService.deleteAll();
         return "ALL CLEARED";
     }
+
 }
