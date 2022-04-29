@@ -13,6 +13,8 @@ import vn.hanu.fit.se2flightreservation.enums.EStatus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Component
 public class TicketConverter {
@@ -94,6 +96,8 @@ public class TicketConverter {
         ticket.setStatus(EStatus.STATUS_AVAILABLE);
         ticket.setSeat(ticketDto.getSeat());
         ticket.setBooking(null);
+        ThreadLocalRandom rand = ThreadLocalRandom.current();
+        ticket.setAirline(airlineService.getAirlineById(rand.nextInt(1,4)));
         return ticket;
     }
 }
