@@ -19,5 +19,5 @@ public interface TicketService {
 
     void deleteAll();
 
-    Page<Ticket> getPageableTickets(Pageable pageable);
+    List<Ticket> getPageableTickets(int requestPage, int pageSize, String sort);
 }

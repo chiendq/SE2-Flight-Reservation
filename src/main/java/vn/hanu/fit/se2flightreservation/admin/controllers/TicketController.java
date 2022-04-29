@@ -14,6 +14,8 @@ import vn.hanu.fit.se2flightreservation.admin.dtos.Ticket.ResponseTicketDto;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.admin.services.TicketService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/admin/tickets")
 public class TicketController {
@@ -34,22 +36,20 @@ public class TicketController {
         return new ResponseEntity<>(savedTicket, HttpStatus.CREATED);
     }
 
-//    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
-    public ResponseEntity<Page<ResponseTicketDto>> getAllTickets(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
+    public ResponseEntity<List<ResponseTicketDto>> getAllTickets(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
                                                                  @RequestParam(name = "size", required = false, defaultValue = "50") Integer size,
-                                                                 @RequestParam(name = "sort", required = false, defaultValue = "ASC") String sort) {
-        Sort sortable = null;
-        if (sort.equals("ASC")) {
-            sortable = Sort.by("id").ascending();
-        }
-        if (sort.equals("DESC")) {
-            sortable = Sort.by("id").descending();
-        }
-        Pageable pageable = PageRequest.of(page, size, sortable);
+                                                                 @RequestParam(name = "sort", required = false, defaultValue = "ASC") String sort){
+//        Sort sortable = null;
+//        if (sort.equals("ASC")) {
+//            sortable = Sort.by("id").ascending();
+//        }
+//        if (sort.equals("DESC")) {
+//            sortable = Sort.by("id").descending();
+//        }
         return ResponseEntity.ok()
 //                .header("Access-Control-Allow-Credentials", "true")
-                .body(ticketConverter.toResponseTicketDtoPage(ticketService.getPageableTickets(pageable)));
+                .body(ticketConverter.toResponseTicketDtoList(ticketService.getPageableTickets(page, size, sort)));
     }
 
 //    @GetMapping("")

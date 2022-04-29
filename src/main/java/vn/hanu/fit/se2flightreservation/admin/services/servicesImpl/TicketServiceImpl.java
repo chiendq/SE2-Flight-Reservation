@@ -13,12 +13,12 @@ import vn.hanu.fit.se2flightreservation.repositories.TicketRepository;
 import vn.hanu.fit.se2flightreservation.admin.services.TicketService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class TicketServiceImpl implements TicketService {
     private static final Logger logger = LoggerFactory.getLogger(TicketServiceImpl.class);
-
 
     private final TicketRepository ticketRepository;
 
@@ -74,8 +74,17 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public Page<Ticket> getPageableTickets(Pageable pageable) {
-        return ticketRepository.getPageableTicket(pageable);
+    public List<Ticket> getPageableTickets(int requestPage, int pageSize, String sort) {
+        List<Ticket> allTickets = ticketRepository.findAll();
+
+        int totalPage = allTickets.size()/pageSize;
+
+        if(requestPage < totalPage){
+            return allTickets.subList(requestPage*pageSize,requestPage*pageSize + pageSize);
+        }else if(requestPage == totalPage){
+            return allTickets.subList(requestPage*pageSize, allTickets.size()-1);
+        }
+        return allTickets;
     }
 
 }
