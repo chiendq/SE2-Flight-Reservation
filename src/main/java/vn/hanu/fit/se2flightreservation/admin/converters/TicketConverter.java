@@ -1,5 +1,7 @@
 package vn.hanu.fit.se2flightreservation.admin.converters;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import vn.hanu.fit.se2flightreservation.admin.dtos.Ticket.ResponseTicketDto;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
@@ -54,5 +56,12 @@ public class TicketConverter {
             responseTicketDtoList.add(toResponseTicketDto(ticket));
         }
         return responseTicketDtoList;
+    }
+
+    public Page<ResponseTicketDto> toResponseTicketDtoPage(Page<Ticket> ticketPage){
+        Page<ResponseTicketDto> responseTicketDtoPage = ticketPage.map( ticket -> {
+            return toResponseTicketDto(ticket);
+        });
+        return responseTicketDtoPage;
     }
 }

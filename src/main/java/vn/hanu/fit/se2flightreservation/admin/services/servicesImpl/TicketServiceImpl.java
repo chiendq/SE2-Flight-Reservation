@@ -2,6 +2,9 @@ package vn.hanu.fit.se2flightreservation.admin.services.servicesImpl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.exceptions.EntityExistedByIdException;
@@ -69,4 +72,10 @@ public class TicketServiceImpl implements TicketService {
     public void deleteAll() {
         ticketRepository.deleteAll();
     }
+
+    @Override
+    public Page<Ticket> getPageableTickets(Pageable pageable) {
+        return ticketRepository.getPageableTicket(pageable);
+    }
+
 }

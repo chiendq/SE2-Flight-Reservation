@@ -1,5 +1,6 @@
 package vn.hanu.fit.se2flightreservation.user.services;
 
+import org.springframework.data.domain.Page;
 import vn.hanu.fit.se2flightreservation.entities.Booking;
 import vn.hanu.fit.se2flightreservation.user.dtos.ticket.UTicketSearchDto;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
@@ -16,4 +17,6 @@ public interface UTicketService {
     boolean saveBooking(Booking booking, int id);
 
     boolean isAvailable(int ticketId);
+
+    Page<Ticket> getPageableTickets();
 }

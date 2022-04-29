@@ -1,5 +1,7 @@
 package vn.hanu.fit.se2flightreservation.repositories;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -34,4 +36,6 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
     List<Ticket> findAllByDepartureAirport_Code(String departureCode);
     List<Ticket> findAllByBooking(Booking booking);
 
+    @Query("SELECT t FROM Ticket t")
+    Page<Ticket> getPageableTicket(Pageable pageable);
 }

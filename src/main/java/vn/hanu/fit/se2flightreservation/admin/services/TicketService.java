@@ -1,5 +1,7 @@
 package vn.hanu.fit.se2flightreservation.admin.services;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 
 import java.util.List;
@@ -17,4 +19,5 @@ public interface TicketService {
 
     void deleteAll();
 
+    Page<Ticket> getPageableTickets(Pageable pageable);
 }

@@ -31,22 +31,41 @@ public class JwtUtils {
 
     public String getJwtFromCookies(HttpServletRequest request) {
         String rawCookie = request.getHeader("Cookie");
-        if(rawCookie == null) return null;
-        if(rawCookie.contains(";")){
-            String[] rawCookieParams = rawCookie.split(";");
-            for(String rawCookieNameAndValue :rawCookieParams)
-            {
-                String[] rawCookieNameAndValuePair = rawCookieNameAndValue.split("=");
+        String rawCookies = request.getHeader("Cookies");
+        if(rawCookie == null){
+            if(rawCookies.contains(";")){
+                String[] rawCookieParams = rawCookies.split(";");
+                for(String rawCookieNameAndValue :rawCookieParams)
+                {
+                    String[] rawCookieNameAndValuePair = rawCookieNameAndValue.split("=");
+                    if(rawCookieNameAndValuePair[0].trim().equals(jwtCookie)){
+                        return rawCookieNameAndValuePair[1];
+                    }
+                }
+            }else {
+                String[] rawCookieNameAndValuePair = rawCookies.split("=");
                 if(rawCookieNameAndValuePair[0].trim().equals(jwtCookie)){
                     return rawCookieNameAndValuePair[1];
                 }
             }
         }else {
-            String[] rawCookieNameAndValuePair = rawCookie.split("=");
-            if(rawCookieNameAndValuePair[0].trim().equals(jwtCookie)){
-                return rawCookieNameAndValuePair[1];
+            if(rawCookie.contains(";")){
+                String[] rawCookieParams = rawCookie.split(";");
+                for(String rawCookieNameAndValue :rawCookieParams)
+                {
+                    String[] rawCookieNameAndValuePair = rawCookieNameAndValue.split("=");
+                    if(rawCookieNameAndValuePair[0].trim().equals(jwtCookie)){
+                        return rawCookieNameAndValuePair[1];
+                    }
+                }
+            }else {
+                String[] rawCookieNameAndValuePair = rawCookie.split("=");
+                if(rawCookieNameAndValuePair[0].trim().equals(jwtCookie)){
+                    return rawCookieNameAndValuePair[1];
+                }
             }
         }
+
         return null;
     }
 

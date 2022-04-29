@@ -2,6 +2,10 @@ package vn.hanu.fit.se2flightreservation.user.services.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import vn.hanu.fit.se2flightreservation.admin.services.BookingService;
 import vn.hanu.fit.se2flightreservation.entities.Booking;
@@ -68,6 +72,12 @@ public class UTicketServiceImpl implements UTicketService {
         Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(() -> new ResourceNotFoundException("Ticket", "id", ticketId));
 //        System.out.println("ID : " + ticketId + ", is avaiable: " + ticket.getStatus().equals(EStatus.STATUS_AVAILABLE));
         return ticket.getStatus().equals(EStatus.STATUS_AVAILABLE);
+    }
+
+    @Override
+    public Page<Ticket> getPageableTickets() {
+        Pageable pageable = PageRequest.of(1,50);
+        return ticketRepository.getPageableTicket(pageable);
     }
 
     private List<Ticket> filterAvailable(List<Ticket> resultTickets){
