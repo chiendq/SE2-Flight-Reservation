@@ -111,7 +111,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         allowedMethods.add("DELETE");
         corsConfiguration.setAllowedMethods(allowedMethods);
 
-        corsConfiguration.setAllowCredentials(false);
+        corsConfiguration.setAllowCredentials(true);
 
         List<String> exposedHeaders = new java.util.ArrayList<>();
         exposedHeaders.add("Cookie");

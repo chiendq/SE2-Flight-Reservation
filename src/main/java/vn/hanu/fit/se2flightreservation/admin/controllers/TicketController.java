@@ -37,7 +37,7 @@ public class TicketController {
     @GetMapping("")
     public ResponseEntity<List<ResponseTicketDto>> getAllTickets() {
         return ResponseEntity.ok()
-                .header("Access-Control-Allow-Credentials", "true")
+//                .header("Access-Control-Allow-Credentials", "true")
                 .body(ticketConverter.toResponseTicketDtoList(ticketService.getAllTickets()));
     }
 

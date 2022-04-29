@@ -37,7 +37,7 @@ public class BookingController {
     @GetMapping("")
     public ResponseEntity<List<ResponseBookingDto>> getAllBookings() {
         return ResponseEntity.ok()
-                .header("Access-Control-Allow-Credentials", String.valueOf(true))
+//                .header("Access-Control-Allow-Credentials", String.valueOf(true))
                 .body(bookingConverter.toResponseBookingDtoList(bookingService.getAllBookings()));
     }
 
