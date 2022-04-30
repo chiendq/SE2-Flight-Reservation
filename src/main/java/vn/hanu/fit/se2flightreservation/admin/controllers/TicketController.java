@@ -66,12 +66,12 @@ public class TicketController {
         return new ResponseEntity<>(ticket, HttpStatus.OK);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("{/id}")
     public ResponseEntity<Ticket> updateTicket(@PathVariable("id") int id, @RequestBody Ticket ticket) {
         return new ResponseEntity<>(ticketService.updateTicket(ticket, id), HttpStatus.OK);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteTicket(@PathVariable("id") int id) {
         ticketService.deleteTicketById(id);
         return new ResponseEntity<>("Ticket deleted successfully!.", HttpStatus.OK);

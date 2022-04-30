@@ -50,12 +50,13 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user) {
         return new ResponseEntity<>(userService.updateUser(user, id), HttpStatus.OK);
     }
 
-    @DeleteMapping("{id}")
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") int id) {
         userService.deleteUserById(id);
         return new ResponseEntity<>("User deleted successfully!.", HttpStatus.OK);

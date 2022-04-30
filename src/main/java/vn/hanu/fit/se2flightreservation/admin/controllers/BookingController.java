@@ -54,12 +54,12 @@ public class BookingController {
         return new ResponseEntity<>(booking, HttpStatus.OK);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Booking> updateBooking(@PathVariable("id") int id, @RequestBody Booking booking) {
         return new ResponseEntity<>(bookingService.updateBooking(booking, id), HttpStatus.OK);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteBooking(@PathVariable("id") int id) {
         bookingService.deleteBookingById(id);
         return new ResponseEntity<>("Booking deleted successfully!.", HttpStatus.OK);

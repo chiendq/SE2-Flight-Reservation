@@ -36,12 +36,12 @@ public class AirplaneController {
         return new ResponseEntity<Airplane>(airplaneService.getAirplaneById(airplaneId), HttpStatus.OK);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Airplane> updateAirplane(@PathVariable("id") int id, @RequestBody Airplane airplane) {
         return new ResponseEntity<Airplane>(airplaneService.updateAirplane(airplane, id), HttpStatus.OK);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteAirplane(@PathVariable("id") int id) {
         airplaneService.deleteAirplaneById(id);
         return new ResponseEntity<>("Airplane deleted successfully!.", HttpStatus.OK);

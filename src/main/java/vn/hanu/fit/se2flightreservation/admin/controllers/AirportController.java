@@ -35,12 +35,12 @@ public class AirportController {
         return new ResponseEntity<>(airportService.getAirportById(airportId), HttpStatus.OK);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Airport> updateAirport(@PathVariable("id") int id, @RequestBody Airport airport) {
         return new ResponseEntity<>(airportService.updateAirport(airport, id), HttpStatus.OK);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteAirport(@PathVariable("id") int id) {
         airportService.deleteAirportById(id);
         return new ResponseEntity<String>("Airport deleted successfully!.",HttpStatus.OK);
