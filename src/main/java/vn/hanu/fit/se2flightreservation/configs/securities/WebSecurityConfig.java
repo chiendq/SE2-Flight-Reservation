@@ -96,7 +96,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        corsConfiguration.setAllowedOriginPatterns(origins);
 
         origins.add("http://localhost:3000");
-//        origins.add("https://train-reservation.vercel.app/");
+        origins.add("https://train-reservation.vercel.app/");
         origins.add("https://flight-reservation.vercel.app/");
         corsConfiguration.setAllowedOrigins(origins);
 
