@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.payload.request;
+package vn.hanu.fit.se2flightreservation.auth.payload.request;
 
 import lombok.Data;
 import lombok.Getter;

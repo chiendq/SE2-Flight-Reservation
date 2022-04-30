@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.payload.response;
+package vn.hanu.fit.se2flightreservation.auth.payload.response;
 
 import lombok.Data;
 import vn.hanu.fit.se2flightreservation.enums.EGender;

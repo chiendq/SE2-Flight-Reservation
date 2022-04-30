@@ -1,4 +1,4 @@
-package vn.hanu.fit.se2flightreservation.jwt;
+package vn.hanu.fit.se2flightreservation.configs.jwt;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

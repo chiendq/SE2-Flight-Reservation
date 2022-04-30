@@ -15,8 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
-import vn.hanu.fit.se2flightreservation.jwt.AuthEntryPointJwt;
-import vn.hanu.fit.se2flightreservation.jwt.AuthTokenFilter;
+import vn.hanu.fit.se2flightreservation.configs.jwt.AuthEntryPointJwt;
+import vn.hanu.fit.se2flightreservation.configs.jwt.AuthTokenFilter;
 import vn.hanu.fit.se2flightreservation.admin.services.servicesImpl.UserDetailsServiceImpl;
 
 import java.util.List;
