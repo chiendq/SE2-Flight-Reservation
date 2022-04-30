@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import vn.hanu.fit.se2flightreservation.entities.Booking;
+import vn.hanu.fit.se2flightreservation.entities.FlightClass;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
 import vn.hanu.fit.se2flightreservation.enums.EStatus;
 
@@ -33,7 +34,7 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
                                                                                          String flightClass);
     List<Ticket> findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass(String departureCode,
                                                                                          String arrivalCode,
-                                                                                         String flightClass);
+                                                                                         FlightClass flightClass);
 
     List<Ticket> findAllByDepartureAirport_CodeAndArrivalAirport_Code(String departureCode,String arrivalCode);
     List<Ticket> findAllByDepartureAirport_Code(String departureCode);
