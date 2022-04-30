@@ -228,6 +228,27 @@ public class InitController {
         return "Update " + count + " ticket that incorrect Data";
     }
 
+    @GetMapping("/dummyTickets")
+    public String deleteDummyTickets(){
+        int count = 0;
+        for (Ticket ticket: ticketService.getAllTickets()
+        ) {
+            if(ticket.getAirplane() == null
+            || ticket.getDepartureAirport() == null
+            || ticket.getArrivalAirport() == null
+            || ticket.getArrivalTime() == null
+            || ticket.getStatus() == null
+            || ticket.getDepartureTime() == null
+            || ticket.getFlightClass() == null
+            || ticket.getSeat() == 0){
+                ticketService.deleteTicketById(ticket.getId());
+                count ++;
+            }
+
+        }
+        return "Delete " + count + " tickets that incorrect type";
+    }
+
     public void initRoles(){
         List<Role> roles = new ArrayList<>();
         roles.add(new Role(1, ERole.ROLE_USER,"user"));
