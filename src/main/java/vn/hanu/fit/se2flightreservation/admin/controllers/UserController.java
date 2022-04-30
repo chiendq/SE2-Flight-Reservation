@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.hanu.fit.se2flightreservation.admin.converters.UserConverter;
+import vn.hanu.fit.se2flightreservation.admin.dtos.User.SaveUserDto;
 import vn.hanu.fit.se2flightreservation.admin.services.UserService;
 import vn.hanu.fit.se2flightreservation.admin.services.UserService;
 import vn.hanu.fit.se2flightreservation.entities.Ticket;
@@ -21,10 +23,12 @@ public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    private UserConverter userConverter;
 
+    public UserController(UserService userService, UserConverter userConverter) {
+        this.userService = userService;
+        this.userConverter = userConverter;
+    }
 
     @PostMapping("")
     public ResponseEntity<User> saveUser(@RequestBody User user) {
@@ -51,8 +55,8 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user) {
-        return new ResponseEntity<>(userService.updateUser(user, id), HttpStatus.OK);
+    public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody SaveUserDto saveUserDto) {
+        return new ResponseEntity<>(userService.updateUserDto(saveUserDto, id), HttpStatus.OK);
     }
 
     @CrossOrigin(origins = {"http://localhost:3000"})

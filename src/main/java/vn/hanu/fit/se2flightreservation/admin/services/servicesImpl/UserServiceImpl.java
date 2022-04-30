@@ -2,7 +2,9 @@ package vn.hanu.fit.se2flightreservation.admin.services.servicesImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import vn.hanu.fit.se2flightreservation.admin.dtos.User.SaveUserDto;
 import vn.hanu.fit.se2flightreservation.entities.User;
+import vn.hanu.fit.se2flightreservation.enums.EGender;
 import vn.hanu.fit.se2flightreservation.exceptions.EntityExistedByIdException;
 import vn.hanu.fit.se2flightreservation.exceptions.ResourceNotFoundException;
 import vn.hanu.fit.se2flightreservation.repositories.UserRepository;
@@ -76,5 +78,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isEmpty() {
         return userRepository.findAll().size() == 0;
+    }
+
+    @Override
+    public User updateUserDto(SaveUserDto saveUserDto, int id) {
+        if(!userRepository.existsById(id)){
+            throw new EntityExistedByIdException("User","id", id);
+        }
+        User user = userRepository.getById(id);
+        user.setUsername(saveUserDto.getUsername());
+        user.setPhone(saveUserDto.getPhone());
+        user.setEmail(saveUserDto.getEmail());
+        EGender gender = EGender.female;
+        if(saveUserDto.getGender().equalsIgnoreCase("male")) gender = EGender.male;
+        user.setGender(gender);
+        return user;
     }
 }

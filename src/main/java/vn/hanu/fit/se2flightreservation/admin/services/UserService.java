@@ -1,5 +1,6 @@
 package vn.hanu.fit.se2flightreservation.admin.services;
 
+import vn.hanu.fit.se2flightreservation.admin.dtos.User.SaveUserDto;
 import vn.hanu.fit.se2flightreservation.entities.User;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface UserService {
     void deleteAll();
 
     boolean isEmpty();
+
+    User updateUserDto(SaveUserDto saveUserDto, int id);
 }
