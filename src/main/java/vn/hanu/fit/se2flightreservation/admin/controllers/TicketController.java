@@ -66,7 +66,7 @@ public class TicketController {
         return new ResponseEntity<>(ticket, HttpStatus.OK);
     }
 
-    @PutMapping("{/id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Ticket> updateTicket(@PathVariable("id") int id, @RequestBody Ticket ticket) {
         return new ResponseEntity<>(ticketService.updateTicket(ticket, id), HttpStatus.OK);
     }
