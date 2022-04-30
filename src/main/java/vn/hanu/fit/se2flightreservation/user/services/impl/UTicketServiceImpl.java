@@ -53,7 +53,7 @@ public class UTicketServiceImpl implements UTicketService {
                 return filterAvailable(filterDate(resultTickets, ticketSearchDto));
             }
         }
-        List<Ticket> resultTickets = ticketRepository.findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_Name(
+        List<Ticket> resultTickets = ticketRepository.findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass(
                 ticketSearchDto.getDeparture().getCode(),
                 ticketSearchDto.getDestination().getCode(),
                 ticketSearchDto.getTicketClass()
