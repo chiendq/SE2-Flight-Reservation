@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import vn.hanu.fit.se2flightreservation.admin.dtos.User.SaveUserDto;
 import vn.hanu.fit.se2flightreservation.entities.User;
 import vn.hanu.fit.se2flightreservation.enums.EGender;
+import vn.hanu.fit.se2flightreservation.enums.ERole;
 import vn.hanu.fit.se2flightreservation.exceptions.EntityExistedByIdException;
+import vn.hanu.fit.se2flightreservation.exceptions.FinalEntityCanNotUpdateException;
 import vn.hanu.fit.se2flightreservation.exceptions.ResourceNotFoundException;
 import vn.hanu.fit.se2flightreservation.repositories.UserRepository;
 import vn.hanu.fit.se2flightreservation.admin.services.UserService;
@@ -66,6 +68,9 @@ public class UserServiceImpl implements UserService {
     public void deleteUserById(int id) {
         if(!userRepository.existsById(id)){
             throw new EntityExistedByIdException("User","id", id);
+        }
+        if(userRepository.findById(id).get().getRoles().contains(ERole.ROLE_ADMIN)){
+            throw new FinalEntityCanNotUpdateException("User","id", id);
         }
         userRepository.deleteById(id);
     }
