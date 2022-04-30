@@ -90,13 +90,17 @@ public class UserServiceImpl implements UserService {
         if(!userRepository.existsById(id)){
             throw new EntityExistedByIdException("User","id", id);
         }
-        User user = userRepository.getById(id);
-        user.setUsername(saveUserDto.getUsername());
-        user.setPhone(saveUserDto.getPhone());
-        user.setEmail(saveUserDto.getEmail());
-        EGender gender = EGender.female;
-        if(saveUserDto.getGender().equalsIgnoreCase("male")) gender = EGender.male;
-        user.setGender(gender);
-        return user;
+        User user = userRepository.findById(id).get();
+        try{
+            user.setUsername(saveUserDto.getUsername());
+            user.setPhone(saveUserDto.getPhone());
+            user.setEmail(saveUserDto.getEmail());
+            EGender gender = EGender.female;
+            if(saveUserDto.getGender().equalsIgnoreCase("male")) gender = EGender.male;
+            user.setGender(gender);
+        }catch (Exception e){
+            throw new RuntimeException("Cannot update user :" + saveUserDto.getUsername());
+        }
+        return userRepository.save(user);
     }
 }

@@ -6,13 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vn.hanu.fit.se2flightreservation.entities.Booking;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseUserDto {
+public class ResponseUserDto implements Serializable {
     private int id;
     private List<Booking> purchasedHistories;
     private String email;
