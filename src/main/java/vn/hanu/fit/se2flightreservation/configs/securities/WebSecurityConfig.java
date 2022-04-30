@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import vn.hanu.fit.se2flightreservation.configs.jwt.AuthEntryPointJwt;
 import vn.hanu.fit.se2flightreservation.configs.jwt.AuthTokenFilter;
-import vn.hanu.fit.se2flightreservation.admin.services.servicesImpl.UserDetailsServiceImpl;
+import vn.hanu.fit.se2flightreservation.role.admin.services.servicesImpl.UserDetailsServiceImpl;
 
 import java.util.List;
 

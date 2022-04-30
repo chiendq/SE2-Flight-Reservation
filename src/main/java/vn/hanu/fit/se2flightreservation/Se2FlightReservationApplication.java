@@ -4,8 +4,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import vn.hanu.fit.se2flightreservation.admin.services.RoleService;
-import vn.hanu.fit.se2flightreservation.admin.services.UserService;
+import vn.hanu.fit.se2flightreservation.role.admin.services.RoleService;
+import vn.hanu.fit.se2flightreservation.role.admin.services.UserService;
 import vn.hanu.fit.se2flightreservation.init.InitController;
 
 @SpringBootApplication
