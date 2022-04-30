@@ -12,11 +12,11 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequestMapping("/api/v1/airplanes")
-public class AirplaneController {
+public class UAirplaneController {
 
     private final AirplaneService airplaneService;
 
-    public AirplaneController(AirplaneService airplaneService) {
+    public UAirplaneController(AirplaneService airplaneService) {
         super();
         this.airplaneService = airplaneService;
     }
